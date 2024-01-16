@@ -56,7 +56,8 @@
                 <div class="col-sm-12">
                     <!-- Authentication card start -->
                     <div class="signup-card card-block auth-body mr-auto ml-auto">
-                        <form class="md-float-material">
+                        <form class="md-float-material" method="POST" action="/register">
+                            @csrf
                             <div class="text-center">
                                 <img src="/assets/images/logo.png" alt="logo.png">
                             </div>
@@ -69,33 +70,33 @@
                                 <hr/>
                                 <p style="margin-bottom: 5px" class="text-inverse text-left">Nama Lengkap</p>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Masukkan nama lengkap">
+                                    <input type="text" name="name" class="form-control" placeholder="Masukkan nama lengkap">
                                     <span class="md-line"></span>
                                 </div>
                                 <p style="margin-bottom: 5px" class="text-inverse text-left">Email</p>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Masukkan email">
+                                    <input type="text" name="email" class="form-control" placeholder="Masukkan email">
                                     <span class="md-line"></span>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <p style="margin-bottom: 5px" class="text-inverse text-left">Password</p>
                                         <div class="input-group">
-                                            <input type="password" class="form-control" placeholder="Masukkan password">
+                                            <input type="password" name="password" class="form-control" placeholder="Masukkan password">
                                             <span class="md-line"></span>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <p style="margin-bottom: 5px" class="text-inverse text-left">Konfirmasi Password</p>
                                         <div class="input-group">
                                             <input type="password" class="form-control" placeholder="Konfirmasi password">
                                             <span class="md-line"></span>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign up now.</button>
+                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign up now.</button>
                                     </div>
                                 </div>
                                 <hr/>

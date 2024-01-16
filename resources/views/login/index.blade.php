@@ -84,7 +84,7 @@
                                 <hr/>
                                 <div class="input-group">
                                     <input type="text" class="form-control"
-                                    placeholder="Username" name="username">
+                                    placeholder="Email" name="email">
                                     <span class="md-line"></span>
 
 
