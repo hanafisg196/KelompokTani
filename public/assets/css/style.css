@@ -11474,10 +11474,26 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
 /* =======================================
       Authentication-page css start
  ========================================= */
+ .background-overlay {
+    background-color: rgba(255, 255, 255, 0.5); /* Warna putih dengan tingkat transparansi 50% */
+    position: absolute;
+    top: 0;
+    left: 60%;
+    width: 50%;
+    height: 100%;
+    z-index: 0; /* Menempatkan overlay di depan gambar */
+  }
+
+
 .common-img-bg {
-  background-size: cover;
-  background: linear-gradient(45deg, #4099ff, #73b4ff);
-  height: 100%; }
+    background-image: url('/assets/images/auth/tani.jpg');
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Menempatkan gambar di belakang overlay */ }
 
 .signin-card .auth-box button i, .signup-card .auth-box button i, .login-card .auth-box button i {
   padding: 5px 0; }
@@ -11605,7 +11621,8 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
   position: fixed;
   text-align: center;
   width: 100%;
-  min-height: 100vh; }
+  min-height: 100vh;
+  overflow: hidden; }
 
 .auth-box {
   background-color: #fff;
@@ -14179,7 +14196,14 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
     margin-bottom: 0; }
 
   .common-img-bg {
-    background: #f3f3f3 !important; }
+    background-image: url('/assets/images/auth/tani.jpg');
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Menempatkan gambar di belakang overlay */  }
 
   .auth-body .text-center img {
     display: none; }

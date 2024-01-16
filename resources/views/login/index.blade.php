@@ -20,6 +20,7 @@
     name="keywords"
     content="free dashboard template" />
     <meta name="author" content="codedthemes">
+
     <!-- Favicon icon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
     <!-- Google font-->
@@ -46,10 +47,14 @@
         @media (min-width: 1200px) {
             .custom-margin {
                 margin-left: 65%;
+
             }
+
+
         }
     </style>
-    <section class="login p-fixed d-flex text-center bg-primary common-img-bg" style="background-image: url('/assets/images/auth/tani.jpg'); background-size: cover; position: fixed;">
+    <section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+        <div class="background-overlay"></div>
         <!-- Container-fluid starts -->
         <div class="container-fluid custom-margin">
             <div class="row">
@@ -91,7 +96,7 @@
                                     <span class="md-line"></span>
 
                                 </div>
-                                <div class="row m-t-25 text-left">
+                                {{-- <div class="row m-t-25 text-left">
                                     <div class="col-sm-7 col-xs-12">
                                         <div class="checkbox-fade fade-in-primary">
                                             <label>
@@ -103,7 +108,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
                                         <button

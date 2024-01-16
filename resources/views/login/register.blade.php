@@ -48,8 +48,9 @@
         }
     </style>
     <!-- Pre-loader end -->
-    <section class="login p-fixed d-flex text-center bg-primary common-img-bg" style="background-image: url('/assets/images/auth/tani.jpg'); background-size: cover; position: fixed;">
+    <section class="login p-fixed d-flex text-center bg-primary common-img-bg">
         <!-- Container-fluid starts -->
+        <div style="left: 45%; width: 60%;" class="background-overlay"></div>
         <div class="container-fluid custom-margin">
             <div class="row">
                 <div class="col-sm-12">
@@ -101,7 +102,7 @@
                                 <div class="row">
                                     <div class="col-md-10 text-left">
                                         <p class="text-inverse text-left m-b-0">Sudah memiliki akun?</p>
-                                        <a href="/login">Back to Login!</a>
+                                        <a href="/login">Kembali kehalaman Login!</a>
 
                                     </div>
                                     <div class="col-md-2">

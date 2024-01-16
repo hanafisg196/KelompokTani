@@ -19,11 +19,30 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login.index');
 });
-
 Route::get('/register', function () {
     return view('login.register');
 });
-
 Route::get('/dashboard', function () {
     return view('dashboard.index');
+});
+Route::get('/produk', function () {
+    return view('produk.index');
+});
+Route::get('/stok', function () {
+    return view('stok.index');
+});
+Route::get('/kategori', function () {
+    return view('kategori.index');
+});
+Route::get('/rekening', function () {
+    return view('rekening.index');
+});
+Route::get('/user', function () {
+    return view('user.index');
+});
+Route::get('/biaya', function () {
+    return view('biaya.index');
+});
+Route::get('/voucher', function () {
+    return view('voucher.index');
 });
