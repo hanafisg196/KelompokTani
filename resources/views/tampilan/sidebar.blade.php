@@ -34,7 +34,7 @@
                     </a>
                 </li>
             </ul>
-            <ul class="pcoded-item pcoded-left-item">
+            {{-- <ul class="pcoded-item pcoded-left-item">
                 <li class="{{ request()->segment(1)=='stok'? 'active' : '' }}">
                     <a href="/stok">
                         <span class="pcoded-micon"><i class="ti-archive"></i></i></span>
@@ -42,18 +42,48 @@
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
 
             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Pembayaran</div>
             <ul class="pcoded-item pcoded-left-item">
-                <li class="{{ request()->segment(1)=='biaya'? 'active' : '' }}">
-                    <a href="/biaya">
+                <li class="{{ request()->segment(1)=='pembayaran'? 'active' : '' }}">
+                    <a href="/pembayaran">
                         <span class="pcoded-micon"><i class="ti-money"></i></i></span>
                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Pembayaran</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
             </ul>
+
+            <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Shipping</div>
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="{{ request()->segment(1)=='ongkir'? 'active' : '' }}">
+                    <a href="/ongkir">
+                        <span class="pcoded-micon"><i class="ti-truck"></i></i></span>
+                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Ongkir</span>
+                        <span class="pcoded-mcaret"></span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="{{ request()->segment(1)=='provinsi'? 'active' : '' }}">
+                    <a href="/provinsi">
+                        <span class="pcoded-micon"><i class="ti-map"></i></i></span>
+                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Provinsi</span>
+                        <span class="pcoded-mcaret"></span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="{{ request()->segment(1)=='kota'? 'active' : '' }}">
+                    <a href="/kota">
+                        <span class="pcoded-micon"><i class="ti-map-alt"></i></i></span>
+                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Kota</span>
+                        <span class="pcoded-mcaret"></span>
+                    </a>
+                </li>
+            </ul>
+
 
             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Setting</div>
             <ul class="pcoded-item pcoded-left-item">

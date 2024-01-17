@@ -1,16 +1,13 @@
 @extends('tampilan.main')
 @section('content')
 
-@extends('tampilan.main')
-@section('content')
-
 
 
 
 <!-- Contextual classes table starts -->
 <div class="card">
     <div class="card-header">
-        <h5>Tabel Data User</h5>
+        <h5>Tabel Data Ongkir</h5>
         <div class="card-header-right">
             <ul class="list-unstyled card-option">
                 <li><i class="fa fa-chevron-left"></i></li>
@@ -34,18 +31,18 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             <i class="ti-plus"></i>Tambah
         </button>
-        {{-- <a href="/kegiatan/create" class="btn waves-effect waves-light btn-primary"><i class="ti-plus"></i>Tambah</a> --}}
+        {{-- <a href="/ongkir/create" class="btn waves-effect waves-light btn-primary"><i class="ti-plus"></i>Tambah</a> --}}
     </div>
     <div class="card-block table-border-style">
         <div class="table-responsive">
             <table class="table">
-                <caption>Data User</caption>
+                <caption>Data Ongkir</caption>
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
-                        <th>Role</th>
-                        <th>Email</th>
+                        <th>Provinsi</th>
+                        <th>Kota</th>
+                        <th>Ongkir</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -84,13 +81,12 @@
     </div>
 </div>
 
-{{-- Modal Tambah Data --}}
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Tambah Data User</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Ongkir</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -101,7 +97,22 @@
                 <div class="card-block">
 
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Nama</label>
+                            <label class="col-sm-3 col-form-label">Provinsi</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
+                                value="{{ old('nagari_kunjungan') }}" required>
+
+                                @error('nagari_kunjungan')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Kota</label>
                             <div class="col-sm-9">
                                 <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
                                  value="{{ old('nagari_kunjungan') }}" required>
@@ -116,7 +127,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Role</label>
+                            <label class="col-sm-3 col-form-label">Ongkir</label>
                             <div class="col-sm-9">
                                 <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
                                  value="{{ old('nagari_kunjungan') }}" required>
@@ -130,22 +141,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Email </label>
-                            <div class="col-sm-9">
-                                <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
-                                 value="{{ old('nagari_kunjungan') }}" required>
-
-                                @error('nagari_kunjungan')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-
-                            </div>
-                        </div>
-
-                    </div>
+                </div>
             </form>
         </div>
         <div class="modal-footer">
@@ -155,8 +151,6 @@
       </div>
     </div>
   </div>
-
-
 
 
 <!-- Contextual classes table ends -->
@@ -187,8 +181,5 @@
         });
     });
 </script>
-
-@endsection
-
 
 @endsection

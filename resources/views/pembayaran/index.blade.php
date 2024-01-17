@@ -7,7 +7,7 @@
 <!-- Contextual classes table starts -->
 <div class="card">
     <div class="card-header">
-        <h5>Tabel Data Kategori</h5>
+        <h5>Tabel Data Pembayaran</h5>
         <div class="card-header-right">
             <ul class="list-unstyled card-option">
                 <li><i class="fa fa-chevron-left"></i></li>
@@ -28,19 +28,24 @@
     @endif
 
     <div class="text-right mr-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            <i class="ti-plus"></i>Tambah
-        </button>
-        {{-- <a href="/Kategori/create" class="btn waves-effect waves-light btn-primary"><i class="ti-plus"></i>Tambah</a> --}}
+        <a href="/pembayaran/create" class="btn waves-effect waves-light btn-primary"><i class="ti-plus"></i>Tambah</a>
     </div>
     <div class="card-block table-border-style">
         <div class="table-responsive">
             <table class="table">
-                <caption>Data Kategori</caption>
+                <caption>Data Pembayaran</caption>
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Kategori</th>
+                        <th>Tujuan Pengiriman</th>
+                        <th>Nomor Faktur</th>
+                        <th>Voucher</th>
+                        <th>Sub Total Produk</th>
+                        <th>Diskon</th>
+                        <th>Ongkir</th>
+                        <th>Total Pembayaran</th>
+                        <th>Metode Pembayaran</th>
+                        <th>Bukti Transfer</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -78,47 +83,6 @@
         </div>
     </div>
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form method="POST" action="#" enctype="multipart/form-data">
-                @csrf
-                <div class="card-block">
-
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Kategori</label>
-                            <div class="col-sm-9">
-                                <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
-                                 value="{{ old('nagari_kunjungan') }}" required>
-
-                                @error('nagari_kunjungan')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-
-                            </div>
-                        </div>
-
-                    </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
 <!-- Contextual classes table ends -->

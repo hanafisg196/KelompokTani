@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Middleware\AdminMiddleware;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PembayaranController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,9 +67,11 @@ Route::get('/profile', function () {
 })->name('profile');
 
 Route::middleware(AdminMiddleware::class)->group(function (){
-  
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [LoginController::class, 'doLogout']);
+    Route::resource('/pembayaran', PembayaranController::class);
+    Route::resource('/produk', ProdukController::class);
 
     Route::get('/produk', function () {
         return view('produk.index');
@@ -84,11 +88,25 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::get('/user', function () {
         return view('user.index');
     });
-    Route::get('/biaya', function () {
-        return view('biaya.index');
-    });
+
     Route::get('/voucher', function () {
         return view('voucher.index');
     });
-    
+
+    Route::get('/kota', function () {
+        return view('kota.index');
+    });
+
+    Route::get('/provinsi', function () {
+        return view('provinsi.index');
+    });
+
+    Route::get('/ongkir', function () {
+        return view('ongkir.index');
+    });
+
 });
+
+
+
+
