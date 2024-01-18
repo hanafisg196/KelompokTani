@@ -1,16 +1,16 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KotaController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\VoucherController;
-use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RekeningController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -52,7 +52,6 @@ Route::get('/register', [RegisterController::class, 'register'] );
 Route::post('/register', [RegisterController::class, 'getRegister'] );
 
 
-
 Route::get('/profile', function () {
     return "halaman user";
 })->name('profile');
@@ -63,23 +62,14 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::post('/logout', [LoginController::class, 'doLogout']);
     Route::resource('/pembayaran', PembayaranController::class);
     Route::resource('/produk', ProdukController::class);
-    Route::resource('/voucher', VoucherController::class);
-    Route::post('/editdata/{id_voucher}', [VoucherController::class,'editdata']);
-    Route::resource('/rekening', RekeningController::class);
-    Route::post('/editrekening/{id_rekening}', [RekeningController::class,'editrekening']);
-    Route::resource('/provinsi', ProvinsiController::class);
-    Route::post('/editprovinsi/{id_prov}', [ProvinsiController::class,'editprovinsi']);
-    Route::resource('/kota', KotaController::class);
-    Route::post('/editkota/{id_city}', [KotaController::class,'editKota']);
+    Route::resource('/kategori', CategoryController::class);
 
-    Route::get('/produk', function () {
-        return view('produk.index');
-    });
     Route::get('/stok', function () {
         return view('stok.index');
     });
-    Route::get('/kategori', function () {
-        return view('kategori.index');
+   
+    Route::get('/rekening', function () {
+        return view('rekening.index');
     });
     Route::get('/user', function () {
         return view('user.index');

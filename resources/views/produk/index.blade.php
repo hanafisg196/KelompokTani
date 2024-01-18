@@ -55,18 +55,25 @@
                     }
                 </style>
                 @php $no = 1; @endphp
-                {{-- <tbody>
+                <tbody>
                     @foreach ($data as $key => $datas)
                     <tr>
                         <th scope="row">{{ $data->firstitem() + $key }}</th>
-                        <td>{{ $datas['nagari_kunjungan'] }}</td>
-                        <td class="custom-td">{!! $datas['kegiatan'] !!}</td>
-                        <td class="custom-td">{!! $datas['hasil'] !!}</td>
-                        <td class="custom-td">{!! $datas['langkah'] !!}</td>
-                        <td class="custom-td">{!! $datas['rekomendasi'] !!}</td>
+                        <td>{{ $datas['name'] }}</td>
+                        <td class="custom-td">{!! $datas['categories']['name'] !!}</td>
+                        <td class="custom-td">
+                            @if($datas['image'] && file_exists(public_path("storage/{$datas['image']}")))
+                            <img src="{{ asset('storage/' . $datas['image']) }}" width="100" height="100" alt="{{ $datas['image'] }}">
+                        @else
+                            <img src="{{ asset('assets/images/noimage.jpg') }}" width="100" height="100" alt="Default Image">
+                        @endif
+                        </td>
+                        <td class="custom-td">{!! $datas['harga'] !!}</td>
+                        <td class="custom-td">{!! $datas['stok'] !!}</td>
+                        <td class="custom-td">{!! $datas['deskripsi'] !!}</td>
                         <td>
-                            <a href="/kegiatan/{{ $datas->id }}/edit" class="ti-pencil btn btn-primary"></a>
-                            <form action="/kegiatan/{{ $datas->id }}" method="POST" class="d-inline">
+                            <a href="/produk/{{ $datas->id }}/edit" class="ti-pencil btn btn-primary"></a>
+                            <form action="/produk/{{ $datas->id }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="ti-trash btn btn-danger" onclick="return confirm('Yakin Menghapus Data?')"></button>
@@ -74,7 +81,7 @@
                         </td>
                     </tr>
                     @endforeach
-                </tbody> --}}
+                </tbody>
 
 
             </table>
