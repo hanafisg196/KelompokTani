@@ -102,8 +102,17 @@ class KotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_kota)
     {
-        //
+        // Temukan data kegiatan berdasarkan ID
+        $kota = Kota::find($id_kota);
+
+        // Jika data kota ditemukan, lakukan penghapusan
+        if ($kota) {
+            $kota->delete();
+            return redirect('/kota')->with('success', 'Data berhasil dihapus.'); // Redirect dengan pesan sukses
+        } else {
+            return redirect('/kota')->with('error', 'Data tidak ditemukan.'); // Redirect dengan pesan error jika data tidak ditemukan
+        }
     }
 }
