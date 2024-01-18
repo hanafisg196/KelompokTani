@@ -1,12 +1,6 @@
 @extends('tampilan.main')
 @section('content')
 
-@extends('tampilan.main')
-@section('content')
-
-
-
-
 <!-- Contextual classes table starts -->
 <div class="card">
     <div class="card-header">
@@ -23,7 +17,7 @@
     </div>
 
     @if(session()->has('success'))
-    <div class="row">
+    <div class="row ml-2">
         <div class="alert alert-success col-sm-3 ml-3 mb-2" role="alert">
             {{ session('success') }}
         </div>
@@ -48,6 +42,7 @@
                         <th>Diskon</th>
                         <th>Tanggal Mulai</th>
                         <th>Tanggal Akhir</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -59,18 +54,21 @@
                     }
                 </style>
                 @php $no = 1; @endphp
-                {{-- <tbody>
-                    @foreach ($data as $key => $datas)
+                <tbody>
+                    @foreach ($voucher as $datas)
                     <tr>
-                        <th scope="row">{{ $data->firstitem() + $key }}</th>
-                        <td>{{ $datas['nagari_kunjungan'] }}</td>
-                        <td class="custom-td">{!! $datas['kegiatan'] !!}</td>
-                        <td class="custom-td">{!! $datas['hasil'] !!}</td>
-                        <td class="custom-td">{!! $datas['langkah'] !!}</td>
-                        <td class="custom-td">{!! $datas['rekomendasi'] !!}</td>
+                        <th scope="row">{{ $no++ }}</th>
+                        <td class="code_voucher">{{ $datas['code_voucher'] }}</td>
+                        <td class="min">{{ $datas['min'] }}</td>
+                        <td class="percent">{{ $datas['percent'] }}</td>
+                        <td class="start_date">{{ $datas['start_date'] }}</td>
+                        <td class="end_date">{{ $datas['end_date'] }}</td>
+                        <td class="ket custom-td">{!! $datas['ket'] !!}</td>
                         <td>
-                            <a href="/kegiatan/{{ $datas->id }}/edit" class="ti-pencil btn btn-primary"></a>
-                            <form action="/kegiatan/{{ $datas->id }}" method="POST" class="d-inline">
+                            <button type="button" class="btn btn-primary exampleModaledit" data-toggle="modal" data-target="#exampleModaledit{{ $datas->id_voucher }}">
+                                <i class="ti-pencil"></i>
+                            </button>
+                            <form action="/voucher/{{ $datas->id_voucher }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="ti-trash btn btn-danger" onclick="return confirm('Yakin Menghapus Data?')"></button>
@@ -78,7 +76,7 @@
                         </td>
                     </tr>
                     @endforeach
-                </tbody> --}}
+                </tbody>
 
 
             </table>
@@ -87,7 +85,6 @@
 </div>
 
 {{-- Modal Tambah Data --}}
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -98,15 +95,15 @@
           </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="#" enctype="multipart/form-data">
+            <form method="POST" action="/voucher" enctype="multipart/form-data">
                 @csrf
                 <div class="card-block">
 
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Kode Voucher</label>
                             <div class="col-sm-9">
-                                <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
-                                 value="{{ old('nagari_kunjungan') }}" required>
+                                <input type="text" id="code_voucher" name="code_voucher" class="form-control @error('code_voucher') is-invalid @enderror"
+                                 value="{{ old('code_voucher') }}" required>
 
                                 @error('nagari_kunjungan')
                                     <div class="invalid-feedback">
@@ -120,10 +117,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Minimal Belanja</label>
                             <div class="col-sm-9">
-                                <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
-                                 value="{{ old('nagari_kunjungan') }}" required>
+                                <input type="number" id="min" name="min" class="form-control @error('min') is-invalid @enderror"
+                                 value="{{ old('min') }}" required>
 
-                                @error('nagari_kunjungan')
+                                @error('min')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -135,10 +132,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Diskon </label>
                             <div class="col-sm-9">
-                                <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
-                                 value="{{ old('nagari_kunjungan') }}" required>
+                                <input type="number" id="percent" name="percent" class="form-control @error('percent') is-invalid @enderror"
+                                 value="{{ old('percent') }}" required>
 
-                                @error('nagari_kunjungan')
+                                @error('percent')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -150,10 +147,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Tangal Mulai</label>
                             <div class="col-sm-9">
-                                <input type="date" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
-                                 value="{{ old('nagari_kunjungan') }}" required>
+                                <input type="date" id="start_date" name="start_date" class="form-control @error('start_date') is-invalid @enderror"
+                                 value="{{ old('start_date') }}" required>
 
-                                @error('nagari_kunjungan')
+                                @error('start_date')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -165,8 +162,23 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Tanggal Akhir</label>
                             <div class="col-sm-9">
-                                <input type="date" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
-                                 value="{{ old('nagari_kunjungan') }}" required>
+                                <input type="date" id="end_date" name="end_date" class="form-control @error('end_date') is-invalid @enderror"
+                                 value="{{ old('end_date') }}" required>
+
+                                @error('end_date')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Keterangan</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="ket" name="ket" class="form-control @error('ket') is-invalid @enderror"
+                                 value="{{ old('ket') }}" required>
 
                                 @error('nagari_kunjungan')
                                     <div class="invalid-feedback">
@@ -178,25 +190,156 @@
                         </div>
 
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                </div>
             </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
       </div>
     </div>
   </div>
 
 
+<!-- Modal Tambah ends -->
+
+{{-- Modal Edit Data --}}
+@foreach ($voucher as $datas)
+<div class="modal fade" id="exampleModaledit{{ $datas->id_voucher }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Data Voucher</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="/editdata/{{ $datas->id_voucher }}" enctype="multipart/form-data">
+                @csrf
+                <div class="card-block">
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Kode Voucher</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="code_voucher" name="code_voucher" value="{{ $datas->code_voucher }}" class="form-control @error('code_voucher') is-invalid @enderror"
+                                  required>
+
+                                @error('nagari_kunjungan')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Minimal Belanja</label>
+                            <div class="col-sm-9">
+                                <input type="number" id="min" name="min" value="{{ $datas->min }}" class="form-control @error('min') is-invalid @enderror"
+                                  required>
+
+                                @error('min')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Diskon </label>
+                            <div class="col-sm-9">
+                                <input type="number" id="percent" name="percent" class="form-control @error('percent') is-invalid @enderror"
+                                 value="{{ $datas->percent }}" required>
+
+                                @error('percent')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Tangal Mulai</label>
+                            <div class="col-sm-9">
+                                <input type="date" id="start_date" name="start_date" class="form-control @error('start_date') is-invalid @enderror"
+                                 value="{{ $datas->start_date }}" required>
+
+                                @error('start_date')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Tanggal Akhir</label>
+                            <div class="col-sm-9">
+                                <input type="date" id="end_date" name="end_date" class="form-control @error('end_date') is-invalid @enderror"
+                                 value="{{ $datas->end_date }}" required>
+
+                                @error('end_date')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Keterangan</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="ket" name="ket" class="form-control @error('ket') is-invalid @enderror"
+                                 value="{{ $datas->ket }}" required>
+
+                                @error('ket')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+      </div>
+    </div>
+</div>
+@endforeach
+{{-- Modal Edit Data End--}}
 
 
-<!-- Contextual classes table ends -->
+  <!-- Contextual classes table ends -->
 
-  <script>
-    document.addEventListener('trix-file-accept', function(e){
-        e.preventDefault();
+{{-- <script>
+    $(document).on('click', '.exampleModaledit', function () {
+        var _this = $(this).parents('tr');
+        var voucherId = _this.data('id_voucher'); // Mengambil ID voucher dari tombol edit
+        var formAction = '/voucher/' + voucherId; // Menggabungkan ID voucher ke dalam URL update
+        $('#exampleModaledit form').attr('action', formAction);
+        $('#codvoucher').val(_this.find(".codvoucher").text());
+        $('#e_min').val(_this.find(".min").text());
+        $('#e_percent').val(_this.find(".percent").text());
+        $('#e_start_date').val(_this.find(".start_date").text());
+        $('#e_end_date').val(_this.find(".end_date").text());
+        $('#e_ket').val(_this.find(".ket").text());
     });
+</script> --}}
+<script>
 
     $(document).ready(function() {
         $('.custom-td').each(function() {
@@ -219,8 +362,5 @@
         });
     });
 </script>
-
-@endsection
-
 
 @endsection

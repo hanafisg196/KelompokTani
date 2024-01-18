@@ -20,7 +20,7 @@
     </div>
 
     @if(session()->has('success'))
-    <div class="row">
+    <div class="m-2 row">
         <div class="alert alert-success col-sm-3 ml-3 mb-2" role="alert">
             {{ session('success') }}
         </div>
@@ -41,6 +41,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Kota</th>
+                        <th>Nama Provinsi</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -52,18 +53,17 @@
                     }
                 </style>
                 @php $no = 1; @endphp
-                {{-- <tbody>
-                    @foreach ($data as $key => $datas)
+                <tbody>
+                    @foreach ($kota as $data)
                     <tr>
-                        <th scope="row">{{ $data->firstitem() + $key }}</th>
-                        <td>{{ $datas['nagari_kunjungan'] }}</td>
-                        <td class="custom-td">{!! $datas['kegiatan'] !!}</td>
-                        <td class="custom-td">{!! $datas['hasil'] !!}</td>
-                        <td class="custom-td">{!! $datas['langkah'] !!}</td>
-                        <td class="custom-td">{!! $datas['rekomendasi'] !!}</td>
+                        <th scope="row">{{ $no++}}</th>
+                        <td>{{ $data['city_name'] }}</td>
+                        <td>{{ $data->provinsi->prov_name }}</td>
                         <td>
-                            <a href="/kegiatan/{{ $datas->id }}/edit" class="ti-pencil btn btn-primary"></a>
-                            <form action="/kegiatan/{{ $datas->id }}" method="POST" class="d-inline">
+                            <button type="button" class="btn btn-primary exampleModaledit" data-toggle="modal" data-target="#exampleModaledit{{ $data->id_city }}">
+                                <i class="ti-pencil"></i>
+                            </button>
+                            <form action="/kota/{{ $data->id_city }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="ti-trash btn btn-danger" onclick="return confirm('Yakin Menghapus Data?')"></button>
@@ -71,7 +71,7 @@
                         </td>
                     </tr>
                     @endforeach
-                </tbody> --}}
+                </tbody>
 
 
             </table>
@@ -79,49 +79,111 @@
     </div>
 </div>
 
-<!-- Modal -->
+{{-- Modal Tambah Data --}}
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Tambah Kota</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form method="POST" action="#" enctype="multipart/form-data">
-                @csrf
-                <div class="card-block">
-
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Kota</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/kota" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card-block">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Kota</label>
                             <div class="col-sm-9">
-                                <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
-                                 value="{{ old('nagari_kunjungan') }}" required>
-
-                                @error('nagari_kunjungan')
+                                <input type="text" id="city_name" name="city_name" class="form-control @error('city_name') is-invalid @enderror" value="{{ old('city_name') }}" required>
+                                @error('city_name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
-
                             </div>
                         </div>
-
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Provinsi</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="id_prov">
+                                    @foreach ($provinsi as $kategori)
+                                        @if(old('id_prov') == $kategori->id_prov)
+                                            <option value="{{ $kategori->id_prov }}" selected>{{ $kategori->prov_name }}</option>
+                                        @else
+                                            <option value="{{ $kategori->id_prov }}">{{ $kategori->prov_name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
+{{-- Modal Tambah Data end --}}
+
+{{-- Modal Edit Data --}}
+@foreach ($kota as $data)
+    <div class="modal fade" id="exampleModaledit{{ $data->id_city }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Data Provinsi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ url('/editkota', $data->id_city) }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-block">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Kota</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="city_name" name="city_name" class="form-control @error('city_name') is-invalid @enderror" value="{{ $data->city_name }}" required>
+                                    @error('city_name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Provinsi</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="id_prov">
+                                        @foreach ($provinsi as $kategori)
+                                            @if(old('id_prov',$data->id_prov) == $kategori->id_prov)
+                                                <option value="{{ $kategori->id_prov }}" selected>{{ $kategori->prov_name }}</option>
+                                            @else
+                                                <option value="{{ $kategori->id_prov }}">{{ $kategori->prov_name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+{{-- Modal Edit Data End--}}
 
 
-<!-- Contextual classes table ends -->
 
   <script>
     document.addEventListener('trix-file-accept', function(e){

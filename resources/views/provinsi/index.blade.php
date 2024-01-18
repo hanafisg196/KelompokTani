@@ -20,7 +20,7 @@
     </div>
 
     @if(session()->has('success'))
-    <div class="row">
+    <div class="m-2 row">
         <div class="alert alert-success col-sm-3 ml-3 mb-2" role="alert">
             {{ session('success') }}
         </div>
@@ -31,7 +31,6 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             <i class="ti-plus"></i>Tambah
         </button>
-        {{-- <a href="/provinsi/create" class="btn waves-effect waves-light btn-primary"><i class="ti-plus"></i>Tambah</a> --}}
     </div>
     <div class="card-block table-border-style">
         <div class="table-responsive">
@@ -44,26 +43,22 @@
                         <th>Aksi</th>
                     </tr>
                 </thead>
-
-                <!-- Kemudian bagian HTML templatenya -->
                 <style>
                     .custom-td {
                         white-space: pre-wrap;
                     }
                 </style>
                 @php $no = 1; @endphp
-                {{-- <tbody>
-                    @foreach ($data as $key => $datas)
+                <tbody>
+                    @foreach ($provinsi as $data)
                     <tr>
-                        <th scope="row">{{ $data->firstitem() + $key }}</th>
-                        <td>{{ $datas['nagari_kunjungan'] }}</td>
-                        <td class="custom-td">{!! $datas['kegiatan'] !!}</td>
-                        <td class="custom-td">{!! $datas['hasil'] !!}</td>
-                        <td class="custom-td">{!! $datas['langkah'] !!}</td>
-                        <td class="custom-td">{!! $datas['rekomendasi'] !!}</td>
+                        <th scope="row">{{ $no++ }}</th>
+                        <td width="70%" class="custom-td">{{ $data['prov_name'] }}</td>
                         <td>
-                            <a href="/kegiatan/{{ $datas->id }}/edit" class="ti-pencil btn btn-primary"></a>
-                            <form action="/kegiatan/{{ $datas->id }}" method="POST" class="d-inline">
+                            <button type="button" class="btn btn-primary exampleModaledit" data-toggle="modal" data-target="#exampleModaledit{{ $data->id_prov }}">
+                                <i class="ti-pencil"></i>
+                            </button>
+                            <form action="/provinsi/{{ $data->id_prov }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="ti-trash btn btn-danger" onclick="return confirm('Yakin Menghapus Data?')"></button>
@@ -71,36 +66,35 @@
                         </td>
                     </tr>
                     @endforeach
-                </tbody> --}}
-
-
+                </tbody>
             </table>
         </div>
     </div>
+
 </div>
 
-<!-- Modal -->
+{{-- Modal Tambah Data --}}
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Tambah Provinsi</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form method="POST" action="#" enctype="multipart/form-data">
-                @csrf
-                <div class="card-block">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Provinsi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/provinsi" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card-block">
 
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Provinsi</label>
                             <div class="col-sm-9">
-                                <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
-                                 value="{{ old('nagari_kunjungan') }}" required>
+                                <input type="text" id="prov_name" name="prov_name" class="form-control @error('prov_name') is-invalid @enderror"
+                                value="{{ old('prov_name') }}" required>
 
-                                @error('nagari_kunjungan')
+                                @error('prov_name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -108,20 +102,56 @@
 
                             </div>
                         </div>
-
                     </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
+<!-- Modal Tambah Data ends -->
 
-
-<!-- Contextual classes table ends -->
+{{-- Modal Edit Data --}}
+@foreach ($provinsi as $data)
+    <div class="modal fade" id="exampleModaledit{{ $data->id_prov }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Data Provinsi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ url('/editprovinsi', $data->id_prov) }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-block">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Provinsi</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="name" name="prov_name" class="form-control @error('prov_name') is-invalid @enderror" value="{{ $data->prov_name }}" required>
+                                    @error('prov_name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+{{-- Modal Edit Data End--}}
 
   <script>
     document.addEventListener('trix-file-accept', function(e){

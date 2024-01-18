@@ -1,9 +1,6 @@
 @extends('tampilan.main')
 @section('content')
 
-
-
-
 <!-- Contextual classes table starts -->
 <div class="card">
     <div class="card-header">
@@ -20,7 +17,7 @@
     </div>
 
     @if(session()->has('success'))
-    <div class="row">
+    <div class="m-2 row">
         <div class="alert alert-success col-sm-3 ml-3 mb-2" role="alert">
             {{ session('success') }}
         </div>
@@ -54,18 +51,18 @@
                     }
                 </style>
                 @php $no = 1; @endphp
-                {{-- <tbody>
-                    @foreach ($data as $key => $datas)
+                <tbody>
+                    @foreach ($rekening as $datas)
                     <tr>
-                        <th scope="row">{{ $data->firstitem() + $key }}</th>
-                        <td>{{ $datas['nagari_kunjungan'] }}</td>
-                        <td class="custom-td">{!! $datas['kegiatan'] !!}</td>
-                        <td class="custom-td">{!! $datas['hasil'] !!}</td>
-                        <td class="custom-td">{!! $datas['langkah'] !!}</td>
-                        <td class="custom-td">{!! $datas['rekomendasi'] !!}</td>
+                        <th scope="row">{{ $no++}}</th>
+                        <td>{{ $datas['name'] }}</td>
+                        <td>{{ $datas['bank_name'] }}</td>
+                        <td>{{ $datas['rek'] }}</td>
                         <td>
-                            <a href="/kegiatan/{{ $datas->id }}/edit" class="ti-pencil btn btn-primary"></a>
-                            <form action="/kegiatan/{{ $datas->id }}" method="POST" class="d-inline">
+                            <button type="button" class="btn btn-primary exampleModaledit" data-toggle="modal" data-target="#exampleModaledit{{ $datas->id_rekening }}">
+                                <i class="ti-pencil"></i>
+                            </button>
+                            <form action="/rekening/{{ $datas->id_rekening }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="ti-trash btn btn-danger" onclick="return confirm('Yakin Menghapus Data?')"></button>
@@ -73,7 +70,7 @@
                         </td>
                     </tr>
                     @endforeach
-                </tbody> --}}
+                </tbody>
 
 
             </table>
@@ -82,28 +79,27 @@
 </div>
 
 {{-- Modal Tambah Data --}}
-<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Tambah Data Rekening</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form method="POST" action="#" enctype="multipart/form-data">
-                @csrf
-                <div class="card-block">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Rekening</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/rekening" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card-block">
 
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Nama</label>
                             <div class="col-sm-9">
-                                <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
-                                 value="{{ old('nagari_kunjungan') }}" required>
+                                <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"
+                                value="{{ old('name') }}" required>
 
-                                @error('nagari_kunjungan')
+                                @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -115,10 +111,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Nama Bank</label>
                             <div class="col-sm-9">
-                                <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
-                                 value="{{ old('nagari_kunjungan') }}" required>
+                                <input type="text" id="bank_name" name="bank_name" class="form-control @error('bank_name') is-invalid @enderror"
+                                value="{{ old('bank_name') }}" required>
 
-                                @error('nagari_kunjungan')
+                                @error('bank_name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -130,10 +126,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Nomor Rekening</label>
                             <div class="col-sm-9">
-                                <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
-                                 value="{{ old('nagari_kunjungan') }}" required>
+                                <input type="number" id="rek" name="rek" class="form-control @error('rek') is-invalid @enderror"
+                                value="{{ old('rek') }}" required>
 
-                                @error('nagari_kunjungan')
+                                @error('rek')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -142,20 +138,81 @@
                             </div>
                         </div>
                     </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Tambah</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
+<!-- Modal Tambah Data ends -->
 
+{{-- Modal Edit Data --}}
+@foreach ($rekening as $data)
+    <div class="modal fade" id="exampleModaledit{{ $data->id_rekening }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Data Rekening</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ url('/editrekening', $data->id_rekening) }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="card-block">
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-3 col-form-label">Nama</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ $data->name }}" required>
+                                    @error('name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
 
+                            <div class="form-group row">
+                                <label for="bank_name" class="col-sm-3 col-form-label">Nama Bank</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="bank_name" name="bank_name" class="form-control @error('bank_name') is-invalid @enderror" value="{{ $data->bank_name }}" required>
+                                    @error('bank_name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
 
-<!-- Contextual classes table ends -->
+                            <div class="form-group row">
+                                <label for="rek" class="col-sm-3 col-form-label">Nomor Rekening</label>
+                                <div class="col-sm-9">
+                                    <input type="number" id="rek" name="rek" class="form-control @error('rek') is-invalid @enderror" value="{{ $data->rek }}" required>
+                                    @error('rek')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+
+{{-- Modal Edit Data End--}}
 
   <script>
     document.addEventListener('trix-file-accept', function(e){
