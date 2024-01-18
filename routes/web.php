@@ -53,19 +53,6 @@ Route::post('/register', [RegisterController::class, 'getRegister'] );
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::get('/profile', function () {
     return "halaman user";
 })->name('profile');
