@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('provinsis', function (Blueprint $table) {
-            $table->id('id_prov');
-            $table->string('prov_name');
-            $table->string('slug')->unique();
+        Schema::create('ongkirs', function (Blueprint $table) {
+            $table->id('id_ongkir');
+            $table->foreignId('id_city');
+            $table->foreignId('id_prov');
+            $table->string('ongkir');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('provinsis');
+        Schema::dropIfExists('ongkirs');
     }
 };

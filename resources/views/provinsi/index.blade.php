@@ -102,6 +102,14 @@
 
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Slug</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control @error('foto') is-invalid @enderror"  id="slug" name="slug" readonly
+                                value="{{ old('slug') }}" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -132,13 +140,20 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Provinsi</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="name" name="prov_name" class="form-control @error('prov_name') is-invalid @enderror" value="{{ $data->prov_name }}" required>
+                                    <input type="text" id="prov_name" name="prov_name" class="form-control @error('prov_name') is-invalid @enderror" value="{{ $data->prov_name }}" required>
                                     @error('prov_name')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Slug</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control @error('foto') is-invalid @enderror"  id="slug" name="slug" readonly
+                                value="{{ old('slug') }}" required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -177,6 +192,16 @@
 
             $(this).text(result.trim());
         });
+    });
+</script>
+<script>
+    const title = document.querySelector("#prov_name");
+    const slug = document.querySelector("#slug");
+
+    title.addEventListener("keyup", function() {
+        let preslug = title.value;
+        preslug = preslug.replace(/ /g,"-");
+        slug.value = preslug.toLowerCase();
     });
 </script>
 

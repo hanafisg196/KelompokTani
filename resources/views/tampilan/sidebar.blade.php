@@ -8,7 +8,7 @@
             <ul class="pcoded-item pcoded-left-item">
                 <li class="{{ request()->segment(1)=='dashboard'? 'active' : '' }}">
                     <a href="/dashboard">
-                        <span class="pcoded-micon"><i class="ti-home"></i></i></span>
+                        <span class="pcoded-micon"><i class="ti-home"></i></span>
                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
@@ -19,7 +19,7 @@
             <ul class="pcoded-item pcoded-left-item">
                 <li class="{{ request()->segment(1)=='produk'? 'active' : '' }}">
                     <a href="/produk">
-                        <span class="pcoded-micon"><i class="ti-package"></i></i></span>
+                        <span class="pcoded-micon"><i class="ti-package"></i></span>
                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Data Produk</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
@@ -48,7 +48,7 @@
             <ul class="pcoded-item pcoded-left-item">
                 <li class="{{ request()->segment(1)=='pembayaran'? 'active' : '' }}">
                     <a href="/pembayaran">
-                        <span class="pcoded-micon"><i class="ti-money"></i></i></span>
+                        <span class="pcoded-micon"><i class="ti-money"></i></span>
                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Pembayaran</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
@@ -59,7 +59,7 @@
             <ul class="pcoded-item pcoded-left-item">
                 <li class="{{ request()->segment(1)=='ongkir'? 'active' : '' }}">
                     <a href="/ongkir">
-                        <span class="pcoded-micon"><i class="ti-truck"></i></i></span>
+                        <span class="pcoded-micon"><i class="ti-truck"></i></span>
                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Ongkir</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
@@ -68,7 +68,7 @@
             <ul class="pcoded-item pcoded-left-item">
                 <li class="{{ request()->segment(1)=='provinsi'? 'active' : '' }}">
                     <a href="/provinsi">
-                        <span class="pcoded-micon"><i class="ti-map"></i></i></span>
+                        <span class="pcoded-micon"><i class="ti-map"></i></span>
                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Provinsi</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
@@ -77,7 +77,7 @@
             <ul class="pcoded-item pcoded-left-item">
                 <li class="{{ request()->segment(1)=='kota'? 'active' : '' }}">
                     <a href="/kota">
-                        <span class="pcoded-micon"><i class="ti-map-alt"></i></i></span>
+                        <span class="pcoded-micon"><i class="ti-map-alt"></i></span>
                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Kota</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
@@ -89,7 +89,7 @@
             <ul class="pcoded-item pcoded-left-item">
                 <li class="{{ request()->segment(1)=='rekening'? 'active' : '' }}">
                     <a href="/rekening">
-                        <span class="pcoded-micon"><i class="ti-credit-card"></i></i></span>
+                        <span class="pcoded-micon"><i class="ti-credit-card"></i></span>
                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Rekening</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
@@ -98,7 +98,7 @@
             <ul class="pcoded-item pcoded-left-item">
                 <li class="{{ request()->segment(1)=='voucher'? 'active' : '' }}">
                     <a href="/voucher">
-                        <span class="pcoded-micon"><i class="ti-layout-cta-left"></i></i></span>
+                        <span class="pcoded-micon"><i class="ti-layout-cta-left"></i></span>
                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Voucher</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
@@ -108,7 +108,7 @@
             <ul class="pcoded-item pcoded-left-item">
                 <li class="{{ request()->segment(1)=='user'? 'active' : '' }}">
                     <a href="/user">
-                        <span class="pcoded-micon"><i class="ti-id-badge"></i></i></span>
+                        <span class="pcoded-micon"><i class="ti-id-badge"></i></span>
                         <span class="pcoded-mtext" data-i18n="nav.dash.main">User</span>
                         <span class="pcoded-mcaret"></span>
                     </a>

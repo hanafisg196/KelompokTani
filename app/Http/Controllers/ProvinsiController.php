@@ -29,6 +29,16 @@ class ProvinsiController extends Controller
          //
     }
 
+    public function generateslug($slug)
+    {
+        // $this->authorize('admin');
+        $jumlah = Provinsi::where('slug','like','%'.$slug.'%')->count();
+        if($jumlah > 0){
+            return $slug.'-'.($jumlah+1);
+        }
+        return $slug;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -40,6 +50,7 @@ class ProvinsiController extends Controller
         $validatedData = $request->validate([
             "prov_name"=> "required",
         ]);
+        $validatedData['slug'] = $this->generateslug($request->slug);
         Provinsi::create($validatedData);
         return redirect("/provinsi")->with("success","Data Berhasil Ditambahkan!");
     }
