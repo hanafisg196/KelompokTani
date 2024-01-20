@@ -709,3 +709,57 @@ textarea {
     height: 50px;
     border-radius: 50%;
     background: rgba(59, 93, 80, 0.2); }
+
+    .animated-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px; /* Ruang tambahan di bagian bawah */
+    }
+
+    .animated-card img {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .animated-card:hover img {
+        transform: translateY(-30px);
+    }
+
+    .animated-card:hover img:hover {
+        transform: translateY(0);
+    }
+
+    .card-body {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .product-title {
+        margin-top: 0;
+        font-size: 1.5em;
+    }
+
+    .product-price {
+        display: block;
+        margin-top: 10px;
+        font-size: 1.2em;
+        color: #4CAF50; /* green color */
+    }
+
+    .animated-link {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #4CAF50; /* green color */
+        color: #fff;
+        font-size: 1.5em;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease-in-out;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .animated-link:hover {
+        background-color: #45a049; /* darker green color on hover */
+    }

@@ -49,6 +49,7 @@
                                 <label class="col-sm-3 col-form-label">Provinsi</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" name="id_prov" onchange="window.location.href=this.value">
+                                        <option>-- Pilih Provinsi --</option>
                                         @foreach ($provinsi as $kateg)
                                             <option value="/kategoriongkir/{{$kateg->slug}}">{{$kateg->prov_name}}</option>
                                         @endforeach

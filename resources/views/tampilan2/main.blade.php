@@ -21,7 +21,14 @@
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 		<link href="/assets2/css/tiny-slider.css" rel="stylesheet">
 		<link href="/assets2/css/style.css" rel="stylesheet">
-		<title>Furni Free Bootstrap 5 Template for Furniture and Interior Design Websites by Untree.co </title>
+        <!-- themify-icons line icon -->
+        <link rel="stylesheet" type="text/css" href="/assets2/icon/themify-icons/themify-icons.css">
+        <link rel="stylesheet" type="text/css" href="/assets2/icon/font-awesome/css/font-awesome.min.css">
+
+
+        <!-- ico font -->
+        <link rel="stylesheet" type="text/css" href="/assets2/icon/icofont/css/icofont.css">
+		<title>Toko Tani Sinar Harapan</title>
 	</head>
 
 	<body>
@@ -33,29 +40,6 @@
 		<!-- Start Footer Section -->
 		<footer class="footer-section">
 			<div class="container relative">
-
-				<div class="row">
-					<div class="col-lg-8">
-						<div class="subscription-form">
-							<h3 class="d-flex align-items-center"><span class="me-1"><img src="/assets2/images/envelope-outline.svg" alt="Image" class="img-fluid"></span><span>Subscribe to Newsletter</span></h3>
-
-							<form action="#" class="row g-3">
-								<div class="col-auto">
-									<input type="text" class="form-control" placeholder="Enter your name">
-								</div>
-								<div class="col-auto">
-									<input type="email" class="form-control" placeholder="Enter your email">
-								</div>
-								<div class="col-auto">
-									<button class="btn btn-primary">
-										<span class="fa fa-paper-plane"></span>
-									</button>
-								</div>
-							</form>
-
-						</div>
-					</div>
-				</div>
 
 				<div class="row g-5 mb-5">
 					<div class="col-lg-4">

@@ -22,7 +22,10 @@
 
             <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                 <li><a class="nav-link" href="/login"><img src="/assets2/images/user.svg"></a></li>
-                <li><a class="nav-link" href="cart.html"><img src="/assets2/images/cart.svg"></a></li>
+                <li class="nav-item {{ request()->segment(1)=='cartproduk'? 'active' : '' }}">
+                    <a class="nav-link" href="/cartproduk"><img src="/assets2/images/cart.svg"></a>
+                </li>
+                </li>
             </ul>
         </div>
     </div>

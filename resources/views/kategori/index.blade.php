@@ -57,7 +57,7 @@
                     <tr>
                         <th scope="row">{{ $data->firstitem() + $key }}</th>
                         <td>{{ $datas['name'] }}</td>
-                        
+
                         <td>
                             <a href="/kategori/{{ $datas->id }}/edit" class="ti-pencil btn btn-primary"></a>
                             <form action="/kategori/{{ $datas->id }}" method="POST" class="d-inline">
@@ -108,8 +108,8 @@
 
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Tambahkan</button>
                     </div>
             </form>
         </div>
