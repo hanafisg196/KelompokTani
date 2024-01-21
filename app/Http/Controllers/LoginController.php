@@ -17,11 +17,16 @@ class LoginController extends Controller
 
         if(auth()->attempt(["email"=> $user["email"],"password"=> $user["password"]]))
         {
-            if(auth()->user()->is_admin==1)
+            if(auth()->user()->is_admin == 1)
             {
                 return redirect()->route('dashboard');
-            }else{
-                return redirect()->route('profile');
+            } else {
+                if(auth()->check())
+                {
+                    return redirect()->route('profile');
+                } else {
+                    return redirect()->route('home');
+                }
             }
 
         }else{

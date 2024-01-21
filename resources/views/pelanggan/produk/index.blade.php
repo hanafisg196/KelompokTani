@@ -20,47 +20,20 @@
 
 <div class="card mx-auto" style="max-width: 80%; margin-top: 30px; border:0ch">
     <div class="row ">
-        <div class="col-3">
-            <div class="animated-card">
-                <img src="assets2/images/product-1.png" style="margin-top: 20px" class="img-fluid product-thumbnail" alt="Nordic Chair">
-                <div class="card-body">
-                    <h3 class="product-title">Nordic Chair</h3>
-                    <strong class="product-price">$50.00</strong>
-                    <a href="/detailproduk" class="animated-link"> <i class="ti-plus"></i> </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-        <div class="animated-card">
-            <img src="assets2/images/product-3.png" style="margin-top: 20px" class="img-fluid product-thumbnail">
-            <div class="card-body">
-                <h3 class="product-title">Nordic Chair</h3>
-                <strong class="product-price">$50.00</strong>
-                <a href="/detailproduk" class="animated-link"> <i class="ti-plus"></i> </a>
-            </div>
-        </div>
-        </div>
-        <div class="col-3">
-        <div class="animated-card">
-            <img src="assets2/images/product-2.png" style="margin-top: 20px" class="img-fluid product-thumbnail">
-            <div class="card-body">
-                <h3 class="product-title">Kruzo Aero Chair</h3>
-                <strong class="product-price">$78.00</strong>
-                <a href="/detailproduk" class="animated-link"> <i class="ti-plus"></i> </a>
-            </div>
-        </div>
-        </div>
-        <div class="col-3">
-            <div class="animated-card">
-                <img src="assets2/images/product-2.png" style="margin-top: 20px" class="img-fluid product-thumbnail" alt="Gambar Produk">
-                <div class="card-body">
-                    <h3 class="product-title">Kursi Kruzo Aero</h3>
-                    <strong class="product-price">$78.00</strong>
-                    <a href="/detailproduk" class="animated-link"> <i class="ti-plus"></i> </a>
-                </div>
-            </div>
-        </div>
 
+        @foreach ($data as $item)
+        <div class="col-3">
+            <div class="animated-card">
+                <img src="{{ asset('storage/' . $item->image) }}" style="margin-top: 20px"
+                class="img-fluid product-thumbnail" alt="Nordic Chair">
+                <div class="card-body">
+                    <h3 class="product-title">{{$item->name}}</h3>
+                    <strong class="product-price">{{ $item->harga }}</strong>
+                    <a href="/detailproduk/{{ $item->id }}" class="animated-link"> <i class="ti-plus"></i> </a>
+                </div>
+            </div>
+        </div>
+        @endforeach
 
     </div>
 </div>

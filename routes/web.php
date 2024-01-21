@@ -11,8 +11,11 @@ use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RekeningController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OngkirController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\UserProduct;
+use App\Models\Product;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -25,17 +28,29 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/produkpelanggan', [UserProduct::class, 'index']);
+Route::get('/detailproduk/{id}', [UserProduct::class, 'detailProduct']);
 
-Route::get('/', function () {
-    return view('pelanggan.home.index');
+
+
+
+
+Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return view('pelanggan.home.index');
+    });
+    
+    Route::get('/login', function () {
+        return view('login.index');
+    })->name('login')->middleware('guest');
+    Route::post('/login', [LoginController::class, 'doLogin']);
+    Route::get('/register', [RegisterController::class, 'register'] );
+    Route::post('/register', [RegisterController::class, 'getRegister'] );
 });
 
 
-Route::get('/login', function () {
-    return view('login.index');
-})->name('login');
 
-
+//route verify email
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
@@ -47,14 +62,31 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 Route::get('/verified', function () {
     return view('auth.verified');
-})->name('profile')->middleware(['auth', 'verified']);
+})->name('verified')->middleware(['auth', 'verified']);
 
-Route::post('/login', [LoginController::class, 'doLogin']);
-Route::get('/register', [RegisterController::class, 'register'] );
-Route::post('/register', [RegisterController::class, 'getRegister'] );
-Route::get('/profile', function () {
-    return view('pelanggan.home.index');
-})->name('profile');
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    Route::get('/home',[HomeController::class, 'index'])->name('home');
+
+    Route::get('/cartproduk', function () {
+        return view('pelanggan.cart.index',[
+            "active" => "produk",
+        ]);
+    });
+    Route::get('/profile', function () {
+        return view('user.index');
+    })->name('profile');
+
+    Route::get('/checkout', function () {
+        return view('pelanggan.cart.checkout',[
+            "active" => "produk",
+        ]);
+    });
+    
+});
+
 
 Route::middleware(AdminMiddleware::class)->group(function (){
 
@@ -77,34 +109,10 @@ Route::middleware(AdminMiddleware::class)->group(function (){
 });
 
 
-Route::get('/produkpelanggan', function () {
-    return view('pelanggan.produk.index',[
-        "active" => "produk",
-    ]);
-});
-Route::get('/detailproduk', function () {
-    return view('pelanggan.produk.detail',[
-        "active" => "produk",
-    ]);
-});
-Route::get('/cartproduk', function () {
-    return view('pelanggan.cart.index',[
-        "active" => "produk",
-    ]);
-});
-
-Route::get('/checkout', function () {
-    return view('pelanggan.cart.checkout',[
-        "active" => "produk",
-    ]);
-});
-
 Route::get('/stok', function () {
     return view('stok.index');
 });
 
-Route::get('/user', function () {
-    return view('user.index');
-});
+
 
 
