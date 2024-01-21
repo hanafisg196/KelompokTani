@@ -27,7 +27,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pelanggan.home.index');
 });
 
 
@@ -53,7 +53,7 @@ Route::post('/login', [LoginController::class, 'doLogin']);
 Route::get('/register', [RegisterController::class, 'register'] );
 Route::post('/register', [RegisterController::class, 'getRegister'] );
 Route::get('/profile', function () {
-    return "halaman user";
+    return view('pelanggan.home.index');
 })->name('profile');
 
 Route::middleware(AdminMiddleware::class)->group(function (){
@@ -74,43 +74,37 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::resource('/kategori', CategoryController::class);
     Route::resource('/produk', ProdukController::class);
     Route::resource('/ongkir', OngkirController::class);
-
-   
-    
-    Route::get('/produkpelanggan', function () {
-        return view('pelanggan.produk.index',[
-            "active" => "produk",
-        ]);
-    });
-    Route::get('/detailproduk', function () {
-        return view('pelanggan.produk.detail',[
-            "active" => "produk",
-        ]);
-    });
-    Route::get('/cartproduk', function () {
-        return view('pelanggan.cart.index',[
-            "active" => "produk",
-        ]);
-    });
-    
-    Route::get('/checkout', function () {
-        return view('pelanggan.cart.checkout',[
-            "active" => "produk",
-        ]);
-    });
-   
-    Route::get('/stok', function () {
-        return view('stok.index');
-    });
-   
-    Route::get('/user', function () {
-        return view('user.index');
-    });
-
- 
-
 });
 
 
+Route::get('/produkpelanggan', function () {
+    return view('pelanggan.produk.index',[
+        "active" => "produk",
+    ]);
+});
+Route::get('/detailproduk', function () {
+    return view('pelanggan.produk.detail',[
+        "active" => "produk",
+    ]);
+});
+Route::get('/cartproduk', function () {
+    return view('pelanggan.cart.index',[
+        "active" => "produk",
+    ]);
+});
+
+Route::get('/checkout', function () {
+    return view('pelanggan.cart.checkout',[
+        "active" => "produk",
+    ]);
+});
+
+Route::get('/stok', function () {
+    return view('stok.index');
+});
+
+Route::get('/user', function () {
+    return view('user.index');
+});
 
 

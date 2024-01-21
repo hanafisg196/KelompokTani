@@ -76,7 +76,8 @@ class OngkirController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Ongkir::find($id);
+        return view('ongkir.edit')->with('data', $data);
     }
 
     /**
@@ -88,7 +89,17 @@ class OngkirController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'ongkir' => 'required',
+        ]);
+        
+        $data = Ongkir::find($id);
+
+        $data->update($validatedData);
+        
+        return redirect('/ongkir')->with('success', 'Data berhasil diupdate!');
+      
+        
     }
 
     /**
@@ -99,6 +110,9 @@ class OngkirController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ongkir = Ongkir::find($id);
+        $ongkir->delete();
+        
+        return redirect('/ongkir')->with('success', 'Data berhasil Di hapus!');
     }
 }

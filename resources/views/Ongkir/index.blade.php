@@ -58,7 +58,17 @@
                         <th scope="row">{{ $no++}}</th>
                         <td>{{ $item->provinsi->prov_name }}</td>
                         <td>{{ $item->kota->city_name }}</td>
-                        <td>{{ $item['ongkir'] }}</td>
+                        <td>{{ $item->ongkir }}</td>
+
+                        <td>
+                            <a href="/ongkir/{{ $item->id_ongkir }}/edit" class="ti-pencil btn btn-primary"></a>
+                            <form action="/ongkir/{{ $item->id_ongkir }}" method="POST" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button class="ti-trash btn btn-danger" 
+                                onclick="return confirm('Yakin Menghapus Data?')"></button>
+                            </form>
+                        </td>
                    
                     </tr>
                     @endforeach

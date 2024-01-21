@@ -27,7 +27,8 @@
                 <div class="card-header">
                     <h5>Tambahkan produk</h5>
                 </div>
-                <form method="post" action="{{ route('produk.update', ['produk' => $data['id']]) }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('produk.update', ['produk' => $data['id']]) }}" 
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="card-block">
@@ -35,7 +36,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Nama Produk</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"
+                                    <input type="text" id="name" name="name" class="form-control 
+                                    @error('name') is-invalid @enderror"
                                      value="{{ old('name', $data['name'])}}" required>
 
                                     @error('name')

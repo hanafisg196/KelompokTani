@@ -75,6 +75,7 @@
                         <td class="custom-td">{!! $datas['deskripsi'] !!}</td>
                         <td>
                             <a href="/produk/{{ $datas->id }}/edit" class="ti-pencil btn btn-primary"></a>
+                            
                             <form action="/produk/{{ $datas->id }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf

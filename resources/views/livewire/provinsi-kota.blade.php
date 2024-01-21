@@ -8,6 +8,7 @@
                 @foreach($provinsis as $item)
                     <option value="{{ $item->id_prov }}">{{ $item->prov_name }}</option>
                 @endforeach
+               
             </select>
         </div>
     </div>
