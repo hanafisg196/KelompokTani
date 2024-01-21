@@ -11,6 +11,7 @@ use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RekeningController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OngkirController;
 use App\Http\Controllers\PembayaranController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -72,6 +73,31 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::resource('/kota', KotaController::class);
     Route::resource('/kategori', CategoryController::class);
     Route::resource('/produk', ProdukController::class);
+    Route::resource('/ongkir', OngkirController::class);
+
+   
+    
+    Route::get('/produkpelanggan', function () {
+        return view('pelanggan.produk.index',[
+            "active" => "produk",
+        ]);
+    });
+    Route::get('/detailproduk', function () {
+        return view('pelanggan.produk.detail',[
+            "active" => "produk",
+        ]);
+    });
+    Route::get('/cartproduk', function () {
+        return view('pelanggan.cart.index',[
+            "active" => "produk",
+        ]);
+    });
+    
+    Route::get('/checkout', function () {
+        return view('pelanggan.cart.checkout',[
+            "active" => "produk",
+        ]);
+    });
    
     Route::get('/stok', function () {
         return view('stok.index');
@@ -81,9 +107,7 @@ Route::middleware(AdminMiddleware::class)->group(function (){
         return view('user.index');
     });
 
-    Route::get('/ongkir', function () {
-        return view('ongkir.index');
-    });
+ 
 
 });
 

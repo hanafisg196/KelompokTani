@@ -13,6 +13,6 @@ class Provinsi extends Model
 
     public function kota()
     {
-        return $this->hasMany(Kota::class);
+        return $this->hasMany(Kota::class, 'id_prov','id_prov');
     }
 }

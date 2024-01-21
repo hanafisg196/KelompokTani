@@ -14,21 +14,17 @@ class OngkirController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    
+     
+    public function index(Ongkir $Ongkir)
     {
-        $provinsi = Provinsi::latest()->get();
-        $kota = Kota::latest()->get();
-        return view('ongkir.index', compact('provinsi','kota'));
+        $data = $Ongkir->paginate(10);
+        return view ("Ongkir.index")->with('data', $data);
     }
 
 
-    public function kategori(Provinsi $provinsi)
-        {
-            return view('ongkir.kategori', [
-                'kota' => Kota::where('id_prov', $provinsi->id_prov)->latest()->get(),
-                'provinsi' => Provinsi::all(),
-            ]);
-        }
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +35,7 @@ class OngkirController extends Controller
     {
         $provinsi = Provinsi::latest()->get();
         $kota = Kota::latest()->get();
-        return view('ongkir.create', compact('provinsi','kota'));
+        return response()->view('ongkir.create', compact('provinsi','kota'));
     }
 
     /**
@@ -50,14 +46,16 @@ class OngkirController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        // $validatedData = $request->validate([
-        //     'id_city' => 'required',
-        //     'id_prov' => 'required',
-        //     'ongkir' => 'required',
-        // ]);
-        // Ongkir::create($validatedData);
-        // return redirect("/ongkir")->with("success","Data Berhasil Ditambahkan!");
+     
+        $validatedData = $request->validate([
+            'id_city' => 'required',
+            'id_prov' => 'required',
+            'ongkir' => 'required',
+        ]);
+        $validatedData['id_city'] = $request->input('id_city');
+        $validatedData['id_prov'] = $request->input('id_prov');
+        Ongkir::create($validatedData);
+        return redirect("/ongkir")->with("success","Data Berhasil Ditambahkan!");
     }
     /**
      * Display the specified resource.

@@ -12,7 +12,7 @@
                 <a href="/produk"><i class="ti-write"></i></a>
             </li>
            <li class="breadcrumb-item"><a href="/produk">Produk</a>
-                    <li class="breadcrumb-item"><a href="/produk/create">Tambah Produk</a>
+                    <li class="breadcrumb-item"><a href="/produk/create">Tambah Ongkir</a>
                     </li>
         </ul>
     </div>
@@ -29,61 +29,31 @@
                 <div class="card-header">
                     <h5>Tambahkan produk</h5>
                 </div>
-                <form method="POST" action="#" enctype="multipart/form-data">
+                <form method="POST" action="/ongkir" enctype="multipart/form-data">
                     @csrf
                     <div class="card-block">
 
-                            {{-- <div class="btn-group ml-2">
-                                <button type="button" class="btn btn-primary">Album</button>
-                                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                                </button>
-                                <div class="dropdown-menu">
-                                    @foreach ($provinsi as $kateg)
-                                        <a class="dropdown-item" href="/kategoriongkir/{{$kateg->slug}}">{{ $kateg->prov_name }}</a>
-                                    @endforeach
+                    @livewire('provinsi-kota')
+                    
+                    <div class="form-group">
+                        <label for="provinsi" class="col-sm-3 col-form-label"></label>
+                        <div class="col-md-3">
+                            <input type="text" id="ongkir" placeholder="ongkir"
+                            name="ongkir" class="form-control @error('ongkir') is-invalid @enderror"
+                             value="{{ old('ongkir') }}" required>
+
+                            @error('biaya')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
                                 </div>
-                            </div> --}}
+                            @enderror
+                        </div>
+                    </div>
 
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Provinsi</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="id_prov" onchange="window.location.href=this.value">
-                                        <option>-- Pilih Provinsi --</option>
-                                        @foreach ($provinsi as $kateg)
-                                            <option value="/kategoriongkir/{{$kateg->slug}}">{{$kateg->prov_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Kota</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" name="id_kota">
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Ongkir</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="nagari_kunjungan" name="nagari_kunjungan" class="form-control @error('nagari_kunjungan') is-invalid @enderror"
-                                     value="{{ old('nagari_kunjungan') }}" required>
-
-                                    @error('nagari_kunjungan')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-
-                                </div>
-                            </div>
-                            <div class="m-2">
-                                <a href="/ongkir" class="btn waves-effect waves-light btn-secondary">Kembali</a>
-                                <button type="submit" class="btn btn-primary">Tambahkan</button>
-                            </div>
+                     <div class="m-2">
+                     <a href="/ongkir" class="btn waves-effect waves-light btn-secondary">Kembali</a>
+                     <button type="submit" class="btn btn-primary">Tambahkan</button>
+                     </div>
                     </div>
                 </form>
             <!-- Basic Form Inputs card end -->
@@ -91,21 +61,9 @@
         </div>
     </div>
 </div>
+</div>
 <script>
 
-    function previewImage() {
-         const image = document.querySelector('#image');
-         const imagePreview = document.querySelector('.image-preview');
-
-         // Display the image preview container
-         imagePreview.style.display = 'block';
-        const oFReader = new FileReader();
-
-            oFReader.readAsDataURL(image.files[0]);
-oFReader.onload = function(oFREvent) {
-imagePreview.src = oFREvent.target.result;
-};
-}
 
     </script>
 @endsection

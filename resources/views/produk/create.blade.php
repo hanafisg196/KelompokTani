@@ -34,7 +34,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Nama Produk</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"
+                                    <input type="text" id="name" name="name"
+                                     class="form-control @error('name') is-invalid @enderror"
                                      value="{{ old('name') }}" required>
 
                                     @error('name')
@@ -48,8 +49,8 @@
 
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Kategori</label>
-                                <div class="col-sm-9">
-                                    <select class="form-select" name="category_id" >
+                                <div class="col-md-3">
+                                    <select class="form-control" name="category_id" >
                                         @foreach ($categories as $category )
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
@@ -59,10 +60,11 @@
 
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Gambar</label>
-                                <div class="col-sm-9">
-                                    <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror"
+                                <div class="col-md-3">
+                                    <input type="file" id="image" name="image" 
+                                    class="form-control @error('image') is-invalid @enderror"
                                         value="{{ old('image') }}" onchange="previewImage()" required>
-                                    <img class="image-preview img-fluid" style="display: none;">
+                                    <img class="image-preview img-fluid" style="display: none;" alt="image">
                                     
                                     @error('image')
                                         <div class="invalid-feedback">
@@ -76,7 +78,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Harga</label>
                                 <div class="col-sm-9">
-                                    <input type="number" id="harga" name="harga" class="form-control @error('harga') is-invalid @enderror"
+                                    <input type="number" id="harga" name="harga" 
+                                    class="form-control @error('harga') is-invalid @enderror"
                                      value="{{ old('harga') }}" required>
 
                                     @error('harga')
@@ -91,7 +94,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Stok</label>
                                 <div class="col-sm-9">
-                                    <input type="number" id="stok" name="stok" class="form-control @error('stok') is-invalid @enderror"
+                                    <input type="number" id="stok" name="stok" 
+                                    class="form-control @error('stok') is-invalid @enderror"
                                      value="{{ old('stok') }}" required>
 
                                     @error('stok')
@@ -106,7 +110,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Deskripsi</label>
                                 <div class="col-sm-9">
-                                    <input type="textarea" id="deskripsi" name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror"
+                                    <input type="textarea" id="deskripsi" name="deskripsi" 
+                                    class="form-control @error('deskripsi') is-invalid @enderror"
                                      value="{{ old('deskripsi') }}" required>
 
                                     @error('deskripsi')

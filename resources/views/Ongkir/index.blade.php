@@ -52,26 +52,17 @@
                     }
                 </style>
                 @php $no = 1; @endphp
-                {{-- <tbody>
-                    @foreach ($data as $key => $datas)
+                <tbody>
+                    @foreach ($data as $item)
                     <tr>
-                        <th scope="row">{{ $data->firstitem() + $key }}</th>
-                        <td>{{ $datas['nagari_kunjungan'] }}</td>
-                        <td class="custom-td">{!! $datas['kegiatan'] !!}</td>
-                        <td class="custom-td">{!! $datas['hasil'] !!}</td>
-                        <td class="custom-td">{!! $datas['langkah'] !!}</td>
-                        <td class="custom-td">{!! $datas['rekomendasi'] !!}</td>
-                        <td>
-                            <a href="/kegiatan/{{ $datas->id }}/edit" class="ti-pencil btn btn-primary"></a>
-                            <form action="/kegiatan/{{ $datas->id }}" method="POST" class="d-inline">
-                                @method('delete')
-                                @csrf
-                                <button class="ti-trash btn btn-danger" onclick="return confirm('Yakin Menghapus Data?')"></button>
-                            </form>
-                        </td>
+                        <th scope="row">{{ $no++}}</th>
+                        <td>{{ $item->provinsi->prov_name }}</td>
+                        <td>{{ $item->kota->city_name }}</td>
+                        <td>{{ $item['ongkir'] }}</td>
+                   
                     </tr>
                     @endforeach
-                </tbody> --}}
+                </tbody>
 
 
             </table>

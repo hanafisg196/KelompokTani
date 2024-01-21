@@ -60,12 +60,14 @@
                     <tr>
                         <th scope="row">{{ $data->firstitem() + $key }}</th>
                         <td>{{ $datas['name'] }}</td>
-                        <td class="custom-td">{!! $datas['categories']['name'] !!}</td>
+                        <td class="custom-td">{{ $datas->categories->name }}</td>
                         <td class="custom-td">
                             @if($datas['image'] && file_exists(public_path("storage/{$datas['image']}")))
-                            <img src="{{ asset('storage/' . $datas['image']) }}" width="100" height="100" alt="{{ $datas['image'] }}">
+                            <img src="{{ asset('storage/' . $datas['image']) }}" width="100"
+                            height="100" alt="{{ $datas['image'] }}">
                         @else
-                            <img src="{{ asset('assets/images/noimage.jpg') }}" width="100" height="100" alt="Default Image">
+                            <img src="{{ asset('assets/images/noimage.jpg') }}"
+                            width="100" height="100" alt="Default Image">
                         @endif
                         </td>
                         <td class="custom-td">{!! $datas['harga'] !!}</td>
@@ -76,7 +78,8 @@
                             <form action="/produk/{{ $datas->id }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button class="ti-trash btn btn-danger" onclick="return confirm('Yakin Menghapus Data?')"></button>
+                                <button class="ti-trash btn btn-danger" onclick="return
+                                confirm('Yakin Menghapus Data?')"></button>
                             </form>
                         </td>
                     </tr>
