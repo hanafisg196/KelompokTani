@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KotaController;
@@ -69,12 +70,8 @@ Route::get('/verified', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/home',[HomeController::class, 'index'])->name('home');
-
-    Route::get('/cartproduk', function () {
-        return view('pelanggan.cart.index',[
-            "active" => "produk",
-        ]);
-    });
+    Route::get('/cartproduk', [CartController::class, 'index']);
+    Route::post('/cartproduk/{id}', [UserProduct::class, 'addToCart']);
     Route::get('/profile', function () {
         return view('user.index');
     })->name('profile');

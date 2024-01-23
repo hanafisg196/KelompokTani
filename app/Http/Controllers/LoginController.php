@@ -23,9 +23,9 @@ class LoginController extends Controller
             } else {
                 if(auth()->check())
                 {
-                    return redirect()->route('profile');
-                } else {
                     return redirect()->route('home');
+                } else {
+                    return redirect()->route('profile');
                 }
             }
 

@@ -5,7 +5,7 @@
         <a class="navbar-brand" href="index.html">Furni<span>.</span></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-         data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" 
+         data-bs-target="#navbarsFurni" aria-controls="navbarsFurni"
          aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,7 +29,7 @@
                     
                      <div class="dropdown show">
                         <a class="btn btn-secondary dropdown-toggle" href="#" 
-                        role="button" id="dropdownMenuLink" data-toggle="dropdown" 
+                        role="button" id="dropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                           {{ auth()->user()->name }}
                         </a>
@@ -44,10 +44,7 @@
                      @else
                      <li><a class="nav-link" href="/login"><img src="/assets2/images/user.svg"></a></li>
                     @endauth
-            
-                <li class="nav-item {{ request()->segment(1)=='cartproduk'? 'active' : '' }}">
-                    <a class="nav-link" href="/cartproduk"><img src="/assets2/images/cart.svg"></a>
-                </li>
+                        @livewire('cart-counter')
 
                 </li>
             </ul>
