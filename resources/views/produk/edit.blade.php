@@ -27,7 +27,7 @@
                 <div class="card-header">
                     <h5>Tambahkan produk</h5>
                 </div>
-                <form method="post" action="{{ route('produk.update', ['produk' => $data['id']]) }}" 
+                <form method="post" action="{{ route('produk.update', ['produk' => $data['id']]) }}"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
