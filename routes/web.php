@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KotaController;
 use App\Http\Middleware\AdminMiddleware;
@@ -72,15 +73,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home',[HomeController::class, 'index'])->name('home');
     Route::get('/cartproduk', [CartController::class, 'index']);
     Route::post('/cartproduk/{id}', [UserProduct::class, 'addToCart']);
+    Route::get('/checkout', [CheckoutController::class, 'index']);
     Route::get('/profile', function () {
         return view('user.index');
     })->name('profile');
 
-    Route::get('/checkout', function () {
-        return view('pelanggan.cart.checkout',[
-            "active" => "produk",
-        ]);
-    });
+
     
 });
 

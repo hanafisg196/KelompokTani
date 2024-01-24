@@ -20,11 +20,15 @@
 
 <div class="untree_co-section">
     <div class="container">
-
+        {{-- <form action="" method="post"> --}}
+            {{-- @csrf --}}
         <div class="row">
             <div class="col-md-6 mb-5 mb-md-0">
                 <h2 class="h3 mb-3 text-black">Tujuan Pengiriman</h2>
                 <div class="p-3 p-lg-5 border bg-white">
+                   @foreach ($data as $item)
+                      
+                  
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="c_companyname" class="text-black">Nomor Faktur</label>
@@ -35,27 +39,27 @@
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="c_address" class="text-black">ID User <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
+                            <input type="text" value="{{ $item->user_id }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label for="c_address" class="text-black">Voucher<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
+                            <label for="c_address" class="text-black">Nama<span class="text-danger">*</span></label>
+                            <input type="text" value="{{ $item->users->name }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label for="c_address" class="text-black">Sub Total Produk <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
+                            <label for="c_address" class="text-black">Quantity <span class="text-danger">*</span></label>
+                            <input type="text" value="{{ $item->total_produk }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="c_address" class="text-black">Total Pembayaran<span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
+                            <input type="text" value="{{ $item->total_bayar }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                         </div>
                     </div>
 
@@ -77,7 +81,7 @@
                             <input type="file" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                         </div>
                     </div>
-
+                   
                 </div>
             </div>
             <div class="col-md-6" style="margin-top: 100px">
@@ -129,10 +133,11 @@
                 </div>
             </div>
         </div>
-
+    {{-- </form> --}}
         </div>
     </div>
     <!-- </form> -->
     </div>
+    @endforeach
 </div>
 @endsection
