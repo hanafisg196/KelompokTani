@@ -12,7 +12,7 @@ class Order extends Model
     protected $guarded = ['id'];
    
 
-    public function items()
+    public function carts()
     {
         return $this->hasMany(Cart::class,'cart_id','id');
     }

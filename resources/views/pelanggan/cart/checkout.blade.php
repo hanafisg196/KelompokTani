@@ -26,7 +26,7 @@
             <div class="col-md-6 mb-5 mb-md-0">
                 <h2 class="h3 mb-3 text-black">Tujuan Pengiriman</h2>
                 <div class="p-3 p-lg-5 border bg-white">
-                   @foreach ($data as $item)
+                
                       
                   
                     <div class="form-group row">
@@ -39,53 +39,61 @@
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="c_address" class="text-black">ID User <span class="text-danger">*</span></label>
-                            <input type="text" value="{{ $item->user_id }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
+                            <input type="text" value="{{$pembayaran->users->id  }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="c_address" class="text-black">Nama<span class="text-danger">*</span></label>
-                            <input type="text" value="{{ $item->users->name }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
+                            <input type="text" value="{{$pembayaran->users->name  }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="c_address" class="text-black">Quantity <span class="text-danger">*</span></label>
-                            <input type="text" value="{{ $item->total_produk }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
+                            <input type="text" value="{{ $pembayaran->oders->total_produk }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="c_address" class="text-black">Total Pembayaran<span class="text-danger">*</span></label>
-                            <input type="text" value="{{ $item->total_bayar }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
+                            <input type="text" value="{{ $pembayaran->oders->total_bayar }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label for="c_address" class="text-black">Metode Pembayaran<span class="text-danger">*</span></label>
+                            <label for="c_address" 
+                            class="text-black">Metode Pembayaran<span class="text-danger">*</span></label>
                             <select id="c_country" class="form-control">
                                 <option value="1">Select a bank</option>
-                                <option value="2">BRI</option>
-                                <option value="3">BCA</option>
-                                <option value="4">Mandiri</option>
+                                @foreach ($rekening as $data)
+                                        @if(old('id_rekening') == $data->id_rekening)
+                                            <option value="{{ $data->id_rekening }}" selected>{{ $data->bank_name }}</option>
+                                        @else
+                                            <option value="{{ $data->id_rekening }}">{{ $data->bank_name }}</option>
+                                        @endif
+                                    @endforeach
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label for="c_address" class="text-black">Bukti Transfer<span class="text-danger">*</span></label>
-                            <input type="file" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
+                            <label for="c_address" 
+                            class="text-black">Bukti Transfer<span class="text-danger">*</span></label>
+                            <input type="file" 
+                            class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                         </div>
                     </div>
                    
                 </div>
             </div>
             <div class="col-md-6" style="margin-top: 100px">
-                <div class="form-group">
+                @livewire('ongkir-dropdown')
+                {{-- <div class="form-group">
                     <label for="c_country" class="text-black">Provinsi <span class="text-danger">*</span></label>
                     <select id="c_country" class="form-control">
                         <option value="1">Select a country</option>
@@ -98,8 +106,8 @@
                         <option value="8">Colombia</option>
                         <option value="9">Dominican Republic</option>
                     </select>
-                </div>
-                <div class="form-group row">
+                </div> --}}
+                {{-- <div class="form-group row">
                     <div class="col-md-12">
                         <label for="c_address" class="text-black">Kota <span class="text-danger">*</span></label>
                         <div class="form-group">
@@ -116,17 +124,12 @@
                             </select>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="form-group mt-3">
                     <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Tulis alamat lengkap..."></textarea>
                 </div>
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <label for="c_address" class="text-black">Ongkir<span class="text-danger">*</span></label>
-                        <input type="number" class="form-control" id="c_address" name="c_address" placeholder="Ongkir">
-                    </div>
-                </div>
+                
                     <div class="m-3 text-end form-group">
                     <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Kirim</button>
                     </div>
@@ -138,6 +141,6 @@
     </div>
     <!-- </form> -->
     </div>
-    @endforeach
+ 
 </div>
 @endsection

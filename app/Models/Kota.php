@@ -15,4 +15,9 @@ class Kota extends Model
     {
         return $this->belongsTo(Provinsi::class, 'id_prov','id_prov');
     }
+
+    public function ongkir()
+    {
+        return $this->hasOne(Ongkir::class, 'id_city', 'id_city');
+    }
 }
