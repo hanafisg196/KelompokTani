@@ -763,3 +763,75 @@ textarea {
     .animated-link:hover {
         background-color: #45a049; /* darker green color on hover */
     }
+
+    /* styles.css */
+
+    .custom-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #007bff; /* Warna biru dari Bootstrap */
+        color: #fff; /* Warna teks putih */
+        border-radius: 5px;
+        transition: background-color 0.3s ease; /* Efek transisi saat mouse hover */
+    }
+.custom-button:hover {
+    background-color: #0056b3; /* Warna biru yang lebih gelap saat mouse hover */
+}
+
+.delete-button {
+    background-color: #dc3545; /* Warna merah */
+    color: #fff; /* Warna teks putih */
+    padding: 11px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+/* Gaya untuk konfirmasi hapus */
+.confirm-delete {
+    color: #dc3545; /* Warna merah */
+}
+
+
+.btn-warning {
+    display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        background-color: #ffc107; /* Warna kuning */
+        color: #212529; /* Warna teks yang kontras */
+}
+
+/* Gaya untuk status "paid" */
+.btn-success {
+    display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    background-color: #28a745; /* Warna hijau */
+    color: #fff; /* Warna teks putih */
+}
+
+/* Gaya untuk status lainnya */
+.btn-sec {
+    display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    background-color: #006bc9; /* Warna abu-abu tua */
+    color: #fff; /* Warna teks putih */
+}

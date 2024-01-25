@@ -18,7 +18,7 @@ class ProdukController extends Controller
     {
             $data = $product->paginate(10);
             return view("produk.index")->with('data', $data);
-       
+
     }
 
     /**
@@ -28,7 +28,7 @@ class ProdukController extends Controller
      */
     public function create(Product $product)
     {
-    
+
         $categories = Category::all();
         return view('produk.create')->with('categories', $categories);
     }
@@ -105,19 +105,19 @@ class ProdukController extends Controller
             'image' => 'image|file|max:5120',
             'category_id' => 'required',
         ]);
-        
+
         if ($request->file('image')) {
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
             $validatedData['image'] = $request->file('image')->store('image');
         }
-        
+
         $data = $product->find($id);
         $data->update($validatedData);
-        
+
         return redirect('/produk')->with('success', 'Data berhasil diupdate!');
-        
+
     }
 
     /**
@@ -128,7 +128,7 @@ class ProdukController extends Controller
      */
     public function destroy(Product $product, $id)
     {
-        
+
         if($product->image)
         {
             Storage::delete($product->image);
@@ -136,6 +136,6 @@ class ProdukController extends Controller
         $product->destroy($id);
 
         return redirect('/produk')->with('success', 'Data berhasil Di hapus!');
-        
+
     }
 }

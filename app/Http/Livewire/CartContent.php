@@ -95,11 +95,12 @@ class CartContent extends Component
         $subtotal = $this->subTotal;
 
         if (empty($subtotal)) {
-            return redirect()->back()->with('error', 'Subtotal kosong. Silakan tambahkan item ke keranjang Anda.');
+            return redirect('/produkpelanggan')->with('error', 'Subtotal kosong. Silakan tambahkan item ke keranjang Anda.');
         }
 
         $order = Order::create([
             'user_id' => auth()->user()->id,
+            'status'=> 'unpaid',
             'subtotal' => $subtotal,
         ]);
 
