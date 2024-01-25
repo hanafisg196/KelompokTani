@@ -57,7 +57,31 @@
                             </div>
                         </div>
 
-                        {{-- <div class="form-group row">
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label for="c_companyname" class="text-black">Ongkir</label>
+                                <input type="text" value="{{$pembayaran->ongkirs->ongkir  }}" class="form-control" id="ongkir_id" name="c_address" placeholder="Nama Kota" readonly>
+                            </div>
+                        </div>
+
+                        <input type="hidden" value="{{ $pembayaran->oders->id }}" name="order_id">
+
+                    </div>
+                </div>
+                <div class="col-md-6" style="margin-top: 50px">
+                    <div class="p-3 p-lg-5 border bg-white">
+
+                        {{-- <div class="form-group mt-3">
+                            <textarea name="alamat" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="Tulis alamat lengkap..."></textarea>
+                        </div> --}}
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label for="c_companyname" class="text-black">Total Pembayaran</label>
+                                <p>Subtotal Pembayaran + Ongkir</p>
+                                <input type="text" value="{{$pembayaran->ongkirs->ongkir + $pembayaran->oders->subtotal  }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <div class="col-md-12">
                                 <label for="c_address"
                                 class="text-black">Metode Pembayaran<span class="text-danger">*</span></label>
@@ -82,23 +106,9 @@
                                 class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                             </div>
                         </div>
-
-                                --}}
-                        <input type="hidden" value="{{ $pembayaran->oders->id }}" name="order_id">
-
-                    </div>
-                </div>
-                <div class="col-md-6" style="margin-top: 100px">
-                    @livewire('ongkir-dropdown')
-
-                    <div class="form-group mt-3">
-                        <label for="c_companyname" class="text-black">Alamat Lengkap</label>
-                        <p>Silahkan masukkan alamat lengkap anda sebelum pelakukan proses pembayaran!</p>
-                        <textarea name="alamat" id="c_order_notes" cols="30" rows="5" class="form-control" required placeholder="Tulis alamat lengkap..."></textarea>
-                    </div>
-
-                        <div class="m-3 text-end form-group">
-                        <button class="btn btn-black btn-lg py-3 btn-block" type="submit">Lanjut Proses Pembayaran</button>
+                            <div class="m-3 text-end form-group">
+                            <button class="btn btn-black btn-lg py-3 btn-block" type="submit">Kirim</button>
+                            </div>
                         </div>
                     </div>
                 </div>

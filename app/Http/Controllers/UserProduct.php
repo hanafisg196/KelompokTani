@@ -22,26 +22,31 @@ class UserProduct extends Controller
      return view('pelanggan.produk.detail')->with('data',$data);
    }
 
-   public function addToCart($id)
-   {
-      if(auth()->user())
-      {
-        $data = [
-          'user_id' =>auth()->user()->id,
-          'product_id' => $id,
-          'quantity' => 1
-          
-        ];
-        Cart::updateOrCreate($data)->with('data',$data);;
-        return redirect('/produkpelanggan')->with('success','Data berhasil ditambahkan!');
-      }
-      
-      else{
+   public function addToCart(Request $request, $id)
+    {
+        if (auth()->user()) {
+            $duplicate = Cart::where('product_id', $id)
+                ->where('user_id', auth()->user()->id)
+                ->first();
 
-         return redirect('/login');
-      }
-   }
+            if ($duplicate) {
+                return redirect('/cartproduk')->with('error', 'Produk sudah ada di dalam keranjang.');
+            }
 
 
-  
+            $data = [
+                'user_id' => auth()->user()->id,
+                'product_id' => $id,
+                'quantity' => 1,
+            ];
+
+            Cart::create($data);
+
+            return redirect('/cartproduk')->with('success', 'Produk berhasil ditambahkan!');
+        } else {
+            return redirect('/login');
+        }
+    }
+
+
 }
