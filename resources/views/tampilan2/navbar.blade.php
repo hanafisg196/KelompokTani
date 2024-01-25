@@ -19,28 +19,28 @@
                 <li class="nav-item {{ request()->segment(1)=='produkpelanggan'? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/produkpelanggan') }}">Produk</a>
                 </li>
-                <li><a class="nav-link" href="contact.html">Contact us</a></li>
+
             </ul>
 
             <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
 
 
                      @auth
-                    
+
                      <div class="dropdown show">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" 
+                        <a class="btn btn-secondary dropdown-toggle" href="#"
                         role="button" id="dropdownMenuLink" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                           {{ auth()->user()->name }}
                         </a>
-                      
+
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                           <a class="dropdown-item" href="/profile">Akun</a>
-                          <a class="dropdown-item" href="/cartproduk">Pesanan</a>
+                          <a class="dropdown-item" href="/listorder">Pesanan</a>
                           <a class="dropdown-item" href="/logout">Logout</a>
                         </div>
                       </div>
-                     
+
                      @else
                      <li><a class="nav-link" href="/login"><img src="/assets2/images/user.svg"></a></li>
                     @endauth

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Ongkir;
+use App\Models\Rekening;
 use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
@@ -56,7 +59,17 @@ class PembayaranController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = Order::find($id);
+        $ongkir = Ongkir::first();
+        $rekening = Rekening::first();
+        $pembayaran = new Pembayaran();
+        $pembayaran->user_id = auth()->user()->id;
+        $pembayaran->order_id = $order->id;
+        $pembayaran->ongkir_id = $ongkir->id_ongkir;
+        $pembayaran->rekenig_id = $rekening->id_rekening;
+        return view('pelanggan.pembayaran.update')->with([
+            'pembayaran' => $pembayaran,
+        ]);
     }
 
     /**

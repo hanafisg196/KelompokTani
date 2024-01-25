@@ -2,8 +2,8 @@
     <div>
 
         <div class="form-group">
-             <label for="provinsi" class="col-sm-3 col-form-label"></label>
-             <div class="col-md-3">
+             <label for="provinsi" class="col-sm-12 col-form-label"></label>
+             <div class="col-md-12">
                  <select wire:model="selectedProvinsi" id="id_prov"  name="id_prov" class="form-control">
                      <option value="" selected>Pilih Provinsi</option>
                      @foreach($provinsis as $item)
@@ -15,9 +15,9 @@
          </div>
 
          {{-- @if($selectedProvinsi) --}}
-         <div class="form-group" class="col-sm-3 col-form-label">
-             <label for="kota" ></label>
-             <div class="col-md-3">
+         <div class="form-group" class="col-sm-12 col-form-label">
+             <label for="kota"></label>
+             <div class="col-md-12">
                  <select wire:model="selectedKota" id="id_city"  name="id_city"  class="form-control">
                      <option value="" selected>Pilih Kota</option>
                      @foreach($kotas as $item)

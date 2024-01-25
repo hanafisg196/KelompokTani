@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->string('bukti_transfer');
+            $table->string('bukti_transfer')->nullable();
             $table->string('alamat');
-            $table->integer('total');
+            $table->integer('total')->nullable();
+            $table->string('status')->nullable();
             $table->unsignedBigInteger('order_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('ongkir_id')->nullable();
@@ -31,7 +32,7 @@ return new class extends Migration
             $table->foreign("user_id")->on("users")->references("id");
             $table->foreign("rekening_id")->on("rekenings")->references("id_rekening");
 
-           
+
         });
     }
 

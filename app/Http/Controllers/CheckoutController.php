@@ -59,8 +59,6 @@ class CheckoutController extends Controller
           $order = Order::where(['user_id' => auth()->user()->id])->first();
           $ongkir = Ongkir::first();
           $rekening = Rekening::first();
-
-
           $pembayaran = new Pembayaran();
           $pembayaran->user_id = auth()->user()->id;
           $pembayaran->order_id = $order->id;
@@ -79,23 +77,28 @@ class CheckoutController extends Controller
                 ]);
     }
 
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        if (auth()->user()) {
+        $userId = auth()->user()->id;
 
-            $data = [
-                'user_id' => auth()->user()->id,
-                'order_id' => $request->input('order_id'), // Gantilah 'order_id' sesuai dengan nama input yang benar
-                'alamat' => $request->input('alamat'), // Gantilah 'id_rekening' sesuai dengan nama input yang benar
-                'ongkir_id' => $request->input('ongkir_id'),
-                'status' => 'paid'
-            ];
+        // Menyiapkan data yang akan disimpan
+        $data = [
+            'user_id' => $userId,
+            'order_id' => $request->input('order_id'),
+            'alamat' => $request->input('alamat'),
+            'ongkir_id' => $request->input('ongkir_id'),
+            'rekening_id'=> $request->input('rekening_id')
+        ];
 
-                Pembayaran::create($data);
-                    return redirect('/checkout/bayar')->with('success', 'Produk berhasil ditambahkan!');
-                } else {
-                    return redirect('/login');
-            }
+        // Mencari atau membuat pembayaran berdasarkan kondisi tertentu
+        Pembayaran::updateOrCreate(
+            [
+                'user_id' => $userId,
+                'order_id' => $request->input('order_id'),
+            ],
+            $data
+        );
+        return redirect('/checkout/bayar')->with('success', 'Pembayaran berhasil diproses!');
     }
 
 }
