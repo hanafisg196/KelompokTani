@@ -9,11 +9,11 @@
                      @foreach($provinsis as $item)
                          <option value="{{ $item->id_prov }}">{{ $item->prov_name }}</option>
                      @endforeach
-                    
+
                  </select>
              </div>
          </div>
-     
+
          {{-- @if($selectedProvinsi) --}}
          <div class="form-group" class="col-sm-3 col-form-label">
              <label for="kota" ></label>
@@ -28,15 +28,15 @@
          </div>
 
          <div>
-            <label for="ongkir">Ongkir:</label>
-            <input type="text" id="ongkir" wire:model="ongkir" readonly>
+
+            <input type="hidden" value="" id="ongkir" name="ongkir_id"  wire:model="ongkir" readonly>
         </div>
 
-         
 
-       
-         
+
+
+
          {{-- @endif --}}
-     
+
      </div>
 </div>

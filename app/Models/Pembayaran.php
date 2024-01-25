@@ -30,4 +30,13 @@ class Pembayaran extends Model
     {
         return $this->belongsTo(Rekening::class, 'rekening_id','id_rekening');
     }
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class, 'id_prov','id_prov');
+    }
+
+    public function kota()
+    {
+        return $this->belongsTo(Kota::class, 'id_city','id_city');
+    }
 }

@@ -33,15 +33,17 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 Route::get('/produkpelanggan', [UserProduct::class, 'index']);
 Route::get('/detailproduk/{id}', [UserProduct::class, 'detailProduct']);
 
-
+Route::get('/', function () {
+    return view('pelanggan.home.index');
+});
 
 
 
 Route::middleware('guest')->group(function () {
-    Route::get('/', function () {
+    Route::get('/home', function () {
         return view('pelanggan.home.index');
     });
-    
+
     Route::get('/login', function () {
         return view('login.index');
     })->name('login')->middleware('guest');
@@ -73,13 +75,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home',[HomeController::class, 'index'])->name('home');
     Route::get('/cartproduk', [CartController::class, 'index']);
     Route::post('/cartproduk/{id}', [UserProduct::class, 'addToCart']);
-    Route::get('/checkout', [CheckoutController::class, 'index']);
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::get('/checkout/bayar', [CheckoutController::class, 'bayar'])->name('checkoutbayar');
+    Route::post('/checkout/{id}', [CheckoutController::class, 'store']);
     Route::get('/profile', function () {
         return view('user.index');
     })->name('profile');
 
 
-    
+
 });
 
 

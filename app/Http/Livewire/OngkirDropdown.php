@@ -12,7 +12,7 @@ class OngkirDropdown extends Component
 
     public $provinsis;
     public $kotas;
-    
+
     public $selectedProvinsi = null;
     public $selectedKota = null;
     public $selectedOngkir= null;
@@ -33,7 +33,7 @@ class OngkirDropdown extends Component
         $this->provinsis = Provinsi::all();
    }
 
-  
+
     private function getKotas()
     {
         $this->kotas = $this->selectedProvinsi
@@ -45,7 +45,8 @@ class OngkirDropdown extends Component
     public function getOngkir()
     {
         $this->ongkir = $this->selectedKota
-        ? Ongkir::where('id_city', $this->selectedKota)->value('ongkir')
+        ? Ongkir::where('id_city', $this->selectedKota)->value('id_ongkir')
         : null;
     }
+
 }

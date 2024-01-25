@@ -4,12 +4,18 @@
       <div class="container">
         <div class="row mb-5">
           @if(session()->has('success'))
-    <div class="row">
-        <div class="alert alert-success col-sm-3 ml-3 mb-2" role="alert">
-            {{ session('success') }}
-        </div>
-    </div>
-    @endif
+                <div class="row">
+                    <div class="alert alert-success col-sm-3 ml-3 mb-2" role="alert">
+                        {{ session('success') }}
+                    </div>
+                </div>
+            @elseif(session()->has('error'))
+                <div class="row">
+                    <div class="alert alert-danger col-sm-3 ml-3 mb-2" role="alert">
+                        {{ session('error') }}
+                    </div>
+                </div>
+            @endif
             <div class="site-blocks-table">
               <table class="table">
                 <thead>
@@ -24,8 +30,8 @@
                 </thead>
                 <tbody>
                   @foreach ( $cartItems as $item )
-                      
-                
+
+
                   <tr>
                     <td class="product-thumbnail">
                       <img src="{{ asset('storage/' . $item->products['image']) }}" alt="Image" class="img-fluid">
@@ -38,7 +44,7 @@
                       <div class="input-group mb-3 d-flex align-items-center quantity-container"
                        style="max-width: 120px;">
                         <div class="input-group-prepend">
-                          <button class="btn btn-outline-black decrease" 
+                          <button class="btn btn-outline-black decrease"
                            wire:click.prevent="decrementQty({{ $item->id }})">&minus;</button>
                         </div>
                         <input type="text" class="form-control text-center quantity-amount"
@@ -51,7 +57,7 @@
                       </div>
                     </td>
                     <td>{{ $item->products->harga * $item->quantity }}</td>
-                    
+
                     <td><a href="#" class="btn btn-black btn-sm" type="submit"
                        wire:click="removeItem({{ $item->id}})">X</a></td>
                   </tr>
@@ -60,21 +66,10 @@
               </table>
             </div>
         </div>
-  
+
         <div class="row">
           <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-12">
-                <label class="text-black h4" for="coupon">Voucher</label>
-                <p>Enter your coupon code if you have one.</p>
-              </div>
-              <div class="col-md-8 mb-3 mb-md-0">
-                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
-              </div>
-              <div class="col-md-4">
-                <button class="btn btn-black">Apply Voucher</button>
-              </div>
-            </div>
+
           </div>
           <div class="col-md-6 pl-5">
             <div class="row justify-content-end">
@@ -89,7 +84,7 @@
                     <span class="text-black">Subtotal</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">${{$subTotal}}</strong>
+                    <strong class="text-black">{{$subTotal}}</strong>
                   </div>
                 </div>
                 <div class="row mb-5">
@@ -101,8 +96,8 @@
                   </div>
                 </div>
 
-         
-  
+
+
                 <div class="row">
                   <div class="col-md-12">
                     <button class="btn btn-black btn-lg py-3 btn-block"
