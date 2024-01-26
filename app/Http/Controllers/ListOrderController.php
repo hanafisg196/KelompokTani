@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Ongkir;
 use App\Models\Rekening;
@@ -21,11 +22,8 @@ class ListOrderController extends Controller
     {
         $userId = auth()->user()->id;
 
-        // Mengambil daftar pesanan berdasarkan user yang sedang login
-        $orders = Order::where('user_id', $userId)->get();
-
-        // Mengambil detail pesanan terkait
-        $details = OrderDetail::whereIn('order_id', $orders->pluck('id')->toArray())->get();
+        $orders = Order::where('user_id', $userId)->latest()->get();
+        $details = OrderDetail::whereIn('order_id', $orders->pluck('id'))->get();
 
         return view("pelanggan.cart.listorder", [
             'orders' => $orders,
@@ -57,6 +55,8 @@ class ListOrderController extends Controller
         );
         $pembayaranId = $pembayaran->id;
 
+        Cart::where(['user_id' => auth()->user()->id])->delete();
+
         // Mengarahkan pengguna ke tampilan edit dengan menggunakan ID pembayaran
         return redirect("/bayarpelanggan/{$pembayaranId}/edit")->with('success', 'Pembayaran berhasil diproses!');
     }
@@ -76,5 +76,10 @@ class ListOrderController extends Controller
         ]);
     }
 
-
+        public function destroy($order_id)
+    {
+        DB::table('order_details')->where('order_id',$order_id)->delete();
+        DB::table('orders')->where('id',$order_id)->delete();
+        return redirect('/listorder')->with('success', 'Data berhasil dihapus.');
+    }
 }

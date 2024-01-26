@@ -26,7 +26,7 @@ class Pembayaran extends Model
         return $this->belongsTo(Ongkir::class, 'ongkir_id','id_ongkir');
     }
 
-    public function rekenigs()
+    public function rekenings()
     {
         return $this->belongsTo(Rekening::class, 'rekening_id','id_rekening');
     }

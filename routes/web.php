@@ -39,7 +39,9 @@ Route::get('/', function () {
     return view('pelanggan.home.index');
 });
 
-
+Route::get('/konfirm', function () {
+    return view('pembayaran.konfirmasi');
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('/home', function () {

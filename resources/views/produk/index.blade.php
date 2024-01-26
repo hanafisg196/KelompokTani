@@ -63,8 +63,7 @@
                         <td class="custom-td">{{ $datas->categories->name }}</td>
                         <td class="custom-td">
                             @if($datas['image'] && file_exists(public_path("storage/{$datas['image']}")))
-                            <img src="{{ asset('storage/' . $datas['image']) }}" width="100"
-                            height="100" alt="{{ $datas['image'] }}">
+                            <img src="{{ asset('storage/' . $datas['image']) }}" style="max-width:100%; max-height:250px; height:auto;" alt="{{ $datas['image'] }}">
                         @else
                             <img src="{{ asset('assets/images/noimage.jpg') }}"
                             width="100" height="100" alt="Default Image">
@@ -75,7 +74,7 @@
                         <td class="custom-td">{!! $datas['deskripsi'] !!}</td>
                         <td>
                             <a href="/produk/{{ $datas->id }}/edit" class="ti-pencil btn btn-primary"></a>
-                            
+
                             <form action="/produk/{{ $datas->id }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
