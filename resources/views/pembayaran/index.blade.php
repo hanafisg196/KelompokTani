@@ -37,15 +37,12 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Tujuan Pengiriman</th>
-                        <th>Nomor Faktur</th>
-                        <th>Voucher</th>
-                        <th>Sub Total Produk</th>
-                        <th>Diskon</th>
-                        <th>Ongkir</th>
+                        <th>Nama Pemesan</th>
                         <th>Total Pembayaran</th>
-                        <th>Metode Pembayaran</th>
+                        <th>Rekening</th>
                         <th>Bukti Transfer</th>
+                        <th>Alamat Pengiriman</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -57,18 +54,20 @@
                     }
                 </style>
                 @php $no = 1; @endphp
-                {{-- <tbody>
-                    @foreach ($data as $key => $datas)
+                <tbody>
+                    @foreach ($pembayarans as $key => $datas)
                     <tr>
-                        <th scope="row">{{ $data->firstitem() + $key }}</th>
-                        <td>{{ $datas['nagari_kunjungan'] }}</td>
-                        <td class="custom-td">{!! $datas['kegiatan'] !!}</td>
-                        <td class="custom-td">{!! $datas['hasil'] !!}</td>
-                        <td class="custom-td">{!! $datas['langkah'] !!}</td>
-                        <td class="custom-td">{!! $datas['rekomendasi'] !!}</td>
+                        <td>{{ $loop->iteration }}</td>
+                        {{-- <th scope="row">{{ $pembayarans->firstitem() + $key }}</th> --}}
+                        <td>{{ $datas->users->name }}</td>
+                        <td>{{  $datas['total']  }}</td>
+                        <td>{{ $datas->rekenings->bank_name }}</td>
+                        <td><img src="{{ asset('storage/' . $datas['bukti_transfer']) }}" style="max-width:100%; max-height:250px; height:auto;" alt="{{ $datas['bukti_transfer'] }}"></td>
+                        <td class="custom-td">{{  $datas['alamat']  }}</td>
+                        <td>{{ $datas['status'] }}</td>
                         <td>
-                            <a href="/kegiatan/{{ $datas->id }}/edit" class="ti-pencil btn btn-primary"></a>
-                            <form action="/kegiatan/{{ $datas->id }}" method="POST" class="d-inline">
+                            <a href="/pembayaran/{{ $datas->id }}/edit" class="btn btn-primary">Konfirmasi Pesanan</a>
+                            <form action="/pembayaran/{{ $datas->id }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="ti-trash btn btn-danger" onclick="return confirm('Yakin Menghapus Data?')"></button>
@@ -76,7 +75,7 @@
                         </td>
                     </tr>
                     @endforeach
-                </tbody> --}}
+                </tbody>
 
 
             </table>

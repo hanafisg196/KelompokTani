@@ -98,6 +98,7 @@ class CheckoutController extends Controller
             ],
             $data
         );
+
         return redirect('/checkout/bayar')->with('success', 'Pembayaran berhasil diproses!');
     }
 

@@ -113,7 +113,7 @@ class CartContent extends Component
 
         Cart::where(['user_id' => auth()->user()->id])->delete();
 
-        return redirect()->route('checkout');
+        return redirect('/listorder');
     }
 
 

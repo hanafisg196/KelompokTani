@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Ongkir;
 use App\Models\Rekening;
+use App\Models\Pembayaran;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
@@ -16,7 +19,20 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        return view("pembayaran.index");
+        $ongkir = Ongkir::first();
+        $rekening = Rekening::first();
+        $order = Order::first();
+        $user = User::first();
+
+        // Membuat objek pembayaran
+        $pembayaran = new Pembayaran();
+        $pembayaran->user_id = $user->id;
+        $pembayaran->order_id = $order->id;
+        $pembayaran->ongkir_id = $ongkir->id_ongkir;
+        $pembayaran->rekening_id = $rekening->id_rekening;
+        return view("pembayaran.index",[
+            'pembayarans' => Pembayaran::latest()->get(),
+        ]);
     }
 
     /**
@@ -59,16 +75,22 @@ class PembayaranController extends Controller
      */
     public function edit($id)
     {
-        $order = Order::find($id);
+        $bayar = Pembayaran::find($id);
+        $user = User::first();
         $ongkir = Ongkir::first();
         $rekening = Rekening::first();
+        $order = Order::first();
+        $details = OrderDetail::whereIn('order_id', $order->pluck('id'))->get();
         $pembayaran = new Pembayaran();
-        $pembayaran->user_id = auth()->user()->id;
+        $pembayaran->user_id = $user->id;
         $pembayaran->order_id = $order->id;
         $pembayaran->ongkir_id = $ongkir->id_ongkir;
-        $pembayaran->rekenig_id = $rekening->id_rekening;
-        return view('pelanggan.pembayaran.update')->with([
+        $pembayaran->rekening_id = $rekening->id_rekening;
+        return view('pembayaran.konfirmasi')->with([
             'pembayaran' => $pembayaran,
+            'bayar' => $bayar,
+            'details' => $details,
+
         ]);
     }
 
