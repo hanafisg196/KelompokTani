@@ -16,8 +16,12 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('ongkir_id')->nullable();
             $table->integer('subtotal');
+            $table->text('alamat')->nullable();
             $table->string('status')->default('unpaid');
+
+            $table->foreign("ongkir_id")->on("ongkirs")->references("id_ongkir");
             $table->foreign("user_id")->on("users")->references("id");
             $table->timestamps();
         });

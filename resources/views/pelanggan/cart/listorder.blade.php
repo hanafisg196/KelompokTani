@@ -7,7 +7,7 @@
         <div class="row justify-content-between">
             <div class="col-lg-5">
                 <div class="intro-excerpt">
-                    <h1>List Produk</h1>
+                    <h1>List Pesanan</h1>
                 </div>
             </div>
             <div class="col-lg-7">
@@ -40,7 +40,7 @@
                 <table class="table">
                   <thead>
                     <tr>
-                        <th>No</th>
+                        <th>Orderan</th>
 
                         <th>Detail Produk</th>
                         <th class="product-price">Subtotal</th>

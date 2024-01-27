@@ -16,7 +16,7 @@ class Pembayaran extends Model
         return $this->belongsTo(User::class, 'user_id','id');
     }
 
-    public function oders()
+    public function orders()
     {
         return $this->belongsTo(Order::class, 'order_id','id');
     }
