@@ -21,13 +21,14 @@ class ListOrderController extends Controller
     public function index()
     {
         $userId = auth()->user()->id;
-
+        $rekening = Rekening::all();
         $orders = Order::where('user_id', $userId)->latest()->get();
         $details = OrderDetail::whereIn('order_id', $orders->pluck('id'))->get();
 
         return view("pelanggan.cart.listorder", [
             'orders' => $orders,
-            'details' => $details
+            'details' => $details,
+            'rekening'=> $rekening,
         ]);
 
     }
@@ -40,39 +41,45 @@ class ListOrderController extends Controller
         $data = [
             'user_id' => $userId,
             'order_id' => $request->input('order_id'),
+            'total' => $request->input('total'),
             'alamat' => $request->input('alamat'),
-            'ongkir_id' => $request->input('ongkir_id'),
             'rekening_id'=> $request->input('rekening_id'),
+            'bukti_transfer' => $request->input('bukti_transfer'),
         ];
 
         // Mencari atau membuat pembayaran berdasarkan kondisi tertentu
-        $pembayaran = Pembayaran::updateOrCreate(
+        Pembayaran::updateOrCreate(
             [
                 'user_id' => $userId,
                 'order_id' => $request->input('order_id'),
             ],
             $data
         );
-        $pembayaranId = $pembayaran->id;
 
         Cart::where(['user_id' => auth()->user()->id])->delete();
 
-        // Mengarahkan pengguna ke tampilan edit dengan menggunakan ID pembayaran
-        return redirect("/bayarpelanggan/{$pembayaranId}/edit")->with('success', 'Pembayaran berhasil diproses!');
+        $order = Order::find($request->input('order_id'));
+
+        if ($order) {
+            $order->status = 'Menunggu konfirmasi';
+            $order->save();
+        }
+
+        return redirect("/listorder")->with('success', 'Pembayaran sukses!');
     }
 
     public function edit($id)
     {
         $order = Order::find($id);
         $ongkir = Ongkir::first();
-        $rekening = Rekening::first();
+        $rekening = Rekening::all();
         $pembayaran = new Pembayaran();
         $pembayaran->user_id = auth()->user()->id;
         $pembayaran->order_id = $order->id;
         $pembayaran->ongkir_id = $ongkir->id_ongkir;
-        $pembayaran->rekenig_id = $rekening->id_rekening;
         return view('pelanggan.bayarpelanggan.index')->with([
             'pembayaran' => $pembayaran,
+            'rekening' => $rekening
         ]);
     }
 

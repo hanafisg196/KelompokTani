@@ -37,7 +37,10 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                           <a class="dropdown-item" href="/profile">Akun</a>
                           <a class="dropdown-item" href="/listorder">Pesanan</a>
-                          <a class="dropdown-item" href="/logout">Logout</a>
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button class="dropdown-item" type="submit">Logout</button>
+                            </form>
                         </div>
                       </div>
 

@@ -99,11 +99,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group mt-3">
-                            <label for="c_order_notes" class="text-black">Alamat Lengkap</label>
-                            <p>Silahkan masukkan alamat lengkap sebelum melanjutkan proses pembayaran!</p>
-                            <textarea name="alamat" id="c_order_notes" cols="30" rows="5" class="form-control" required placeholder="Tulis alamat lengkap...">{{ old('alamat', $bayar->alamat) }}</textarea>
-                        </div>
 
 
                         <div class="m-3 text-end form-group">

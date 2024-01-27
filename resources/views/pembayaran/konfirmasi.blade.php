@@ -15,6 +15,7 @@
 </div>
 
 <div class="page-body">
+
     <div class="row">
         <!-- Multiple Open Accordion start -->
         <div class="col-lg-6">
@@ -39,7 +40,7 @@
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label  class="text-black">Subtotal Pembayaran<span class="text-danger">*</span></label>
+                            <label  class="text-black">Total Pembayaran<span class="text-danger">*</span></label>
                             <input type="number" value="{{ $bayar->total }}" class="form-control" id="subtotal"  name="subtotal" placeholder="Total Pembayaran" readonly>
                         </div>
                     </div>
@@ -50,57 +51,25 @@
                             <input type="text" value="{{$pembayaran->rekenings->bank_name }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                         </div>
                     </div>
-
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <p style="margin-bottom:10px">Bukti Transfer</p>
-                            <img id="c_address" src="{{ asset('storage/' . $bayar->bukti_transfer) }}" style="max-width:100%; max-height:500px; height:auto;" alt="{{ $bayar->bukti_transfer }}">
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-header-text">Detail Pesanan</h5>
+                    <a href="/pembayaran" class="pull-right mb-3 btn btn-primary">Kembali</a>
                 </div>
                 <div class="card-block accordion-block">
-                    <table style="border-collapse: collapse; width: 100%; border: 1px solid black;">
-                        <thead style="border: 1px solid black;">
-                            <tr>
-                                <th style="border: 1px solid black;">No</th>
-                                <th style="border: 1px solid black;">Gambar</th>
-                                <th style="border: 1px solid black;">Nama Produk</th>
-                                <th style="border: 1px solid black;">Quantity</th>
-                                <th style="border: 1px solid black;">Harga</th>
-                                <th style="border: 1px solid black;">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody style="border: 1px solid black;">
-                            @foreach ($details->where('order_id', $pembayaran->order_id) as $detail)
-                                <tr style="border: 1px solid black;">
-                                    <td style="border: 1px solid black;">{{ $loop->iteration }}</td>
-                                    <td style="border: 1px solid black;" class="product-thumbnail">
-                                        <img src="{{ asset('storage/' . $detail->products['image']) }}" style="max-width:100%; max-height:150px; height:auto;" alt="Image" class="img-fluid">
-                                    </td>
-                                    <td style="border: 1px solid black;">{{ $detail->products->name }}</td>
-                                    <td style="border: 1px solid black;">{{ $detail->qty }}</td>
-                                    <td style="border: 1px solid black;">{{ $detail->products->harga }}</td>
-                                    <td style="border: 1px solid black;">{{ $detail->qty * $detail->products->harga }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                        <table style="margin-top: 10px">
-                            <tr>
-                                <td style="border: 1px solid black;">Subtotal</td>
-                                <td style="border: 1px solid black;">: {{ $details->sum(function ($item) { return $item->qty * $item->products->harga; }) }}</td>
-                            </tr>
-                            <tr>
-                                <td>Ongkir</td>
-                            </tr>
-                        </table>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <h3 style="margin-bottom:10px">Bukti Transfer</h3>
+                            <img id="c_address" src="{{ asset('storage/' . $bayar->bukti_transfer) }}" style="max-width:100%; max-height:500px; height:auto;" alt="{{ $bayar->bukti_transfer }}">
+                        </div>
+                    </div>
+                        <div class="mt-3 pull-right">
+                            <button type="submit" class="btn btn-danger">Tolak Pembayaran</button>
+                            <button type="submit" class="btn btn-info">Konfirmasi Pembayaran</button>
+                        </div>
                 </div>
             </div>
         </div>

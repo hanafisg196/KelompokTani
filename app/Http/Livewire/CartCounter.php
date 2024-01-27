@@ -15,13 +15,17 @@ class CartCounter extends Component
     {
 
         $this->getCartItemCount();
-        
+
         return view('livewire.cart-counter');
     }
 
     public function getCartItemCount()
     {
-        $this->total = \App\Models\Cart::where('user_id', auth()->user()->id)->count();
-        
+        if(auth()->user()){
+            $this->total = \App\Models\Cart::where('user_id', auth()->user()->id)->count();
+        }
+        return $this->total;
+
+
     }
 }
