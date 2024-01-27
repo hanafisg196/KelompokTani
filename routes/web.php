@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KotaController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\OngkirController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\VoucherController;
@@ -80,6 +81,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/cartproduk', [CartController::class, 'index']);
     Route::resource('/listorder', ListOrderController::class);
     Route::resource('/bayarpelanggan', BayarPelangganController::class);
+    Route::post('/editalamat/{id}', [AlamatController::class,'editalamat']);
     Route::post('/cartproduk/{id}', [UserProduct::class, 'addToCart']);
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::get('/checkout/bayar', [CheckoutController::class, 'bayar'])->name('checkoutbayar');

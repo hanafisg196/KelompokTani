@@ -28,7 +28,6 @@
          </div>
 
          <div>
-
             <input type="hidden" value="" id="ongkir" name="ongkir_id"  wire:model="ongkir" readonly>
         </div>
 

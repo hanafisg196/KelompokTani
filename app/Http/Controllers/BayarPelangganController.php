@@ -27,9 +27,6 @@ class BayarPelangganController extends Controller
         $data = [
             'user_id' => $userId,
             'order_id' => $request->input('order_id'),
-            'alamat' => $request->input('alamat'),
-            'total' => $request->input('total'),
-            'ongkir_id' => $request->input('ongkir_id'),
             'rekening_id'=> $request->input('rekening_id'),
             'bukti_transfer' => $request->input('bukti_transfer'),
         ];
@@ -41,22 +38,22 @@ class BayarPelangganController extends Controller
             $data['bukti_transfer'] = $request->file('bukti_transfer')->store('image');
         }
         // Mencari atau membuat pembayaran berdasarkan kondisi tertentu
-        Pembayaran::updateOrCreate(
+        $pembayaran = Pembayaran::updateOrCreate(
             [
                 'user_id' => $userId,
                 'order_id' => $request->input('order_id'),
             ],
             $data
         );
+        $pembayaranId = $pembayaran->id;
+        // $order = Order::find($request->input('order_id'));
 
-        $order = Order::find($request->input('order_id'));
+        // if ($order) {
+        //     $order->status = 'Menunggu konfirmasi';
+        //     $order->save();
+        // }
 
-        if ($order) {
-            $order->status = 'Menunggu konfirmasi';
-            $order->save();
-        }
-
-        return redirect('/listorder')->with('success', 'Pembayaran berhasil diproses!');
+        return redirect("/lispembayaran")->with('success', 'Pembayaran berhasil diproses!');
     }
 
 
@@ -69,17 +66,17 @@ class BayarPelangganController extends Controller
     public function edit($id)
     {
         $bayar = Pembayaran::find($id);
-        $order = Order::first();
-        $ongkir = Ongkir::first();
+        $order = Order::find($id);
         $rekening = Rekening::all();
+        // $order = Order::where('id',$id)->get();
         $pembayaran = new Pembayaran();
         $pembayaran->user_id = auth()->user()->id;
         $pembayaran->order_id = $order->id;
-        $pembayaran->ongkir_id = $ongkir->id_ongkir;
         return view('pelanggan.bayarpelanggan.upload')->with([
             'pembayaran' => $pembayaran,
             'rekening'=> $rekening,
             'bayar'=> $bayar,
+            'order' => $order,
         ]);
     }
 
