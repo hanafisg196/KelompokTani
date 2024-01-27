@@ -34,7 +34,7 @@
                 class="img-fluid product-thumbnail" alt="Nordic Chair">
                 <div class="card-body">
                     <h3 class="product-title">{{$item->name}}</h3>
-                    <strong class="product-price">{{ $item->harga }}</strong>
+                    <strong class="product-price">Rp.{{ $item->harga }}</strong>
                     <a href="/detailproduk/{{ $item->id }}" class="animated-link"> <i class="ti-plus"></i> </a>
                 </div>
             </div>

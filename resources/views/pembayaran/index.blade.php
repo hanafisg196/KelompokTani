@@ -37,6 +37,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Invoice</th>
                         <th>Nama Pemesan</th>
                         <th>Total Pembayaran</th>
                         <th>Rekening</th>
@@ -58,7 +59,7 @@
                     @foreach ($pembayarans as $key => $datas)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        {{-- <th scope="row">{{ $pembayarans->firstitem() + $key }}</th> --}}
+                        <td>{{ $datas->invoice }}</td>
                         <td>{{ $datas->users->name }}</td>
                         <td>{{  $datas['total']  }}</td>
                         <td>{{ $datas->rekenings->bank_name }}</td>
