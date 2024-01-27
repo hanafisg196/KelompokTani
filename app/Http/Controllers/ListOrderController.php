@@ -45,6 +45,7 @@ class ListOrderController extends Controller
             'alamat' => $request->input('alamat'),
             'rekening_id'=> $request->input('rekening_id'),
             'bukti_transfer' => $request->input('bukti_transfer'),
+            'status' => 'Menunggu konfirmasi',
         ];
 
         // Mencari atau membuat pembayaran berdasarkan kondisi tertentu
@@ -71,15 +72,13 @@ class ListOrderController extends Controller
     public function edit($id)
     {
         $order = Order::find($id);
-        $ongkir = Ongkir::first();
         $rekening = Rekening::all();
         $pembayaran = new Pembayaran();
         $pembayaran->user_id = auth()->user()->id;
-        $pembayaran->order_id = $order->id;
-        $pembayaran->ongkir_id = $ongkir->id_ongkir;
         return view('pelanggan.bayarpelanggan.index')->with([
             'pembayaran' => $pembayaran,
-            'rekening' => $rekening
+            'rekening' => $rekening,
+            'order' => $order
         ]);
     }
 

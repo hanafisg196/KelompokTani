@@ -47,16 +47,16 @@
                             </div>
                         </div>
 
-                        @if($pembayaran->oders && $pembayaran->oders->alamat)
+                        @if($order && $order->alamat)
                             <div class="form-group mt-3">
                                 <label for="c_companyname" class="text-black">Alamat Lengkap</label>
                                 <p>Silahkan masukkan alamat lengkap sebelum melanjutkan proses pembayaran!</p>
-                                <textarea name="alamat" id="c_order_notes" cols="30" rows="5" class="form-control" required placeholder="Tulis alamat lengkap...">{{ $pembayaran->oders->alamat }}</textarea>
+                                <textarea name="alamat" id="c_order_notes" cols="30" rows="5" class="form-control" required placeholder="Tulis alamat lengkap...">{{ $order->alamat }}</textarea>
                             </div>
                         @else
                             <div class="form-group mt-3">
                                 <label for="c_companyname" class="text-black">Alamat Lengkap</label>
-                                <textarea name="alamat" id="c_order_notes" cols="30" rows="5" class="form-control" required placeholder="Tulis alamat lengkap...">{{ $pembayaran->oders ? $pembayaran->oders->alamat : '' }}</textarea>
+                                <textarea name="alamat" id="c_order_notes" cols="30" rows="5" class="form-control" required placeholder="Tulis alamat lengkap...">{{ $order ? $order->alamat : '' }}</textarea>
                             </div>
                         @endif
 
@@ -64,13 +64,13 @@
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <label  class="text-black">Subtotal Pembayaran<span class="text-danger">*</span></label>
-                                <input type="number" value="{{ $pembayaran->oders->subtotal }}" class="form-control" id="subtotal"  name="subtotal" placeholder="Total Pembayaran" readonly>
+                                <input type="number" value="{{ $order->subtotal }}" class="form-control" id="subtotal"  name="subtotal" placeholder="Total Pembayaran" readonly>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <label  class="text-black">Ongkir<span class="text-danger">*</span></label>
-                                <input type="number" value="{{ $pembayaran->ongkirs->ongkir }}" class="form-control"  placeholder="Total Pembayaran" readonly>
+                                <input type="number" value="{{ $order->ongkirs->ongkir }}" class="form-control"  placeholder="Total Pembayaran" readonly>
                             </div>
                         </div>
 
@@ -104,7 +104,7 @@
                         </div>
 
                                 --}}
-                        <input type="hidden" value="{{ $pembayaran->oders->id }}" name="order_id">
+                        <input type="hidden" value="{{ $order->id }}" name="order_id">
 
                     </div>
                 </div>
@@ -115,7 +115,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                         <label  class="text-black">Total Pembayaran<span class="text-danger">*</span></label>
-                                        <input type="number" value="{{ $pembayaran->ongkirs->ongkir + $pembayaran->oders->subtotal}}" class="form-control" id="subtotal"  name="total" placeholder="Total Pembayaran" readonly>
+                                        <input type="number" value="{{ $order->ongkirs->ongkir + $order->subtotal}}" class="form-control" id="subtotal"  name="total" placeholder="Total Pembayaran" readonly>
                                     </div>
                                 </div>
                                 <label for="c_address"
