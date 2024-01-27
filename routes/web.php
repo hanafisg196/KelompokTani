@@ -100,6 +100,8 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/logout', [LoginController::class, 'doLogout']);
     Route::resource('/pembayaran', PembayaranController::class);
+    Route::post('/accept{id}', [PembayaranController::class, 'accept']);
+    Route::post('/deny{id}', [PembayaranController::class, 'deny']);
     Route::resource('/produk', ProdukController::class);
     Route::resource('/voucher', VoucherController::class);
     Route::post('/editdata/{id_voucher}', [VoucherController::class,'editdata']);

@@ -10,6 +10,8 @@ use App\Models\Pembayaran;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
+
 class PembayaranController extends Controller
 {
     /**
@@ -30,6 +32,11 @@ class PembayaranController extends Controller
         $pembayaran->order_id = $order->id;
         $pembayaran->ongkir_id = $ongkir->id_ongkir;
         $pembayaran->rekening_id = $rekening->id_rekening;
+
+
+        
+
+
         return view("pembayaran.index",[
             'pembayarans' => Pembayaran::latest()->get(),
         ]);
@@ -86,6 +93,8 @@ class PembayaranController extends Controller
         $pembayaran->order_id = $order->id;
         $pembayaran->ongkir_id = $ongkir->id_ongkir;
         $pembayaran->rekening_id = $rekening->id_rekening;
+
+
         return view('pembayaran.konfirmasi')->with([
             'pembayaran' => $pembayaran,
             'bayar' => $bayar,
@@ -93,7 +102,7 @@ class PembayaranController extends Controller
 
         ]);
     }
-
+     // return json_encode($details);
     /**
      * Update the specified resource in storage.
      *
@@ -116,4 +125,49 @@ class PembayaranController extends Controller
     {
         //
     }
+
+
+    public function accept($id)
+    {
+        
+        $bayar = Pembayaran::find($id);
+
+        $order = Order::find($bayar->order_id);
+        $details = OrderDetail::where('order_id', $order->id)->get();
+
+        foreach ($details as $detail)
+        {
+            $product = $detail->products;
+            
+            if ($product)
+            {
+                $product->stok -= $detail->qty;
+                $product->save();
+            }
+            else{
+                return response()->json(['error' => 'Produk Tidak Ditemukan'], 404);
+            }
+        }
+
+            $order->status = 'kimooochiii';
+            $order->save();
+
+            return redirect('/pembayaran');
+       
+    }
+    
+    public function deny($id)
+    {
+        $bayar = Pembayaran::find($id);
+
+        $order = Order::find($bayar->order_id);
+
+             $order->status = 'Pembayaran Ditolak';
+             $order->save();
+
+            return redirect('/pembayaran')->with('success', 'sangatlah deniell');
+    }
+
+
+
 }
