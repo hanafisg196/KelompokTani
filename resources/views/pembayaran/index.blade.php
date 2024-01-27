@@ -64,7 +64,7 @@
                         <td>{{ $datas->rekenings->bank_name }}</td>
                         <td><img src="{{ asset('storage/' . $datas['bukti_transfer']) }}" style="max-width:100%; max-height:250px; height:auto;" alt="{{ $datas['bukti_transfer'] }}"></td>
                         <td class="custom-td">{{  $datas['alamat']  }}</td>
-                        <td>{{ $datas['status'] }}</td>
+                        <td>{{ $datas->orders->status }}</td>
                         <td>
                             <a href="/pembayaran/{{ $datas->id }}/edit" class="btn btn-primary">Konfirmasi Pesanan</a>
                             <form action="/pembayaran/{{ $datas->id }}" method="POST" class="d-inline">

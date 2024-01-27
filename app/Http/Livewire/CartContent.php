@@ -36,16 +36,26 @@ class CartContent extends Component
     public function decrementQty($id)
     {
         $cart = Cart::where('id',$id)->first();
-        if($cart->quantity > 1){
-            $cart->quantity -= 1;
-            $cart->save();
-            $this->getPrice();
 
-            session()->flash('success', 'Product quantity updated !!!');
-        }else{
-            session()->flash('info','You cannot have less than 1 quantity');
+        if ($cart)
+        {
+            if ($cart->quantity > 1) {
+                $cart->quantity -= 1;
+                $cart->save();
+                $this->getPrice();
+                $this->emit('refresh-me');
+            } else{
+                
+                $this->emit('refresh-me');
+            }
         }
 
+        else {
+            
+            $this->emit('refresh-me');
+            $cart->quantity = 1;
+        }
+        
     }
 
 
@@ -58,7 +68,7 @@ class CartContent extends Component
         if($cart->quantity >= $cart->products->stok)
         {
             session()->flash('success', "Stok yang tersedia hanya ". $cart->products->stok . " pcs");
-            $cart->quantity = 1;
+            
         }else{
             $cart->quantity += 1;
         }
@@ -120,7 +130,7 @@ class CartContent extends Component
                 'qty' => $cart->quantity,
             ]);
         }
-
+        
         Cart::where(['user_id' => auth()->user()->id])->delete();
 
         return redirect('/listorder');

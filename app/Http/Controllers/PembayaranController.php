@@ -88,11 +88,14 @@ class PembayaranController extends Controller
         $rekening = Rekening::first();
         $order = Order::first();
         $details = OrderDetail::whereIn('order_id', $order->pluck('id'))->get();
+
         $pembayaran = new Pembayaran();
         $pembayaran->user_id = $user->id;
         $pembayaran->order_id = $order->id;
         $pembayaran->ongkir_id = $ongkir->id_ongkir;
         $pembayaran->rekening_id = $rekening->id_rekening;
+
+      
 
 
         return view('pembayaran.konfirmasi')->with([
@@ -149,7 +152,7 @@ class PembayaranController extends Controller
             }
         }
 
-            $order->status = 'kimooochiii';
+            $order->status = 'Pesanan Di Proses';
             $order->save();
 
             return redirect('/pembayaran');
