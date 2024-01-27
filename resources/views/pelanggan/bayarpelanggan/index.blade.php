@@ -32,12 +32,7 @@
                         <div class="form-group row">
                             <div class="text-right">
                             </div>
-                            <div class="col-md-12">
-                                <!-- Button trigger modal -->
-
-                                <label for="c_companyname" class="text-black">Nomor Faktur</label>
-                                <input type="text" class="form-control" id="c_companyname" name="c_companyname">
-                            </div>
+                         
                         </div>
 
                         <div class="form-group row">

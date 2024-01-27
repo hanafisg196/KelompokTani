@@ -35,7 +35,7 @@ class BayarPelangganController extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $data['bukti_transfer'] = $request->file('bukti_transfer')->store('image');
+            $data['bukti_transfer'] = $request->file('image')->store('image');
         }
         // Mencari atau membuat pembayaran berdasarkan kondisi tertentu
         $pembayaran = Pembayaran::updateOrCreate(
