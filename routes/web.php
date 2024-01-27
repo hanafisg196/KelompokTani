@@ -76,7 +76,7 @@ Route::get('/verified', function () {
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-
+    Route::post('/logout', [LoginController::class, 'doLogout']);
     Route::get('/home',[HomeController::class, 'index'])->name('home');
     Route::get('/cartproduk', [CartController::class, 'index']);
     Route::resource('/listorder', ListOrderController::class);
@@ -98,7 +98,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware(AdminMiddleware::class)->group(function (){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::post('/logout', [LoginController::class, 'doLogout']);
     Route::resource('/pembayaran', PembayaranController::class);
     Route::post('/accept{id}', [PembayaranController::class, 'accept']);
     Route::post('/deny{id}', [PembayaranController::class, 'deny']);

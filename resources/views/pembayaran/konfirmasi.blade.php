@@ -69,12 +69,12 @@
 
                     <form action="/accept{{ $bayar->id }}" method="post">
                         @csrf
-                        <button class="dropdown-item" type="submit">test</button>
+                        <button class="btn btn-info" type="submit">Terima</button>
                     </form>
 
                     <form action="/deny{{ $bayar->id }}" method="post">
                         @csrf
-                        <button class="dropdown-item" type="submit">test</button>
+                        <button class="btn btn-danger" type="submit">Tolak</button>
                     </form>
                          
                 </div>

@@ -124,7 +124,8 @@
 
   @foreach ($orders as $order)
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal{{ $order->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal{{ $order->id}}" tabindex="-1" 
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -139,7 +140,8 @@
                     <div class="form-group m-3">
                         <label for="c_companyname" class="text-black">Alamat Lengkap</label>
                         <p>Silahkan masukkan alamat lengkap sebelum melanjutkan proses pembayaran!</p>
-                        <textarea name="alamat" id="c_order_notes" cols="30" rows="5" class="form-control" required placeholder="Tulis alamat lengkap..."></textarea>
+                        <textarea name="alamat" id="c_order_notes" cols="30" rows="5"
+                         class="form-control" required placeholder="Tulis alamat lengkap..."></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
