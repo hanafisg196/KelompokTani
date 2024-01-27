@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Ongkir;
@@ -37,9 +38,11 @@ class ListOrderController extends Controller
     {
         $userId = auth()->user()->id;
 
+        $invoices = Helper::IDgenerator(new Pembayaran, 'invoices', 5, 'INV');
         // Menyiapkan data yang akan disimpan
         $data = [
             'user_id' => $userId,
+            'invoice' => $invoices,
             'order_id' => $request->input('order_id'),
             'total' => $request->input('total'),
             'alamat' => $request->input('alamat'),

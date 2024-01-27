@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
             $table->string('bukti_transfer')->nullable();
+            $table->string('invoice')->nullable();
             $table->string('alamat')->nullable();
             $table->integer('total')->nullable();
             $table->string('status')->nullable();
