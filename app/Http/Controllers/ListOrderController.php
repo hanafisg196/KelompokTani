@@ -38,7 +38,28 @@ class ListOrderController extends Controller
     {
         $userId = auth()->user()->id;
 
-        $invoices = Helper::IDgenerator(new Pembayaran, 'invoices', 5, 'INV');
+        $code = "INV-";
+        $year = date('Y');
+
+        $pembayaran = Pembayaran::latest()->first();
+
+        if($pembayaran == null)
+        {
+            $serialNumber = "0001";
+        } else
+        {
+            $serialNumber = substr($pembayaran->invoice, 8, 4) + 1;
+            $serialNumber = "000" . $serialNumber;
+        }
+
+        $invoices = $code . $year . $serialNumber;
+
+
+        
+
+      
+
+
         // Menyiapkan data yang akan disimpan
         $data = [
             'user_id' => $userId,
