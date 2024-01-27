@@ -66,10 +66,17 @@
                             <img id="c_address" src="{{ asset('storage/' . $bayar->bukti_transfer) }}" style="max-width:100%; max-height:500px; height:auto;" alt="{{ $bayar->bukti_transfer }}">
                         </div>
                     </div>
-                        <div class="mt-3 pull-right">
-                            <button type="submit" class="btn btn-danger">Tolak Pembayaran</button>
-                            <button type="submit" class="btn btn-info">Konfirmasi Pembayaran</button>
-                        </div>
+
+                    <form action="/accept{{ $bayar->id }}" method="post">
+                        @csrf
+                        <button class="dropdown-item" type="submit">test</button>
+                    </form>
+
+                    <form action="/deny{{ $bayar->id }}" method="post">
+                        @csrf
+                        <button class="dropdown-item" type="submit">test</button>
+                    </form>
+                         
                 </div>
             </div>
         </div>

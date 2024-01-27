@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Product;
 use Livewire\Component;
 use Illuminate\Http\Request;
 
@@ -51,8 +52,16 @@ class CartContent extends Component
 
       public function incrementQty($id)
     {
-      $cart = Cart::where('id',$id)->first();
-        $cart->quantity += 1;
+
+       
+        $cart = Cart::where('id',$id)->first();
+        if($cart->quantity >= $cart->products->stok)
+        {
+            session()->flash('success', "Stok yang tersedia hanya ". $cart->products->stok . " pcs");
+            $cart->quantity = 1;
+        }else{
+            $cart->quantity += 1;
+        }
         $cart->save();
         $this->getPrice();
         $this->emit('refresh-me');
@@ -88,14 +97,15 @@ class CartContent extends Component
 
     }
 
-    public function addOrder(Request $request)
+    public function addOrder()
     {
         $carts = Cart::where(['user_id' => auth()->user()->id]);
         $cartUser = $carts->get();
         $subtotal = $this->subTotal;
 
         if (empty($subtotal)) {
-            return redirect('/produkpelanggan')->with('error', 'Subtotal kosong. Silakan tambahkan item ke keranjang Anda.');
+            return redirect('/produkpelanggan')->
+            with('error', 'Subtotal kosong. Silakan tambahkan item ke keranjang Anda.');
         }
 
         $order = Order::create([
@@ -115,30 +125,6 @@ class CartContent extends Component
 
         return redirect('/listorder');
     }
-
-
-//     public function addOrder()
-// {
-//     $cartItems = Cart::where(['user_id' => auth()->user()->id])->get();
-
-//     $order = new Order();
-//     $order->user_id = auth()->user()->id;
-
-//     $firstCartItem = $cartItems->first();
-//     $order->cart_id = $firstCartItem ? $firstCartItem->id : null;
-//     $order->total_bayar = $this->subTotal ;
-//     $order->total_produk = $this->totalQuantity;
-//     $order->save();
-
-
-
-//     return redirect('/checkout');
-
-// }
-
-
-
-
 
 
 

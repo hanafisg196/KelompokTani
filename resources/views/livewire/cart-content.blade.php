@@ -48,7 +48,7 @@
                            wire:click.prevent="decrementQty({{ $item->id }})">&minus;</button>
                         </div>
                         <input type="text" class="form-control text-center quantity-amount"
-                         value="{{ $item->quantity }}"
+                         value="{{ $item->quantity }}" readonly
                          placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                         <div class="input-group-append">
                           <button class="btn btn-outline-black increase"

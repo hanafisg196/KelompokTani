@@ -61,7 +61,9 @@ class ListOrderController extends Controller
 
         $order = Order::find($request->input('order_id'));
 
+
         if ($order) {
+
             $order->status = 'Menunggu konfirmasi';
             $order->save();
         }
@@ -75,6 +77,13 @@ class ListOrderController extends Controller
         $rekening = Rekening::all();
         $pembayaran = new Pembayaran();
         $pembayaran->user_id = auth()->user()->id;
+
+        if (empty($order->alamat)) {
+
+            return redirect("/listorder")->with('success', 'Alamat Tidak Boleh kosong');
+
+        }
+        
         return view('pelanggan.bayarpelanggan.index')->with([
             'pembayaran' => $pembayaran,
             'rekening' => $rekening,
@@ -86,6 +95,7 @@ class ListOrderController extends Controller
     {
         DB::table('order_details')->where('order_id',$order_id)->delete();
         DB::table('orders')->where('id',$order_id)->delete();
+        
         return redirect('/listorder')->with('success', 'Data berhasil dihapus.');
     }
 }

@@ -29,10 +29,10 @@
                           {{ session('success') }}
                       </div>
                   </div>
-              @elseif(session()->has('error'))
+              @elseif(session()->has('errors'))
                   <div class="row">
                       <div class="alert alert-danger col-sm-3 ml-3 mb-2" role="alert">
-                          {{ session('error') }}
+                          {{ session('errors') }}
                       </div>
                   </div>
               @endif

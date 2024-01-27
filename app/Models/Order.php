@@ -30,4 +30,9 @@ class Order extends Model
     {
         return $this->belongsTo(Ongkir::class, 'ongkir_id','id_ongkir');
     }
+
+    public function pembayaran()
+    {
+        return $this->hasOne(Pembayaran::class, 'order_id','id');
+    }
 }
