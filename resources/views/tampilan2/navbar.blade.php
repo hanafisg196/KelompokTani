@@ -2,7 +2,7 @@
 <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
     <div class="container">
-        <a class="navbar-brand" href="index.html">Kelompok Tani<span>.</span></a>
+        <a class="navbar-brand" href="/">Kelompok Tani<span>.</span></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
          data-bs-target="#navbarsFurni" aria-controls="navbarsFurni"
@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="navbarsFurni">
             <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
                 <li class="nav-item {{ request()->segment(1)==''? 'active' : '' }}">
-                    <a class="nav-link" href="/">Profil Perusahaan</a>
+                    <a class="nav-link" href="/about">Tentang</a>
                 </li>
                 <li class="nav-item {{ request()->segment(1)=='produkpelanggan'? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/produkpelanggan') }}">Produk</a>
