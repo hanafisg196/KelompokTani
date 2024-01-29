@@ -34,7 +34,7 @@ class PembayaranController extends Controller
         $pembayaran->rekening_id = $rekening->id_rekening;
 
 
-        
+
 
 
         return view("pembayaran.index",[
@@ -95,7 +95,7 @@ class PembayaranController extends Controller
         $pembayaran->ongkir_id = $ongkir->id_ongkir;
         $pembayaran->rekening_id = $rekening->id_rekening;
 
-      
+
 
 
         return view('pembayaran.konfirmasi')->with([
@@ -132,7 +132,7 @@ class PembayaranController extends Controller
 
     public function accept($id)
     {
-        
+
         $bayar = Pembayaran::find($id);
 
         $order = Order::find($bayar->order_id);
@@ -141,7 +141,7 @@ class PembayaranController extends Controller
         foreach ($details as $detail)
         {
             $product = $detail->products;
-            
+
             if ($product)
             {
                 $product->stok -= $detail->qty;
@@ -156,9 +156,9 @@ class PembayaranController extends Controller
             $order->save();
 
             return redirect('/pembayaran');
-       
+
     }
-    
+
     public function deny($id)
     {
         $bayar = Pembayaran::find($id);

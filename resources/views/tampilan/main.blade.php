@@ -31,11 +31,12 @@
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
       <link rel="stylesheet" type="text/css" href="/assets/css/jquery.mCustomScrollbar.css">
+      <script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
       <!-- trix editor -->
       <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
         <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
         <!-- livewire -->
-      
+
 
     <style>
         trix-toolbar [data-trix-button-group="file-tools"]{

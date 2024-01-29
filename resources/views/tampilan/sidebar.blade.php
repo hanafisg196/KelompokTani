@@ -14,6 +14,15 @@
                     </a>
                 </li>
             </ul>
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="{{ request()->segment(1)=='profil'? 'active' : '' }}">
+                    <a href="/profil">
+                        <span class="pcoded-micon"><i class="ti-blackboard"></i></span>
+                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Profil Perusahaan</span>
+                        <span class="pcoded-mcaret"></span>
+                    </a>
+                </li>
+            </ul>
 
             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Produk</div>
             <ul class="pcoded-item pcoded-left-item">

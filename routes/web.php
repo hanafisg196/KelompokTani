@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Profil;
 use App\Models\Product;
 use App\Http\Controllers\UserProduct;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\OngkirController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
@@ -37,7 +39,9 @@ Route::get('/produkpelanggan', [UserProduct::class, 'index']);
 Route::get('/detailproduk/{id}', [UserProduct::class, 'detailProduct']);
 
 Route::get('/', function () {
-    return view('pelanggan.home.index');
+    return view('pelanggan.home.index',[
+        'datas' => Profil::all()
+    ]);
 });
 
 Route::get('/konfirm', function () {
@@ -46,7 +50,9 @@ Route::get('/konfirm', function () {
 
 Route::middleware('guest')->group(function () {
     Route::get('/home', function () {
-        return view('pelanggan.home.index');
+        return view('pelanggan.home.index',[
+            'datas' => Profil::all()
+        ]);
     });
 
     Route::get('/login', function () {
@@ -114,13 +120,16 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::resource('/kategori', CategoryController::class);
     Route::resource('/produk', ProdukController::class);
     Route::resource('/ongkir', OngkirController::class);
+    Route::resource('/profil', ProfilController::class);
 });
 
 
 Route::get('/stok', function () {
     return view('stok.index');
 });
-
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 
 
 
