@@ -21,11 +21,11 @@
 
 <div class="card mx-auto" style="max-width: 80%; margin-top: 30px;">
     <div class="row g-0">
-        
+
         <div class="col-md-4">
-            <img src="{{ asset('storage/' . $data->image) }}" 
+            <img src="{{ asset('storage/' . $data->image) }}"
             class="img-fluid product-thumbnail">
-     
+
         </div>
         <div class="col-md-8">
             <div class="card-body">
@@ -102,16 +102,20 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Deskripsi</label>
                                 <div class="col-sm-9">
-                                    <input type="textarea" id="deskripsi" name="deskripsi" class="form-control
-                                     @error('deskripsi') is-invalid @enderror"
-                                     value="{{ old('deskripsi', $data->deskripsi) }}" readonly required>
+                                    <div class="card">
+                                        <div class="card-body" style="overflow-y: auto; max-height: 400px; background-color:#e9ecef">
+                                            {!! $data->deskripsi !!}
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="deskripsi"
+                                        class="form-control @error('deskripsi') is-invalid @enderror"
+                                        value="{{ old('deskripsi', $data->deskripsi) }}" readonly required>
 
                                     @error('deskripsi')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
                                     @enderror
-
                                 </div>
                             </div>
 

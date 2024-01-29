@@ -67,16 +67,23 @@
                         </div>
                     </div>
 
-                    <form action="/accept{{ $bayar->id }}" method="post">
-                        @csrf
-                        <button class="btn btn-info" type="submit">Terima</button>
+                    <div class="pull-right row">
+
+                        <div class="mr-3">
+                            <form action="/accept{{ $bayar->id }}" method="post">
+                                @csrf
+                                <button class="btn btn-info" type="submit">Konfirmasi</button>
+                            </form>
+
+                        </div>
+                        <div class="mr-2">
+                            <form action="/deny{{ $bayar->id }}" method="post">
+                                @csrf
+                                <button class="btn btn-danger" type="submit">Tolak</button>
+                        </div>
+                    </div>
                     </form>
 
-                    <form action="/deny{{ $bayar->id }}" method="post">
-                        @csrf
-                        <button class="btn btn-danger" type="submit">Tolak</button>
-                    </form>
-                         
                 </div>
             </div>
         </div>

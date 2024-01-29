@@ -20,21 +20,12 @@
 
 <div class="untree_co-section">
     <div class="container">
-        <form action="/checkout/store" method="post">
+        <form action="/checkout/store" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6 mb-5 mb-md-0">
                     <h2 class="h3 mb-3 text-black">Order</h2>
                     <div class="p-3 p-lg-5 border bg-white">
-
-
-
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                <label for="c_companyname" class="text-black">Nomor Faktur</label>
-                                <input type="text" class="form-control" id="c_companyname" name="c_companyname">
-                            </div>
-                        </div>
 
                         <div class="form-group row">
                             <div class="col-md-12">

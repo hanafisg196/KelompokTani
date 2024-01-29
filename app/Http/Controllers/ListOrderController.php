@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Helper;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Ongkir;
+use App\Helpers\Helper;
 use App\Models\Rekening;
 use App\Models\Pembayaran;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ListOrderController extends Controller
 {
@@ -55,9 +56,9 @@ class ListOrderController extends Controller
         $invoices = $code . $year . $serialNumber;
 
 
-        
 
-      
+
+
 
 
         // Menyiapkan data yang akan disimpan
@@ -71,6 +72,13 @@ class ListOrderController extends Controller
             'bukti_transfer' => $request->input('bukti_transfer'),
             'status' => 'Menunggu konfirmasi',
         ];
+
+        if ($request->file('bukti_transfer')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $data['bukti_transfer'] = $request->file('bukti_transfer')->store('image');
+        }
 
         // Mencari atau membuat pembayaran berdasarkan kondisi tertentu
         Pembayaran::updateOrCreate(
@@ -107,7 +115,7 @@ class ListOrderController extends Controller
             return redirect("/listorder")->with('success', 'Alamat Tidak Boleh kosong');
 
         }
-        
+
         return view('pelanggan.bayarpelanggan.index')->with([
             'pembayaran' => $pembayaran,
             'rekening' => $rekening,
@@ -119,7 +127,7 @@ class ListOrderController extends Controller
     {
         DB::table('order_details')->where('order_id',$order_id)->delete();
         DB::table('orders')->where('id',$order_id)->delete();
-        
+
         return redirect('/listorder')->with('success', 'Data berhasil dihapus.');
     }
 }

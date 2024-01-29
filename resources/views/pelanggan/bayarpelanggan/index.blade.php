@@ -20,7 +20,7 @@
 
 <div class="untree_co-section">
     <div class="container">
-        <form action="/listorder" method="post">
+        <form action="/listorder" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6 mb-5 mb-md-0">
@@ -32,7 +32,7 @@
                         <div class="form-group row">
                             <div class="text-right">
                             </div>
-                         
+
                         </div>
 
                         <div class="form-group row">
