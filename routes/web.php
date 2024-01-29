@@ -35,26 +35,16 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//enail veryfied handler
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/produkpelanggan', [UserProduct::class, 'index']);
 Route::get('/detailproduk/{id}', [UserProduct::class, 'detailProduct']);
+Route::get('/about', [HomeController::class, 'about']);
 
-Route::get('/', function () {
-    return view('pelanggan.home.index',[
-        'datas' => Profil::all()
-    ]);
-});
 
-Route::get('/konfirm', function () {
-    return view('pembayaran.konfirmasi');
-});
-
+//Route guest
 Route::middleware('guest')->group(function () {
-    Route::get('/home', function () {
-        return view('pelanggan.home.index',[
-            'datas' => Profil::all()
-        ]);
-    });
-
     Route::get('/login', function () {
         return view('login.index');
     })->name('login')->middleware('guest');
@@ -80,7 +70,7 @@ Route::get('/verified', function () {
 })->name('verified')->middleware(['auth', 'verified']);
 
 
-
+/// route data user
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/logout', [LoginController::class, 'doLogout']);
     Route::get('/home',[HomeController::class, 'index'])->name('home');
@@ -95,12 +85,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', function () {
         return view('user.index');
     })->name('profile');
+    Route::get('/konfirm', function () {
+        return view('pembayaran.konfirmasi');
+    });
 
 
 
 });
 
-
+// route admin
 Route::middleware(AdminMiddleware::class)->group(function (){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

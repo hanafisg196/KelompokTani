@@ -31,7 +31,7 @@
     <div class="main">
         <div class="content">
             <p>Email Verifikasi sudah dikirim ke email Anda, silahkan cek email Anda untuk melakukan verifikasi.</p>
-                                        <a href="/">Home</a>
+                <a href="/">Home</a>
                 
             
         </div>
