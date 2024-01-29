@@ -70,33 +70,78 @@
                                 <hr/>
                                 <p style="margin-bottom: 5px" class="text-inverse text-left">Nama Lengkap</p>
                                 <div class="input-group">
-                                    <input type="text" name="name" class="form-control" placeholder="Masukkan nama lengkap">
+                                    <input type="text" name="name"
+                                     class="form-control  @error('name') is-invalid @enderror"
+                                     placeholder="Masukkan nama lengkap"
+                                     value="{{ old('name') }}" required>
+
+                                     @error('name')
+                                     <div class="invalid-feedback">
+                                         {{ $message }}
+                                     </div>
+                                    @enderror
                                     <span class="md-line"></span>
                                 </div>
                                 <p style="margin-bottom: 5px" class="text-inverse text-left">Email</p>
                                 <div class="input-group">
-                                    <input type="text" name="email" class="form-control" placeholder="Masukkan email">
+                                    <input type="email" name="email"
+                                     class="form-control
+                                     @error('email') is-invalid @enderror"
+                                      placeholder="Masukkan email" 
+                                      value="{{ old('email') }}" required>
+                                      @error('email')
+                                      <div class="invalid-feedback">
+                                          {{ $message }}
+                                      </div>
+                                  @enderror
                                     <span class="md-line"></span>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <p style="margin-bottom: 5px" class="text-inverse text-left">Password</p>
                                         <div class="input-group">
-                                            <input type="password" name="password" class="form-control" placeholder="Masukkan password">
+                                            <input type="password"
+                                            name="password"
+                                            class="form-control
+                                            @error('password') is-invalid @enderror"
+                                             placeholder="Masukkan password" required>
+                                             
+                                            <span class="md-line"></span>
+                                            @error('password')
+                                             <div class="invalid-feedback">
+                                                 {{ $message }}
+                                             </div>
+                                               @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p style="margin-bottom: 5px" 
+                                        class="text-inverse text-left">Ulangi Password</p>
+                                        <div class="input-group">
+                                            <input type="password"
+                                            name="password_confirmation"
+                                            class="form-control
+                                            @error('password_confirmation') is-invalid @enderror"
+                                             placeholder="Masukkan password kembali" required>
+                                             @error('password_confirmation')
+                                             <div class="invalid-feedback">
+                                                 {{ $message }}
+                                             </div>
+                                             @enderror
                                             <span class="md-line"></span>
                                         </div>
                                     </div>
-                                    {{-- <div class="col-md-6">
-                                        <p style="margin-bottom: 5px" class="text-inverse text-left">Konfirmasi Password</p>
-                                        <div class="input-group">
-                                            <input type="password" class="form-control" placeholder="Konfirmasi password">
-                                            <span class="md-line"></span>
-                                        </div>
-                                    </div> --}}
                                 </div>
+
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign up now.</button>
+                                        <button type="submit" 
+                                        class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">
+                                        Sign up now.</button>
                                     </div>
                                 </div>
                                 <hr/>
