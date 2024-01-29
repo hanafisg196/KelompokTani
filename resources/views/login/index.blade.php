@@ -59,13 +59,11 @@
         <div class="container-fluid custom-margin">
             <div class="row">
                 <div class="col-sm-12">
-                    @if (isset($error))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>{{$error}}</strong>
-                    <button
-                    type="button" data-dismiss="alert"
-                        class="ti-close btn btn-danger btn-sm ">
-                    </button>
+                    @if(session()->has('error'))
+                    <div class="row">
+                        <div class="alert alert-danger col-sm-12 " role="alert">
+                            {{ session('error') }}
+                        </div>
                     </div>
                     @endif
                     <!-- Authentication card start -->
@@ -83,32 +81,22 @@
                                 </div>
                                 <hr/>
                                 <div class="input-group">
-                                    <input type="text" class="form-control"
-                                    placeholder="Email" name="email">
+                                    <input type="email" class="form-control"
+                                    
+                                    placeholder="Email" name="email" required>
                                     <span class="md-line"></span>
 
 
                                 </div>
                                 <div class="input-group">
                                     <input type="password" class="form-control"
-                                     placeholder="Password" name="password">
+
+                                     placeholder="Password" name="password" required>
 
                                     <span class="md-line"></span>
 
                                 </div>
-                                {{-- <div class="row m-t-25 text-left">
-                                    <div class="col-sm-7 col-xs-12">
-                                        <div class="checkbox-fade fade-in-primary">
-                                            <label>
-                                                <input type="checkbox" value="">
-                                                <span class="cr">
-                                                    <i class="cr-icon icofont icofont-ui-check txt-primary">
-                                                        </i></span>
-                                                <span class="text-inverse">Remember me</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div> --}}
+                            
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
                                         <button

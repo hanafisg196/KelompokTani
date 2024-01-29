@@ -16,10 +16,22 @@ class RegisterController extends Controller
 
     public function getRegister(Request $request)
     {
+
+         $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'password_confirmation' => 'required|same:password',
+            
+        ]) ;
+
+
+
         $user = User::create([
             "name"=> $request->name,
             "email"=> $request->email,
             "password"=> bcrypt($request->password),
+            'password_confirmation' => $request->password_confirmation,
         ]);
 
         event(new Registered($user));

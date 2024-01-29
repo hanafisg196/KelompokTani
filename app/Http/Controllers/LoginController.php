@@ -24,13 +24,11 @@ class LoginController extends Controller
                 if(auth()->check())
                 {
                     return redirect()->route('home');
-                } else {
-                    return redirect()->route('profile');
                 }
             }
 
         }else{
-            return redirect()->route("/login")->with("error","Password atau Email Salah");
+            return redirect('/login')->with('error',"Password atau Email Salah");
         }
     }
 
