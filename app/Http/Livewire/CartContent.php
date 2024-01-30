@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Voucher;
 use Livewire\Component;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,9 @@ class CartContent extends Component
 
     public $totalQuantity;
 
+    public $discount;
+    public $codeVoucher;
+
 
     public function render()
     {
@@ -22,7 +26,8 @@ class CartContent extends Component
         $this->cartItems = Cart::with('products')
                 ->where(['user_id' => auth()->user()->id])
                 ->get();
-
+               
+                // $this->applyVoucher();
                 $this->getPrice();
                 $this->getTotalQty();
 
@@ -92,8 +97,10 @@ class CartContent extends Component
     public function getPrice()
     {
         $this->subTotal = 0;
+        
         foreach ($this->cartItems as $item) {
         $this->subTotal += $item->products->harga * $item->quantity;
+        $this->subTotal -= $this->discount;
        }
 
     }
@@ -106,6 +113,22 @@ class CartContent extends Component
        }
 
     }
+
+    public function applyVoucher()
+    {
+        $this->discount = 0;
+    
+        $voucher = Voucher::where('code_voucher', $this->codeVoucher)->first();
+    
+        if ($voucher && $this->subTotal >= $voucher->min) {
+            
+            $this->discount = min($voucher->discount, $this->subTotal);
+         
+        } else {
+            $this->discount = 0;
+        }
+    }
+    
 
     public function addOrder()
     {
