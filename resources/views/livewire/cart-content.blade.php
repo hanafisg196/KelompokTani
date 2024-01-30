@@ -20,15 +20,18 @@
                 
 
             <div class="row">
-              <div class="alert alert-success col-sm-3 ml-3 mb-2 " role="alert">
-              @foreach ($vouchers as $item )
-              @endforeach
-                 <p>{{ $item->ket}}</p>
-                 <p>Kode : {{ $item->code_voucher}}</p>
-                 <p>Expired : {{ $item->end_date}}</p>
+              <div class="alert alert-info col-sm-3 ml-3 mb-2" role="alert">
+                  <h5>INFO</h5>
+                  @forelse ($vouchers as $voucher)
+                      <p>{{ $voucher->ket }}</p>
+                      <p>Kode : {{ $voucher->code_voucher }}</p>
+                      <p>Expired : {{ $voucher->end_date }}</p>
+                  @empty
+                      <p>Tidak Ada Voucher Tersedia</p>
+                  @endforelse
               </div>
-           </div>
-
+          </div>
+          
 
 
             <div class="site-blocks-table">
