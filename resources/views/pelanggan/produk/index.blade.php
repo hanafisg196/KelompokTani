@@ -28,13 +28,12 @@
         </div>
         @endif
         @foreach ($data as $item)
-        <div class="col-3">
+        <div class="ml-4 col-3">
             <div class="animated-card">
-                <img src="{{ asset('storage/' . $item->image) }}" style="margin-top: 20px"
-                class="img-fluid product-thumbnail" alt="Nordic Chair">
+                <img src="{{ asset('storage/' . $item->image) }}" style="margin-top: 20px; width: 100%; height: 300px;" class="img-fluid product-thumbnail" alt="Nordic Chair">
                 <div class="card-body">
                     <h3 class="product-title">{{$item->name}}</h3>
-                    <strong class="product-price">Rp.{{ $item->harga }}</strong>
+                    <strong class="product-price">Rp. {{ number_format($item->harga) }}</strong>
                     <a href="/detailproduk/{{ $item->id }}" class="animated-link"> <i class="ti-plus"></i> </a>
                 </div>
             </div>

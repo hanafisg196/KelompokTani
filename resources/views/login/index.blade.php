@@ -70,9 +70,6 @@
                     <div class="login-card card-block auth-body mr-auto ml-auto">
                         <form class="md-float-material" method="POST" action="/login">
                             @csrf
-                            <div class="text-center">
-                                <img src="assets/images/logo.png" alt="logo.png">
-                            </div>
                             <div class="auth-box">
                                 <div class="row m-b-20">
                                     <div class="col-md-12">
@@ -82,7 +79,7 @@
                                 <hr/>
                                 <div class="input-group">
                                     <input type="email" class="form-control"
-                                    
+
                                     placeholder="Email" name="email" required>
                                     <span class="md-line"></span>
 
@@ -96,7 +93,7 @@
                                     <span class="md-line"></span>
 
                                 </div>
-                            
+
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
                                         <button
@@ -112,9 +109,6 @@
                                         <p class="text-inverse text-left m-b-0">Belum memiliki akun?</p>
                                         <a href="/register">Klik disini!</a>
 
-                                    </div>
-                                    <div class="col-md-2">
-                                        <img src="/assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
                                     </div>
                                 </div>
 

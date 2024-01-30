@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Profil;
-use App\Models\Product;
+
 use App\Http\Controllers\UserProduct;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
@@ -101,6 +100,7 @@ Route::middleware(AdminMiddleware::class)->group(function (){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/pembayaran', PembayaranController::class);
+    Route::get('/pembayaran/{id}/faktur', [PembayaranController::class, 'cetakFaktur']);
     Route::post('/accept{id}', [PembayaranController::class, 'accept']);
     Route::post('/deny{id}', [PembayaranController::class, 'deny']);
     Route::resource('/produk', ProdukController::class);

@@ -10,7 +10,10 @@
 
             <div class="col-md-12">
                 <div class="card-body">
-                <p class="card-text">{!! $datas['body'] !!}</p>
+                    <div class="text-left">
+
+                        <p>{!! $datas['body'] !!}</p>
+                    </div>
                 </div>
             </div>
             @endforeach

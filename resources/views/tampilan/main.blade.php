@@ -67,7 +67,7 @@
                             <i class="ti-menu"></i>
                         </a>
                         <a href="index.html">
-                            <img class="img-fluid" src="/assets/images/logo.png" alt="Theme-Logo" />
+                            <h5>Sinar Harapan</h5>
                         </a>
                         <a class="mobile-options">
                             <i class="ti-more"></i>
