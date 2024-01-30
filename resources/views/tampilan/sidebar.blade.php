@@ -63,6 +63,15 @@
                     </a>
                 </li>
             </ul>
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="{{ request()->segment(1)=='laporan'? 'active' : '' }}">
+                    <a href="/laporan">
+                        <span class="pcoded-micon"><i class="ti-printer"></i></span>
+                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Laporan</span>
+                        <span class="pcoded-mcaret"></span>
+                    </a>
+                </li>
+            </ul>
 
             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Shipping</div>
             <ul class="pcoded-item pcoded-left-item">
@@ -114,7 +123,7 @@
                 </li>
             </ul>
 
-            <ul class="pcoded-item pcoded-left-item">
+            {{-- <ul class="pcoded-item pcoded-left-item">
                 <li class="{{ request()->segment(1)=='user'? 'active' : '' }}">
                     <a href="/user">
                         <span class="pcoded-micon"><i class="ti-id-badge"></i></span>
@@ -122,7 +131,7 @@
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
 
 
         </div>

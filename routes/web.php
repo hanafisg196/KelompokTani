@@ -12,6 +12,7 @@ use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\OngkirController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
@@ -101,6 +102,8 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/pembayaran', PembayaranController::class);
     Route::get('/pembayaran/{id}/faktur', [PembayaranController::class, 'cetakFaktur']);
+    Route::get('/laporan', [LaporanController::class,'index']);
+    Route::get('/cetak', [LaporanController::class,'cetak']);
     Route::post('/accept{id}', [PembayaranController::class, 'accept']);
     Route::post('/deny{id}', [PembayaranController::class, 'deny']);
     Route::resource('/produk', ProdukController::class);
