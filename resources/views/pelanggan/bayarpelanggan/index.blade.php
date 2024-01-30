@@ -139,8 +139,15 @@
                             <div class="col-md-12">
                                 <label for="c_address"
                                 class="text-black">Bukti Transfer<span class="text-danger">*</span></label>
-                                <input type="file"
-                                class="form-control" id="c_address" name="bukti_transfer" placeholder="Nama Kota">
+                                <input type="file" id="bukti_transfer" name="bukti_transfer"
+                                class="form-control @error('bukti_transfer') is-invalid @enderror"
+                                    value="{{ old('bukti_transfer') }}" onchange="previewImage()" required>
+                                <img class="image-preview img-fluid" style="display: none;" alt="bukti_transfer">
+                                @error('bukti_transfer')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
@@ -176,5 +183,21 @@
     </script> --}}
 
 </div>
+<script>
 
+    function previewImage() {
+         const image = document.querySelector('#bukti_transfer');
+         const imagePreview = document.querySelector('.image-preview');
+
+         // Display the image preview container
+         imagePreview.style.display = 'block';
+        const oFReader = new FileReader();
+
+            oFReader.readAsDataURL(image.files[0]);
+oFReader.onload = function(oFREvent) {
+imagePreview.src = oFREvent.target.result;
+};
+}
+
+    </script>
 @endsection

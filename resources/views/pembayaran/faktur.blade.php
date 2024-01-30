@@ -34,7 +34,7 @@
                                Tanggal Pembelian
                             </td>
                             <td>
-                                :   {{ $bayar->created_at->format('d-m-Y') }}
+                                :   {{ $orders->created_at->format('d-m-Y') }}
                             </td>
                         </tr>
                         <tr>
