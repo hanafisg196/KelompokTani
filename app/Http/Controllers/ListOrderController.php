@@ -55,12 +55,6 @@ class ListOrderController extends Controller
 
         $invoices = $code . $year . $serialNumber;
 
-
-
-
-
-
-
         // Menyiapkan data yang akan disimpan
         $data = [
             'user_id' => $userId,

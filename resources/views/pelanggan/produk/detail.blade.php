@@ -22,12 +22,11 @@
 <div class="card mx-auto" style="max-width: 80%; margin-top: 30px;">
     <div class="row g-0">
 
-        <div class="col-md-4">
+        <div class="col-md-4 mt-3 ml-3">
             <img src="{{ asset('storage/' . $data->image) }}"
             class="img-fluid product-thumbnail">
-
         </div>
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="card-body">
                 <form method="POST" action="/cartproduk/{{$data->id}}" enctype="multipart/form-data">
                     @csrf

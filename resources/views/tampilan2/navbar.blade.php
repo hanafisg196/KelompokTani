@@ -13,6 +13,9 @@
         <div class="collapse navbar-collapse" id="navbarsFurni">
             <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
                 <li class="nav-item {{ request()->segment(1)==''? 'active' : '' }}">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item {{ request()->segment(1)=='about'? 'active' : '' }}">
                     <a class="nav-link" href="/about">Tentang</a>
                 </li>
                 <li class="nav-item {{ request()->segment(1)=='produkpelanggan'? 'active' : '' }}">

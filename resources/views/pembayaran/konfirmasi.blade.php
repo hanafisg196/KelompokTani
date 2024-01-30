@@ -27,14 +27,14 @@
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="c_companyname" class="text-black">Nomor Faktur</label>
-                            <input type="text" class="form-control" id="c_companyname" name="c_companyname">
+                            <input type="text" value="{{ $bayar->invoice }}" class="form-control" id="c_companyname" name="c_companyname">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="c_address" class="text-black">Nama User<span class="text-danger">*</span></label>
-                            <input type="text" value="{{$pembayaran->users->name  }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
+                            <input type="text" value="{{$bayar->users->name  }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                         </div>
                     </div>
 
@@ -48,7 +48,7 @@
                     <div class="form-group row">
                         <div class="col-md-12">
                             <label for="c_address" class="text-black">Nama Bank<span class="text-danger">*</span></label>
-                            <input type="text" value="{{$pembayaran->rekenings->bank_name }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
+                            <input type="text" value="{{$bayar->rekenings->bank_name }}" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
                         </div>
                     </div>
                 </div>

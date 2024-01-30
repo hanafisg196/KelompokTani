@@ -36,7 +36,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Nama Produk</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="name" name="name" class="form-control 
+                                    <input type="text" id="name" name="name" class="form-control
                                     @error('name') is-invalid @enderror"
                                      value="{{ old('name', $data['name'])}}" required>
 
@@ -52,7 +52,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Kategori</label>
                                 <div class="col-sm-9">
-                                    <select class="form-select" name="category_id" >
+                                    <select class="form-control" name="category_id" >
                                         @foreach ($categories as $category )
                                         @if (old('category_id', $data['category_id']) == $category->id)
                                         <option value="{{ $category->id }}" selected>{{ $category->name }}</option>

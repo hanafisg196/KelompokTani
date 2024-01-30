@@ -30,7 +30,7 @@
 
             <div class="col-md-11">
                 <div class="card-body">
-                    <div class="text-center">
+                    <div>
                         <p>{!! $data['body'] !!}</p>
                     </div>
                 </div>

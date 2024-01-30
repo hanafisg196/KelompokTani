@@ -104,8 +104,8 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Slug</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label">Slug</label>
+                            <div class="col-sm-9">
                                 <input type="text" class="form-control @error('foto') is-invalid @enderror"  id="slug" name="slug" readonly
                                 value="{{ old('slug') }}" required>
                             </div>
@@ -150,8 +150,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Slug</label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 col-form-label">Slug</label>
+                            <div class="col-sm-9">
                                 <input type="text" class="form-control @error('foto') is-invalid @enderror"  id="slug" name="slug" readonly
                                 value="{{ old('slug') }}" required>
                             </div>
