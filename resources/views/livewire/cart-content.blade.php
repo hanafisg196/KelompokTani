@@ -18,15 +18,16 @@
             @endif
 
                 
-{{-- 
+
             <div class="row">
-              <div class="alert alert-info col-sm-3 ml-3 mb-2" role="alert">
-              
-                  fo
-              
-                 <h1>{{ $voucher->code_voucher }}</h1>
+              <div class="alert alert-success col-sm-3 ml-3 mb-2 " role="alert">
+              @foreach ($vouchers as $item )
+              @endforeach
+                 <p>{{ $item->ket}}</p>
+                 <p>Kode : {{ $item->code_voucher}}</p>
+                 <p>Expired : {{ $item->end_date}}</p>
               </div>
-          </div> --}}
+           </div>
 
 
 
@@ -89,6 +90,12 @@
                 <label class="text-black h4" for="coupon">Coupon</label>
                 <p>Enter your coupon code if you have one.</p>
               </div>
+              @if(session()->has('voucherErr'))
+              <div class="col-md-12">
+                <label class="text-black h6" for="coupon"> {{ session('voucherErr') }}</label>
+              </div>
+              @endif
+
               <div class="col-md-8 mb-3 mb-md-0">
                 <input  wire:model="codeVoucher" type="text" class="form-control py-3"
                  id="codeVoucher" placeholder="Coupon Code">
@@ -97,7 +104,6 @@
                 <button wire:click="applyVoucher" class="btn btn-black">Apply Coupon</button>
               </div>
             </div>
-
           </div>
           <div class="col-md-6 pl-5">
             <div class="row justify-content-end">

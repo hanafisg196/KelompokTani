@@ -18,6 +18,7 @@ class CartContent extends Component
 
     public $discount;
     public $codeVoucher;
+    public $vouchers;
 
 
     public function render()
@@ -26,8 +27,10 @@ class CartContent extends Component
         $this->cartItems = Cart::with('products')
                 ->where(['user_id' => auth()->user()->id])
                 ->get();
+
+                $this->vouchers = Voucher::latest()->get();
                
-                // $this->applyVoucher();
+             
                 $this->getPrice();
                 $this->getTotalQty();
 
@@ -123,11 +126,16 @@ class CartContent extends Component
         if ($voucher && $this->subTotal >= $voucher->min) {
             
             $this->discount = min($voucher->discount, $this->subTotal);
+
          
         } else {
             $this->discount = 0;
+            session()->flash('voucherErr', 'Kode voucher atau minimal belanja tidak valid');
+
         }
     }
+
+ 
     
 
     public function addOrder()
