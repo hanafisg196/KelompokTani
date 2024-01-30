@@ -35,18 +35,20 @@ class VoucherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Voucher $voucher)
     {
         $validatedData = $request->validate([
             "code_voucher"=> "required",
             "min"=> "required",
-            "percent"=> "required",
+            "discount"=> "required",
             "start_date"=> "required",
             "end_date"=> "required",
             "ket"=> "required",
         ]);
-        Voucher::create($validatedData);
-        return redirect("/voucher")->with("success","Data Berhasil Ditambahkan!");
+        $voucher->create($validatedData);
+
+        return redirect("/voucher")
+        ->with("success","Data Berhasil Ditambahkan!");
     }
 
     /**
@@ -71,17 +73,17 @@ class VoucherController extends Controller
 
     }
 
-    public function editdata(Request $request, $id_voucher)
+    public function editdata(Request $request, $id)
     {
         if($request->isMethod("post")){
-            $data = $request->all();
+             $request->all();
         }
-        $voucher = Voucher::find($id_voucher);
+        $voucher = Voucher::find($id);
 
         // Simpan data yang telah diedit
         $voucher->code_voucher = $request->code_voucher;
         $voucher->min = $request->min;
-        $voucher->percent = $request->percent;
+        $voucher-> discount= $request->discount;
         $voucher->start_date = $request->start_date;
         $voucher->end_date = $request->end_date;
         $voucher->ket = $request->ket;

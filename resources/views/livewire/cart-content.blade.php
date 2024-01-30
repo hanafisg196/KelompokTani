@@ -16,6 +16,20 @@
                     </div>
                 </div>
             @endif
+
+                
+{{-- 
+            <div class="row">
+              <div class="alert alert-info col-sm-3 ml-3 mb-2" role="alert">
+              
+                  fo
+              
+                 <h1>{{ $voucher->code_voucher }}</h1>
+              </div>
+          </div> --}}
+
+
+
             <div class="site-blocks-table">
               <table class="table">
                 <thead>
@@ -57,6 +71,7 @@
                       </div>
                     </td>
                     <td>{{ $item->products->harga * $item->quantity }}</td>
+                    
 
                     <td><a href="#" class="btn btn-black btn-sm" type="submit"
                        wire:click="removeItem({{ $item->id}})">X</a></td>
@@ -69,6 +84,19 @@
 
         <div class="row">
           <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <label class="text-black h4" for="coupon">Coupon</label>
+                <p>Enter your coupon code if you have one.</p>
+              </div>
+              <div class="col-md-8 mb-3 mb-md-0">
+                <input  wire:model="codeVoucher" type="text" class="form-control py-3"
+                 id="codeVoucher" placeholder="Coupon Code">
+              </div>
+              <div class="col-md-4">
+                <button wire:click="applyVoucher" class="btn btn-black">Apply Coupon</button>
+              </div>
+            </div>
 
           </div>
           <div class="col-md-6 pl-5">
@@ -77,6 +105,14 @@
                 <div class="row">
                   <div class="col-md-12 text-right border-bottom mb-5">
                     <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                  </div>
+                </div>
+                <div class="row mb-5">
+                  <div class="col-md-6">
+                    <span class="text-black">Discount</span>
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <strong class="text-black">{{ $discount}}-</strong>
                   </div>
                 </div>
                 <div class="row mb-3">

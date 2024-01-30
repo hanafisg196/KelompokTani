@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedBigInteger('order_id');
             $table->string('code_voucher')->nullable();
-            $table->integer('discount')->nullable();
             $table->integer('min')->nullable();
+            $table->integer('discount')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->text('ket')->nullable();
+          
 
-            $table->foreign('order_id')->references('id')->on('orders');
+          
             $table->timestamps();
         });
     }

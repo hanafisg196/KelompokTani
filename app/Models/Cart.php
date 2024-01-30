@@ -27,5 +27,14 @@ class Cart extends Model
         return $this->belongsTo(User::class, 'cart_id','id');
     }
 
+    // public function vouchers()
+    // {
+    //     return $this->hasMany(Voucher::class, 'cart_id','id');
+    // }
+
+   
+
+
+
    
 }

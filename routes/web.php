@@ -70,9 +70,12 @@ Route::get('/verified', function () {
 })->name('verified')->middleware(['auth', 'verified']);
 
 
+
+
+
 /// route data user
+Route::post('/logout', [LoginController::class, 'doLogout'])->middleware(['auth']);
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::post('/logout', [LoginController::class, 'doLogout']);
     Route::get('/home',[HomeController::class, 'index'])->name('home');
     Route::get('/cartproduk', [CartController::class, 'index']);
     Route::resource('/listorder', ListOrderController::class);
@@ -102,7 +105,7 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::post('/deny{id}', [PembayaranController::class, 'deny']);
     Route::resource('/produk', ProdukController::class);
     Route::resource('/voucher', VoucherController::class);
-    Route::post('/editdata/{id_voucher}', [VoucherController::class,'editdata']);
+    Route::post('/editdata/{id}', [VoucherController::class,'editdata']);
     Route::resource('/rekening', RekeningController::class);
     Route::post('/editrekening/{id_rekening}', [RekeningController::class,'editrekening']);
     Route::resource('/provinsi', ProvinsiController::class);

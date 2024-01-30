@@ -57,21 +57,23 @@
                 <tbody>
                     @foreach ($voucher as $datas)
                     <tr>
-                        <th scope="row">{{ $no++ }}</th>
-                        <td class="code_voucher">{{ $datas['code_voucher'] }}</td>
-                        <td class="min">{{ $datas['min'] }}</td>
-                        <td class="percent">{{ $datas['percent'] }}</td>
-                        <td class="start_date">{{ $datas['start_date'] }}</td>
-                        <td class="end_date">{{ $datas['end_date'] }}</td>
-                        <td class="ket custom-td">{!! $datas['ket'] !!}</td>
+                        <th scope="row">{{ $no++}}</th>
+                        <td>{{ $datas->code_voucher}}</td>
+                        <td>{{ $datas->min }}</td>
+                        <td>{{ $datas->discount }}</td>
+                        <td>{{ $datas->start_date }}</td>
+                        <td>{{ $datas->end_date }}</td>
+                        <td>{{ $datas->ket }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary exampleModaledit" data-toggle="modal" data-target="#exampleModaledit{{ $datas->id_voucher }}">
+                            <button type="button" class="btn btn-primary exampleModaledit" 
+                            data-toggle="modal" data-target="#exampleModaledit{{ $datas->id }}">
                                 <i class="ti-pencil"></i>
                             </button>
-                            <form action="/voucher/{{ $datas->id_voucher }}" method="POST" class="d-inline">
+                            <form action="/voucher/{{ $datas->id }}" method="POST" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button class="ti-trash btn btn-danger" onclick="return confirm('Yakin Menghapus Data?')"></button>
+                                <button class="ti-trash btn btn-danger" 
+                                onclick="return confirm('Yakin Menghapus Data?')"></button>
                             </form>
                         </td>
                     </tr>
@@ -132,8 +134,8 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Diskon </label>
                             <div class="col-sm-9">
-                                <input type="number" id="percent" name="percent" class="form-control @error('percent') is-invalid @enderror"
-                                 value="{{ old('percent') }}" required>
+                                <input type="number" id="discount" name="discount" class="form-control @error('discount') is-invalid @enderror"
+                                 value="{{ old('discount') }}" required>
 
                                 @error('percent')
                                     <div class="invalid-feedback">
@@ -180,7 +182,7 @@
                                 <input type="text" id="ket" name="ket" class="form-control @error('ket') is-invalid @enderror"
                                  value="{{ old('ket') }}" required>
 
-                                @error('nagari_kunjungan')
+                                @error('ket')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -205,7 +207,7 @@
 
 {{-- Modal Edit Data --}}
 @foreach ($voucher as $datas)
-<div class="modal fade" id="exampleModaledit{{ $datas->id_voucher }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModaledit{{ $datas->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -215,7 +217,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="/editdata/{{ $datas->id_voucher }}" enctype="multipart/form-data">
+            <form method="POST" action="/editdata/{{ $datas->id }}" enctype="multipart/form-data">
                 @csrf
                 <div class="card-block">
 
@@ -252,10 +254,10 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Diskon </label>
                             <div class="col-sm-9">
-                                <input type="number" id="percent" name="percent" class="form-control @error('percent') is-invalid @enderror"
-                                 value="{{ $datas->percent }}" required>
+                                <input type="number" id="discount" name="discount" class="form-control @error('discount') is-invalid @enderror"
+                                 value="{{ $datas->discount }}" required>
 
-                                @error('percent')
+                                @error('discount')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
