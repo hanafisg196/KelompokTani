@@ -76,6 +76,7 @@ Route::get('/verified', function () {
 /// route data user
 Route::post('/logout', [LoginController::class, 'doLogout'])->middleware(['auth']);
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::post('/logout', [LoginController::class, 'doLogout']);
     Route::get('/home',[HomeController::class, 'index'])->name('home');
     Route::get('/cartproduk', [CartController::class, 'index']);
     Route::resource('/listorder', ListOrderController::class);
@@ -101,6 +102,7 @@ Route::middleware(AdminMiddleware::class)->group(function (){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/pembayaran', PembayaranController::class);
+    Route::get('/pembayaran/{id}/faktur', [PembayaranController::class, 'cetakFaktur']);
     Route::post('/accept{id}', [PembayaranController::class, 'accept']);
     Route::post('/deny{id}', [PembayaranController::class, 'deny']);
     Route::resource('/produk', ProdukController::class);

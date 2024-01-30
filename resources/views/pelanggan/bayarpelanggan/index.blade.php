@@ -69,36 +69,6 @@
                             </div>
                         </div>
 
-
-
-
-                        {{-- <div class="form-group row">
-                            <div class="col-md-12">
-                                <label for="c_address"
-                                class="text-black">Metode Pembayaran<span class="text-danger">*</span></label>
-                                <select id="id_rekening" name="id_rekening" class="form-control">
-                                    <option value="1">Select a bank</option>
-                                    @foreach ($rekening as $data)
-                                            @if(old('id_rekening') == $data->id_rekening)
-                                                <option value="{{ $data->id_rekening }}" selected>{{ $data->bank_name }}</option>
-                                            @else
-                                                <option value="{{ $data->id_rekening }}">{{ $data->bank_name }}</option>
-                                            @endif
-                                        @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                                <label for="c_address"
-                                class="text-black">Bukti Transfer<span class="text-danger">*</span></label>
-                                <input type="file"
-                                class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
-                            </div>
-                        </div>
-
-                                --}}
                         <input type="hidden" value="{{ $order->id }}" name="order_id">
 
                     </div>
@@ -113,8 +83,7 @@
                                         <input type="number" value="{{ $order->ongkirs->ongkir + $order->subtotal}}" class="form-control" id="subtotal"  name="total" placeholder="Total Pembayaran" readonly>
                                     </div>
                                 </div>
-                                <label for="c_address"
-                                class="text-black">Metode Pembayaran<span class="text-danger">*</span></label>
+                                <label for="c_address"class="text-black">Metode Pembayaran<span class="text-danger">*</span></label>
                                 <select id="rekening_id" name="rekening_id" class="form-control">
                                     <option value="1">Select a bank</option>
                                     @foreach ($rekening as $data)
@@ -125,6 +94,44 @@
                                             @endif
                                         @endforeach
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="card-block table-border-style">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <label>Silahkan transfer pada bank yang tertera dibawah ini!</label>
+                                    <caption>Data Rekening</caption>
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama</th>
+                                            <th>Bank</th>
+                                            <th>Nomor Rekening</th>
+                                        </tr>
+                                    </thead>
+
+                                    <!-- Kemudian bagian HTML templatenya -->
+                                    <style>
+                                        .custom-td {
+                                            white-space: pre-wrap;
+                                        }
+                                    </style>
+                                    @php $no = 1; @endphp
+                                    <tbody>
+                                        @foreach ($rekening as $datas)
+                                        <tr>
+                                            <th scope="row">{{ $no++}}</th>
+                                            <td>{{ $datas['name'] }}</td>
+                                            <td>{{ $datas['bank_name'] }}</td>
+                                            <td>{{ $datas['rek'] }}</td>
+
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+
+
+                                </table>
                             </div>
                         </div>
 
@@ -140,6 +147,9 @@
                         <div class="m-3 text-end form-group">
                             <button class="btn btn-black btn-lg py-3 btn-block" type="submit">Bayar</button>
                         </div>
+
+
+
                     </div>
                 </div>
             </div>

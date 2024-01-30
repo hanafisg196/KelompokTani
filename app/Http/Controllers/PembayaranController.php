@@ -21,22 +21,6 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        $ongkir = Ongkir::first();
-        $rekening = Rekening::first();
-        $order = Order::first();
-        $user = User::first();
-
-        // Membuat objek pembayaran
-        $pembayaran = new Pembayaran();
-        $pembayaran->user_id = $user->id;
-        $pembayaran->order_id = $order->id;
-        $pembayaran->ongkir_id = $ongkir->id_ongkir;
-        $pembayaran->rekening_id = $rekening->id_rekening;
-
-
-
-
-
         return view("pembayaran.index",[
             'pembayarans' => Pembayaran::latest()->get(),
         ]);
@@ -83,26 +67,22 @@ class PembayaranController extends Controller
     public function edit($id)
     {
         $bayar = Pembayaran::find($id);
-        $user = User::first();
-        $ongkir = Ongkir::first();
-        $rekening = Rekening::first();
-        $order = Order::first();
-        $details = OrderDetail::whereIn('order_id', $order->pluck('id'))->get();
-
-        $pembayaran = new Pembayaran();
-        $pembayaran->user_id = $user->id;
-        $pembayaran->order_id = $order->id;
-        $pembayaran->ongkir_id = $ongkir->id_ongkir;
-        $pembayaran->rekening_id = $rekening->id_rekening;
-
-
-
-
         return view('pembayaran.konfirmasi')->with([
-            'pembayaran' => $pembayaran,
             'bayar' => $bayar,
-            'details' => $details,
 
+        ]);
+    }
+
+    public function cetakFaktur($id)
+    {
+        $bayar = Pembayaran::find($id);
+        $orders = Order::find($bayar->order_id); // Mencari Order berdasarkan $id
+        $details = OrderDetail::whereIn('order_id', $orders->pluck('id'))->get();
+
+        return view('pembayaran.faktur')->with([
+            'bayar' => $bayar,
+            'orders' => $orders,
+            'details' => $details,
         ]);
     }
      // return json_encode($details);
@@ -126,7 +106,16 @@ class PembayaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Temukan data kegiatan berdasarkan ID
+        $pembayaran = Pembayaran::find($id);
+
+        // Jika data pembayaran ditemukan, lakukan penghapusan
+        if ($pembayaran) {
+            $pembayaran->delete();
+            return redirect('/pembayaran')->with('success', 'Data berhasil dihapus.'); // Redirect dengan pesan sukses
+        } else {
+            return redirect('/pembayaran')->with('error', 'Data tidak ditemukan.'); // Redirect dengan pesan error jika data tidak ditemukan
+        }
     }
 
 
@@ -154,6 +143,9 @@ class PembayaranController extends Controller
 
             $order->status = 'Pesanan Di Proses';
             $order->save();
+
+            $bayar->status = 'Pesanan Di Proses';
+            $bayar->save();
 
             return redirect('/pembayaran');
 

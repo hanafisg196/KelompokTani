@@ -69,7 +69,7 @@
                             width="100" height="100" alt="Default Image">
                         @endif
                         </td>
-                        <td class="custom-td">{!! $datas['harga'] !!}</td>
+                        <td class="custom-td">Rp.{!! number_format($datas['harga']) !!}</td>
                         <td class="custom-td">{!! $datas['stok'] !!}</td>
                         <td class="custom-td">{!! $datas['deskripsi'] !!}</td>
                         <td>

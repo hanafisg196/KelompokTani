@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Gradient Able bootstrap admin template by codedthemes </title>
+    <title>Kelompok Tani</title>
     <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -87,7 +87,7 @@
                                     <input type="email" name="email"
                                      class="form-control
                                      @error('email') is-invalid @enderror"
-                                      placeholder="Masukkan email" 
+                                      placeholder="Masukkan email"
                                       value="{{ old('email') }}" required>
                                       @error('email')
                                       <div class="invalid-feedback">
@@ -105,7 +105,7 @@
                                             class="form-control
                                             @error('password') is-invalid @enderror"
                                              placeholder="Masukkan password" required>
-                                             
+
                                             <span class="md-line"></span>
                                             @error('password')
                                              <div class="invalid-feedback">
@@ -116,10 +116,10 @@
                                     </div>
                                 </div>
 
-                               
+
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <p style="margin-bottom: 5px" 
+                                        <p style="margin-bottom: 5px"
                                         class="text-inverse text-left">Ulangi Password</p>
                                         <div class="input-group">
                                             <input type="password"
@@ -139,7 +139,7 @@
 
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="submit" 
+                                        <button type="submit"
                                         class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">
                                         Sign up now.</button>
                                     </div>
@@ -149,10 +149,6 @@
                                     <div class="col-md-10 text-left">
                                         <p class="text-inverse text-left m-b-0">Sudah memiliki akun?</p>
                                         <a href="/login">Kembali kehalaman Login!</a>
-
-                                    </div>
-                                    <div class="col-md-2">
-                                        <img src="/assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
                                     </div>
                                 </div>
                             </div>
