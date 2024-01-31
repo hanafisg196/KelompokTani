@@ -19,11 +19,13 @@ class PembayaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Pembayaran $pembayaran, Request $request)
     {
-        return view("pembayaran.index",[
-            'pembayarans' => Pembayaran::latest()->get(),
-        ]);
+        $pembayarans = $pembayaran->when($request->has('search'), function ($query) use ($request) {
+            $query->where('invoice', 'LIKE', '%' . $request->search . '%')
+            ->orwhere('status', 'LIKE', '%' . $request->search . '%');
+        })->latest()->paginate(10);
+        return view("pembayaran.index",compact('pembayarans'));
     }
 
     /**
@@ -163,10 +165,10 @@ class PembayaranController extends Controller
             return redirect('/pembayaran')->with('success', 'sangatlah deniell');
     }
 
-    
 
 
-    
+
+
 
 
 

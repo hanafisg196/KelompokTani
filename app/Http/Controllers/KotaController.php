@@ -13,12 +13,16 @@ class KotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Kota $kota, Request $request)
     {
-        return view("kota.index",[
-            "provinsi"=> Provinsi::all(),
-            "kota"=> Kota::latest()->get(),
-        ]);
+        $kota = $kota->when($request->has('search'), function ($query) use ($request) {
+            $query->where('city_name', 'LIKE', '%' . $request->search . '%')
+            ->orWhereHas('provinsi', function ($categoryQuery) use ($request) {
+                $categoryQuery->where('prov_name', 'LIKE', '%' . $request->search . '%');
+            });
+        })->latest()->paginate(10);
+        $provinsi = Provinsi::all();
+        return view("kota.index",compact('kota','provinsi'));
     }
 
     /**

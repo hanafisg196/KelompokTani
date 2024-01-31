@@ -14,10 +14,12 @@ class ProdukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Product $product)
+    public function index(Request $request, Product $product)
     {
-            $data = $product->paginate(3);
-            return view("produk.index")->with('data', $data);
+        $data = $product->when($request->has('search'), function ($query) use ($request) {
+            $query->where('name', 'LIKE', '%' . $request->search . '%');
+        })->latest()->paginate(10);
+        return view("produk.index",compact('data'));
 
     }
 
