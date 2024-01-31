@@ -19,35 +19,43 @@ class LaporanController extends Controller
     public function index()
     {
 
-        $laporan = Pembayaran::with('orders.detail.products.categories')
+         $laporan = Pembayaran::with('orders.detail.products.categories')
                          ->orderBy('created_at')
                          ->get();
 
                          $laporans = $laporan->groupBy(function ($laporan) {
                             return Carbon::parse($laporan->created_at)->format('m');
                         })->map(function ($laporans) {
-
+                            $products = [];
+                            $detailsQty = [];
+                    
                             foreach ($laporans as $laporan) {
-                                $categories[] = $laporan->orders->detail->first()->products->name;
+                                $productName = $laporan->orders->detail->first()->products->name;
+                    
+                            
+                                if (isset($products[$productName])) {
+                                    $detailsQty[$productName] += $laporan->orders->detail->first()->qty;
+                                } else {
+                                    
+                                    $products[$productName] = $productName;
+                                    $detailsQty[$productName] = $laporan->orders->detail->first()->qty;
+                                }
                             }
-
-                            $uniqueCategories = collect($categories)->unique();
+                    
                             return [
                                 'total' => $laporans->sum('total'),
-                                'categories' => $uniqueCategories,
+                                'products' => array_values($products),
+                                'details' => array_values($detailsQty),
                                 'z' => Carbon::parse($laporans[0]->created_at)->format('F'),
-                                
                             ];
                         });
-
-
-
-        // return json_encode($laporans);
+                    
+                        return json_encode($laporans);
 
 
 
         
-        return view('laporan.index')->with('laporans', $laporans);
+        // return view('laporan.index')->with('laporans', $laporans);
         
     }
 
