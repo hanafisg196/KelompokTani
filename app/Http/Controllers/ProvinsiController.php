@@ -12,11 +12,12 @@ class ProvinsiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Provinsi $provinsi, Request $request)
     {
-        return view("provinsi.index",[
-            "provinsi" => Provinsi::all()
-        ]);
+        $provinsi = $provinsi->when($request->has('search'), function ($query) use ($request) {
+            $query->where('prov_name', 'LIKE', '%' . $request->search . '%');
+        })->latest()->paginate(10);
+        return view("provinsi.index",compact('provinsi'));
     }
 
     /**

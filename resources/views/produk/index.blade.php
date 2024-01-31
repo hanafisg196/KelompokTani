@@ -28,9 +28,22 @@
     @endif
 
     <div class="text-right mr-4">
-
         <a href="/produk/create" class="btn waves-effect waves-light btn-primary"><i class="ti-plus"></i>Tambah</a>
     </div>
+
+    <div class="m-2 col-md-6">
+        <form action="/produk">
+            <div class="input-group">
+
+                <input type="text" class="form-control" placeholder="Search.." name="search" value="{{ request('search') }}">
+                <!-- Example split danger button -->
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <div class="card-block table-border-style">
         <div class="table-responsive">
             <table class="table">

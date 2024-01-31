@@ -15,11 +15,19 @@ class OngkirController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    
-     
-    public function index(Ongkir $Ongkir)
+
+
+    public function index(Request $request, Ongkir $Ongkir)
     {
-        $data = $Ongkir->paginate(10);
+        $data = $Ongkir->when($request->has('search'), function ($query) use ($request) {
+            $query->where('ongkir', 'LIKE', '%' . $request->search . '%')
+                ->orWhereHas('kota', function ($categoryQuery) use ($request) {
+                    $categoryQuery->where('city_name', 'LIKE', '%' . $request->search . '%');
+                })
+                ->orWhereHas('provinsi', function ($categoryQuery) use ($request) {
+                    $categoryQuery->where('prov_name', 'LIKE', '%' . $request->search . '%');
+                });
+        })->latest()->paginate(10);
         return view ("Ongkir.index")->with('data', $data);
     }
 
@@ -46,7 +54,7 @@ class OngkirController extends Controller
      */
     public function store(Request $request)
     {
-     
+
         $validatedData = $request->validate([
             'id_city' => 'required',
             'id_prov' => 'required',
@@ -92,14 +100,14 @@ class OngkirController extends Controller
         $validatedData = $request->validate([
             'ongkir' => 'required',
         ]);
-        
+
         $data = Ongkir::find($id);
 
         $data->update($validatedData);
-        
+
         return redirect('/ongkir')->with('success', 'Data berhasil diupdate!');
-      
-        
+
+
     }
 
     /**
@@ -112,7 +120,7 @@ class OngkirController extends Controller
     {
         $ongkir = Ongkir::find($id);
         $ongkir->delete();
-        
+
         return redirect('/ongkir')->with('success', 'Data berhasil Di hapus!');
     }
 }
