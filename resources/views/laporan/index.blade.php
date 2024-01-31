@@ -60,7 +60,7 @@
                                                                             {{ $laporan['total'] }}
                                                                         </th>
                                                                     </tr>
-                                                                </table>  
+                                                                </table> 
                                                                 
                                                             </td>
                                                             
