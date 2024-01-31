@@ -114,6 +114,7 @@
                                         <p style="text-align: center">Aka Gadang, {{ \Carbon\Carbon::now()->format('d-m-Y') }}</p>
                                         <br>
                                         <br>
+                                        <p style="text-align: center">Zulkifli</p>
                                         <p style="text-align: center">
                                             Ketua Kelompok Tani
                                         </p>

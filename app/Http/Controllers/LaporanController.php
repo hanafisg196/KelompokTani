@@ -23,41 +23,42 @@ class LaporanController extends Controller
                          ->orderBy('created_at')
                          ->get();
 
+                        
                          $laporans = $laporan->groupBy(function ($laporan) {
-                            return Carbon::parse($laporan->created_at)->format('m');
+                            return Carbon::parse($laporan->created_at)->format('F');
                         })->map(function ($laporans) {
                             $products = [];
-                            $detailsQty = [];
-                    
+                        
                             foreach ($laporans as $laporan) {
-                                $productName = $laporan->orders->detail->first()->products->name;
-                    
-                                // Jika produk sudah ada dalam array, tambahkan qty ke qty yang sudah ada
-                                if (isset($products[$productName])) {
-                                    $detailsQty[$productName] += $laporan->orders->detail->first()->qty;
-                                } else {
-                                    // Jika produk belum ada dalam array, tambahkan produk dan inisialisasi qty
-                                    $products[$productName] = $productName;
-                                    $detailsQty[$productName] = $laporan->orders->detail->first()->qty;
+                                foreach ($laporan->orders->detail as $detail) {
+                                    $productName = $detail->products->name;
+                        
+                                    if (!isset($products[$productName])) {
+                                        $products[$productName] = [
+                                            'qty' => 0,
+                                        ];
+                                    }
+                        
+                                    $products[$productName]['qty'] += $detail->qty;
                                 }
                             }
-                    
+                        
                             return [
                                 'total' => $laporans->sum('total'),
-                                'products' => array_values($products), // Gunakan array_values untuk mendapatkan indeks numerik
-                                'details' => array_values($detailsQty), // Gunakan array_values untuk mendapatkan indeks numerik
+                                'products' => $products,
                                 'z' => Carbon::parse($laporans[0]->created_at)->format('F'),
                             ];
                         });
+                        
 
 
 
-        return json_encode($laporans);
+        // return json_encode($laporans);
 
 
 
         
-        // return view('laporan.index')->with('laporans', $laporans);
+        return view('laporan.index')->with('laporans', $laporans);
         
     }
 
@@ -69,7 +70,39 @@ class LaporanController extends Controller
 
      public function cetak()
     {
-        return view('laporan.cetak');
+
+        $laporan = Pembayaran::with('orders.detail.products.categories')
+                         ->orderBy('created_at')
+                         ->get();
+
+                        
+                         $laporans = $laporan->groupBy(function ($laporan) {
+                            return Carbon::parse($laporan->created_at)->format('F');
+                        })->map(function ($laporans) {
+                            $products = [];
+                        
+                            foreach ($laporans as $laporan) {
+                                foreach ($laporan->orders->detail as $detail) {
+                                    $productName = $detail->products->name;
+                        
+                                    if (!isset($products[$productName])) {
+                                        $products[$productName] = [
+                                            'qty' => 0,
+                                        ];
+                                    }
+                        
+                                    $products[$productName]['qty'] += $detail->qty;
+                                }
+                            }
+                        
+                            return [
+                                'total' => $laporans->sum('total'),
+                                'products' => $products,
+                                'z' => Carbon::parse($laporans[0]->created_at)->format('F'),
+                            ];
+                        });
+
+        return view('laporan.cetak')->with('laporans', $laporans);
     }
 
 
