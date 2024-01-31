@@ -21,50 +21,57 @@
                                     <table class="table table-hover table-bordered" style="width: 100%;">
                                         <thead class="table-info">
                                             <tr>
-                                                <th style="width: 50px">&nbsp;No</th>
-                                                <th>Nama Produk</th>
+                                                <th rowspan="2" style="width: 50px">&nbsp;No</th>
+                                                <th rowspan="2" class="text-center">Nama Produk</th>
                                                 <th class="text-center" colspan="12">Bulan</th>
-                                                <th>Total</th>
+                                                <th class="text-center" rowspan="2">Total</th>
+                                            </tr>
+                                            <tr>
+                                                @foreach ( $laporans as $laporan)
+                                                <td>{{ $laporan['z'] }}</td>
+                                                @endforeach
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>1</td>
-                                                <td>Baju</td>
+                                                @foreach ( $laporans as $key => $laporan)
+                                                <td>
+                                                    <ul>
+                                                        @foreach ($laporan['categories'] as $category)
+                                                            <li>{{ $category }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </td>
+                                                @endforeach
                                                 <td colspan="12">
                                                     <table style="width: 100%;">
+                                                        
                                                         <tr>
-                                                            <td>Jan</td>
-                                                            <td>Feb</td>
-                                                            <td>Mar</td>
-                                                            <td>Apr</td>
-                                                            <td>Mei</td>
-                                                            <td>Juni</td>
-                                                            <td>Juli</td>
-                                                            <td>Agus</td>
-                                                            <td>Sep</td>
-                                                            <td>Okt</td>
-                                                            <td>Nov</td>
-                                                            <td>Des</td>
+                                                            @foreach ( $laporans as $key => $laporan)
+                                                                    
+                                                            <td>  
+                                                                <table>
+                                                                    <tr>
+                                                                        <th>Total</th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th>
+                                                                            {{ $laporan['total'] }}
+                                                                        </th>
+                                                                    </tr>
+                                                                </table>  
+                                                                
+                                                            </td>
+                                                            
+                                                            @endforeach
                                                         </tr>
-                                                        <tr>
-                                                            <td>12 Terjual</td>
-                                                            <td>34 Terjual</td>
-                                                            <td>22 Terjual</td>
-                                                            <td>12 Terjual</td>
-                                                            <td>23 Terjual</td>
-                                                            <td>23 Terjual</td>
-                                                            <td>54 Terjual</td>
-                                                            <td>23 Terjual</td>
-                                                            <td>54 Terjual</td>
-                                                            <td>65 Terjual</td>
-                                                            <td>23 Terjual</td>
-                                                            <td>54 Terjual</td>
-                                                        </tr>
+                                                       
                                                     </table>
                                                 </td>
                                                 <td>300 Terjual</td>
                                             </tr>
+                                           
                                         </tbody>
                                     </table>
                                 </div>

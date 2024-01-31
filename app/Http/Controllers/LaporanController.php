@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Models\Pembayaran;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -13,7 +18,37 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        return view('laporan.index');
+
+        $laporan = Pembayaran::with('orders.detail.products.categories')
+                         ->orderBy('created_at')
+                         ->get();
+
+                         $laporans = $laporan->groupBy(function ($laporan) {
+                            return Carbon::parse($laporan->created_at)->format('m');
+                        })->map(function ($laporans) {
+
+                            foreach ($laporans as $laporan) {
+                                $categories[] = $laporan->orders->detail->first()->products->name;
+                            }
+
+                            $uniqueCategories = collect($categories)->unique();
+                            return [
+                                'total' => $laporans->sum('total'),
+                                'categories' => $uniqueCategories,
+                                'z' => Carbon::parse($laporans[0]->created_at)->format('F'),
+                                
+                            ];
+                        });
+
+
+
+        // return json_encode($laporans);
+
+
+
+        
+        return view('laporan.index')->with('laporans', $laporans);
+        
     }
 
     /**

@@ -12,15 +12,6 @@ class Order extends Model
     protected $guarded = ['id'];
 
 
-    // public function carts()
-    // {
-    //     return $this->hasMany(Cart::class,'cart_id','id');
-    // }
-
-    // public function users()
-    // {
-    //     return $this->belongsTo(User::class, 'user_id','id');
-    // }
     public function detail()
     {
         return $this->hasMany(OrderDetail::class,'order_id','id');
