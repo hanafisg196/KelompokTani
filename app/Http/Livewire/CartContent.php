@@ -30,6 +30,7 @@ class CartContent extends Component
 
 
                 $this->infoVoucher();
+                $this->expiredVoucher();
                 $this->getPrice();
                 $this->getTotalQty();
 
@@ -137,7 +138,27 @@ class CartContent extends Component
     {
         $this->vouchers = Voucher::latest()->get();
         
+    }
+
+    public function expiredVoucher()
+    {
+        $currentDate = now();
+
+        $vouchers = Voucher::where('start_date', '<=', $currentDate)
+        ->where('end_date', '>=', $currentDate)
+        ->get();
+
+        foreach ($vouchers as $voucher) {
            
+            if ($currentDate > $voucher->end_date) {
+                $voucher->expired = true;
+                $voucher->delete();
+            } else {
+                $voucher->expired = false;
+            }
+        }
+    
+        return $vouchers;
     }
 
 

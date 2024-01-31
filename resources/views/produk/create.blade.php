@@ -110,9 +110,9 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Deskripsi</label>
                                 <div class="col-sm-9">
-                                    <input type="textarea" id="deskripsi" name="deskripsi" 
-                                    class="form-control @error('deskripsi') is-invalid @enderror"
-                                     value="{{ old('deskripsi') }}" required>
+                                    <textarea name="deskripsi" id="deskripsi" cols="100%" rows="10" 
+                                    required placeholder="Masukkan deskripsi">{{ old('deskripsi') }}</textarea>
+
 
                                     @error('deskripsi')
                                         <div class="invalid-feedback">
