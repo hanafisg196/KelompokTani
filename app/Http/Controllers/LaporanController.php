@@ -19,7 +19,7 @@ class LaporanController extends Controller
     public function index()
     {
 
-         $laporan = Pembayaran::with('orders.detail.products.categories')
+        $laporan = Pembayaran::with('orders.detail.products.categories')
                          ->orderBy('created_at')
                          ->get();
 
@@ -32,11 +32,11 @@ class LaporanController extends Controller
                             foreach ($laporans as $laporan) {
                                 $productName = $laporan->orders->detail->first()->products->name;
                     
-                            
+                                // Jika produk sudah ada dalam array, tambahkan qty ke qty yang sudah ada
                                 if (isset($products[$productName])) {
                                     $detailsQty[$productName] += $laporan->orders->detail->first()->qty;
                                 } else {
-                                    
+                                    // Jika produk belum ada dalam array, tambahkan produk dan inisialisasi qty
                                     $products[$productName] = $productName;
                                     $detailsQty[$productName] = $laporan->orders->detail->first()->qty;
                                 }
@@ -44,13 +44,15 @@ class LaporanController extends Controller
                     
                             return [
                                 'total' => $laporans->sum('total'),
-                                'products' => array_values($products),
-                                'details' => array_values($detailsQty),
+                                'products' => array_values($products), // Gunakan array_values untuk mendapatkan indeks numerik
+                                'details' => array_values($detailsQty), // Gunakan array_values untuk mendapatkan indeks numerik
                                 'z' => Carbon::parse($laporans[0]->created_at)->format('F'),
                             ];
                         });
-                    
-                        return json_encode($laporans);
+
+
+
+        return json_encode($laporans);
 
 
 
