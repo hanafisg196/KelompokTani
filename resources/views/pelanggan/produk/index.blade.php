@@ -18,31 +18,31 @@
 </div>
 <!-- End Hero Section -->
 
-<div class="card mx-auto" style="max-width: 80%; margin-top: 30px; border:0ch">
-    <div class="row ">
-        @if(session()->has('success'))
-        <div class="m-2 row">
-            <div class="alert alert-success col-sm-3 ml-3 mb-2" role="alert">
-                {{ session('success') }}
-            </div>
-        </div>
-        @endif
-        @foreach ($data as $item)
-        <div class="ml-4 col-3">
-            <div class="animated-card">
-                <img src="{{ asset('storage/' . $item->image) }}" style="margin-top: 20px; width: 100%; height: 300px;" class="img-fluid product-thumbnail" alt="Nordic Chair">
-                <div class="card-body">
-                    <h3 class="product-title">{{$item->name}}</h3>
-                    <strong class="product-price">Rp. {{ number_format($item->harga) }}</strong>
-                    <a href="/detailproduk/{{ $item->id }}" class="animated-link"> <i class="ti-plus"></i> </a>
+    <div class="card mx-auto" style="max-width: 80%; margin-top: 30px; border:0ch">
+            <div class="row justify-content-center">
+                @if(session()->has('success'))
+                <div class="m-2 row">
+                    <div class="alert alert-success col-sm-3 ml-3 mb-2" role="alert">
+                        {{ session('success') }}
+                    </div>
                 </div>
+                @endif
+                @foreach ($data as $item)
+                <div class="m-4 col-3">
+                    <div class="animated-card">
+                        <img src="{{ asset('storage/' . $item->image) }}" style="margin-top: 20px; width: 100%; height: 300px;" class="img-fluid product-thumbnail" alt="Nordic Chair">
+                        <div class="card-body">
+                            <h3 class="product-title">{{$item->name}}</h3>
+                            <strong class="product-price">Rp. {{ number_format($item->harga) }}</strong>
+                            <a href="/detailproduk/{{ $item->id }}" class="animated-link"> <i class="ti-plus"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
             </div>
         </div>
-        @endforeach
-
     </div>
-</div>
-
 
 
 @endsection
