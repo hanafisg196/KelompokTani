@@ -14,8 +14,8 @@ class DashboardController extends Controller
         return view('dashboard.index',[
             'title'=>'dashboard',
             'totaluser' => User::count(),
-            'total_orderan' => Order::where('status','Pesanan Di Proses')->count('status'),
-            'totalpemasukan' => Pembayaran::where('status','Pesanan Di Proses')->sum('total')
+            'total_orderan' => Order::wherein('status',['selesai','Pesanan Di Proses'])->count('status'),
+            'totalpemasukan' => Pembayaran::wherein('status',['selesai','Pesanan Di Proses'])->sum('total')
 
         ]);
     }

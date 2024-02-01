@@ -108,6 +108,7 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::get('/cetak', [LaporanController::class,'cetak']);
     Route::post('/accept{id}', [PembayaranController::class, 'accept']);
     Route::post('/deny{id}', [PembayaranController::class, 'deny']);
+    Route::post('/selesai{id}', [PembayaranController::class, 'selesai']);
     Route::resource('/produk', ProdukController::class);
     Route::resource('/voucher', VoucherController::class);
     Route::post('/editdata/{id}', [VoucherController::class,'editdata']);
