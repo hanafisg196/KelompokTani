@@ -70,6 +70,14 @@
                     <div class="pull-right row">
 
                         <div class="mr-3">
+                            <form action="/selesai{{ $bayar->id }}" method="post">
+                                @csrf
+                                <button class="btn btn-primary" type="submit">Selesai</button>
+                            </form>
+
+                        </div>
+
+                        <div class="mr-3">
                             <form action="/accept{{ $bayar->id }}" method="post">
                                 @csrf
                                 <button class="btn btn-info" type="submit">Konfirmasi</button>

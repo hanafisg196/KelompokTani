@@ -162,7 +162,25 @@ class PembayaranController extends Controller
              $order->status = 'Pembayaran Ditolak';
              $order->save();
 
-            return redirect('/pembayaran')->with('success', 'sangatlah deniell');
+             $bayar->status = 'Pembayaran Ditolak';
+            $bayar->save();
+
+            return redirect('/pembayaran')->with('success', 'Berhasil tolak pembayaran');
+    }
+
+    public function selesai($id)
+    {
+        $bayar = Pembayaran::find($id);
+
+        $order = Order::find($bayar->order_id);
+
+             $order->status = 'selesai';
+             $order->save();
+
+             $bayar->status = 'selesai';
+            $bayar->save();
+
+            return redirect('/pembayaran')->with('success', 'Pesanan selesai');
     }
 
 
