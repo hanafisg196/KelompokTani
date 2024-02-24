@@ -180,6 +180,18 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
+
+<script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
+<script src="{{ asset('assets/datatables/datatables/pdfmake.min.js') }}"></script>
+<script src="{{ asset('assets/datatables/vfs_fonts.js') }}"></script>
+
+
+
+
+
+
+
+
 <script type="text/javascript" src="/assets/js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/assets/js/popper.js/popper.min.js"></script>

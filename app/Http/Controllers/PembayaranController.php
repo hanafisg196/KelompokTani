@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ketua;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Ongkir;
@@ -78,6 +79,7 @@ class PembayaranController extends Controller
     public function cetakFaktur($id)
     {
         $bayar = Pembayaran::find($id);
+        $ketua = Ketua::all();
         $orders = Order::find($bayar->order_id); // Mencari Order berdasarkan $id
         $details = OrderDetail::whereIn('order_id', $orders->pluck('id'))->get();
 
@@ -85,6 +87,7 @@ class PembayaranController extends Controller
             'bayar' => $bayar,
             'orders' => $orders,
             'details' => $details,
+            'ketua' => $ketua
         ]);
     }
      // return json_encode($details);
