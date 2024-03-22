@@ -1,7 +1,11 @@
 <?php
 
+<<<<<<< HEAD
 use App\Models\Profil;
 use App\Models\Product;
+=======
+
+>>>>>>> 1928141f96737a5db3c4a4c5031104ceb2060b66
 use App\Http\Controllers\UserProduct;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
@@ -77,7 +81,10 @@ Route::get('/verified', function () {
 /// route data user
 Route::post('/logout', [LoginController::class, 'doLogout'])->middleware(['auth']);
 Route::middleware(['auth', 'verified'])->group(function () {
+<<<<<<< HEAD
     Route::post('/logout', [LoginController::class, 'doLogout']);
+=======
+>>>>>>> 1928141f96737a5db3c4a4c5031104ceb2060b66
     Route::get('/home',[HomeController::class, 'index'])->name('home');
     Route::get('/cartproduk', [CartController::class, 'index']);
     Route::resource('/listorder', ListOrderController::class);
