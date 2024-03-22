@@ -3,9 +3,12 @@
 namespace App\Http\Livewire;
 
 use App\Models\Cart;
+<<<<<<< HEAD
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Voucher;
+=======
+>>>>>>> parent of 337e907 (kontol)
 use Livewire\Component;
 use Illuminate\Http\Request;
 
@@ -14,6 +17,7 @@ class CartContent extends Component
     public $cartItems;
     public $subTotal;
 
+<<<<<<< HEAD
     public $totalQuantity;
 
     public $discount;
@@ -21,6 +25,8 @@ class CartContent extends Component
     public $vouchers;
 
 
+=======
+>>>>>>> parent of 337e907 (kontol)
     public function render()
     {
 
@@ -32,6 +38,7 @@ class CartContent extends Component
                 $this->infoVoucher();
                 $this->expiredVoucher();
                 $this->getPrice();
+<<<<<<< HEAD
                 $this->getTotalQty();
 
 
@@ -40,10 +47,17 @@ class CartContent extends Component
 
 
 
+=======
+               
+        return view('livewire.cart-content');
+    }
+    
+>>>>>>> parent of 337e907 (kontol)
 
     public function decrementQty($id)
     {
         $cart = Cart::where('id',$id)->first();
+<<<<<<< HEAD
 
         if ($cart)
         {
@@ -62,6 +76,15 @@ class CartContent extends Component
             
             $this->emit('refresh-me');
             $cart->quantity = 1;
+=======
+        if($cart->quantity > 1){
+            $cart->quantity -= 1;
+            $cart->save();
+            $this->getPrice();
+            session()->flash('success', 'Product quantity updated !!!');
+        }else{
+            session()->flash('info','You cannot have less than 1 quantity');
+>>>>>>> parent of 337e907 (kontol)
         }
         
     }
@@ -103,6 +126,7 @@ class CartContent extends Component
         
         foreach ($this->cartItems as $item) {
         $this->subTotal += $item->products->harga * $item->quantity;
+<<<<<<< HEAD
         $this->subTotal -= $this->discount;
        }
 
@@ -194,4 +218,12 @@ class CartContent extends Component
 
 
 
+=======
+    }
+    
+    }
+
+    
+    
+>>>>>>> parent of 337e907 (kontol)
 }

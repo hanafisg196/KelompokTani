@@ -137,16 +137,20 @@
                     <span class="text-black">Total</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">{{ $totalQuantity }}</strong>
+                    <strong class="text-black">$230.00</strong>
                   </div>
                 </div>
+<<<<<<< HEAD
 
 
 
+=======
+  
+>>>>>>> parent of 337e907 (kontol)
                 <div class="row">
                   <div class="col-md-12">
-                    <button class="btn btn-black btn-lg py-3 btn-block"
-                    wire:click.prevent="addOrder">Proceed To Checkout</button>
+                    <button class="btn btn-black btn-lg py-3 btn-block" 
+                    onclick="window.location='/checkout'">Proceed To Checkout</button>
                   </div>
                 </div>
               </div>

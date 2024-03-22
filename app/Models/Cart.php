@@ -21,6 +21,7 @@ class Cart extends Model
     {
         return $this->belongsTo(User::class, 'user_id','id');
     }
+<<<<<<< HEAD
 
     public function orders()
     {
@@ -37,4 +38,6 @@ class Cart extends Model
 
 
    
+=======
+>>>>>>> parent of 337e907 (kontol)
 }

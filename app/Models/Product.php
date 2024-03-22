@@ -29,7 +29,7 @@ class Product extends Model
 
     public function carts()
     {
-        return $this->hasMany(Cart::class, "product_id", "id");
+        return $this->hasMany(Cart::class, "id_product", "id");
     }
 
     public function orderDetail()

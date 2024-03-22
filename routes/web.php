@@ -1,12 +1,17 @@
 <?php
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use App\Models\Profil;
 use App\Models\Product;
 =======
 
 >>>>>>> 1928141f96737a5db3c4a4c5031104ceb2060b66
 use App\Http\Controllers\UserProduct;
+=======
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
+>>>>>>> parent of 337e907 (kontol)
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
@@ -91,9 +96,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('/bayarpelanggan', BayarPelangganController::class);
     Route::post('/editalamat/{id}', [AlamatController::class,'editalamat']);
     Route::post('/cartproduk/{id}', [UserProduct::class, 'addToCart']);
+<<<<<<< HEAD
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::get('/checkout/bayar', [CheckoutController::class, 'bayar'])->name('checkoutbayar');
     Route::post('/checkout/{id}', [CheckoutController::class, 'store']);
+=======
+>>>>>>> parent of 337e907 (kontol)
     Route::get('/profile', function () {
         return view('user.index');
     })->name('profile');
@@ -102,7 +110,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
 
+<<<<<<< HEAD
 
+=======
+    Route::get('/checkout', function () {
+        return view('pelanggan.cart.checkout',[
+            "active" => "produk",
+        ]);
+    });
+    
+>>>>>>> parent of 337e907 (kontol)
 });
 
 // route admin
