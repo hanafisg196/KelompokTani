@@ -97,9 +97,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/editalamat/{id}', [AlamatController::class,'editalamat']);
     Route::post('/cartproduk/{id}', [UserProduct::class, 'addToCart']);
 <<<<<<< HEAD
+<<<<<<< HEAD
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::get('/checkout/bayar', [CheckoutController::class, 'bayar'])->name('checkoutbayar');
     Route::post('/checkout/{id}', [CheckoutController::class, 'store']);
+=======
+>>>>>>> parent of 337e907 (kontol)
 =======
 >>>>>>> parent of 337e907 (kontol)
     Route::get('/profile', function () {
@@ -109,10 +112,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('pembayaran.konfirmasi');
     });
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 
 =======
+=======
+>>>>>>> parent of 337e907 (kontol)
     Route::get('/checkout', function () {
         return view('pelanggan.cart.checkout',[
             "active" => "produk",
