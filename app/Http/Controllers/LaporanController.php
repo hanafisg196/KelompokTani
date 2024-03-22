@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Ketua;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Pembayaran;
@@ -50,15 +51,19 @@ class LaporanController extends Controller
                             ];
                         });
                         
-
+                        $total = $laporan->sum('total');
 
 
         // return json_encode($laporans);
 
-
+        $ketua = Ketua::all();
 
         
-        return view('laporan.index')->with('laporans', $laporans);
+        return view('laporan.index')->with([
+             'laporans' => $laporans,
+             'ketua' => $ketua,
+             'total' => $total
+            ]);
         
     }
 
@@ -102,7 +107,12 @@ class LaporanController extends Controller
                             ];
                         });
 
-        return view('laporan.cetak')->with('laporans', $laporans);
+                        $ketua = Ketua::all();
+
+        return view('laporan.cetak')->with([
+             'laporans' => $laporans,
+             'ketua' => $ketua
+            ]);
     }
 
 

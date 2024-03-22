@@ -24,6 +24,17 @@
                 </li>
             </ul>
 
+
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="{{ request()->segment(1)=='ketua'? 'active' : '' }}">
+                    <a href="/ketua">
+                        <span class="pcoded-micon"><i class="ti-blackboard"></i></span>
+                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Ketua Perusahaan</span>
+                        <span class="pcoded-mcaret"></span>
+                    </a>
+                </li>
+            </ul>
+
             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Produk</div>
             <ul class="pcoded-item pcoded-left-item">
                 <li class="{{ request()->segment(1)=='produk'? 'active' : '' }}">
@@ -67,11 +78,39 @@
                 <li class="{{ request()->segment(1)=='laporan'? 'active' : '' }}">
                     <a href="/laporan">
                         <span class="pcoded-micon"><i class="ti-printer"></i></span>
-                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Laporan</span>
+                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Laporan Tahunan</span>
                         <span class="pcoded-mcaret"></span>
                     </a>
                 </li>
             </ul>
+
+            
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="{{ request()->segment(1)=='laporanfilterbymon'? 'active' : '' }}">
+                    <a href="/laporanfilterbymon">
+                        <span class="pcoded-micon"><i class="ti-printer"></i></span>
+                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Laporan Bulanan</span>
+                        <span class="pcoded-mcaret"></span>
+                    </a>
+                </li>
+            </ul>
+
+
+            <ul class="pcoded-item pcoded-left-item">
+                <li class="{{ request()->segment(1)=='laporanfilterbyday'? 'active' : '' }}">
+                    <a href="/laporanfilterbyday">
+                        <span class="pcoded-micon"><i class="ti-printer"></i></span>
+                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Laporan Harian</span>
+                        <span class="pcoded-mcaret"></span>
+                    </a>
+                </li>
+            </ul>
+
+            
+           
+            
+
+            
 
             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Shipping</div>
             <ul class="pcoded-item pcoded-left-item">

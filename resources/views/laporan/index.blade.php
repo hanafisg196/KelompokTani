@@ -51,7 +51,7 @@
                                                     </td>
                                                 @endforeach
                                             </tr>
-                                           
+                                            
                                         </tbody>
                                         </tbody>
                                         
@@ -59,7 +59,12 @@
                                 </div>
 
                                 <table class="mt-5" style="width: 100%;">
-
+                                    <br>
+                                    $total = $laporan->sum('total');
+                                    <h5 style="text-align: start">
+                                        Total Pendapatan - Rp. {{number_format( $total) }}
+                                    </h5> 
+                                 
                                     <tr>
                                         <td style="width: 50%;">
 
@@ -70,11 +75,15 @@
                                                         <p style="text-align: center">Aka Gadang, {{ \Carbon\Carbon::now()->format('d-m-Y') }}</p>
                                                         <br>
                                                         <br>
-                                                        <p style="text-align: center">Zulkifli</p>
-                                                        <p style="text-align: center">
-                                                            Ketua Kelompok Tani
-                                                        </p>
+                                                        @foreach ($ketua as $item)
+                                                                <p style="text-align: center">{{ $item->nama }}</p>
+                                                            <p style="text-align: center">
+                                                                Ketua Kelompok Tani
+                                                            </p> 
+                                                            @endforeach
                                                 </tr>
+
+                                                
                                         </td>
                                     </tr>
 

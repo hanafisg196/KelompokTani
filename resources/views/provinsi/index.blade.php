@@ -1,9 +1,6 @@
 @extends('tampilan.main')
 @section('content')
 
-
-
-
 <!-- Contextual classes table starts -->
 <div class="card">
     <div class="card-header">

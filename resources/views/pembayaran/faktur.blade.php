@@ -114,10 +114,13 @@
                                         <p style="text-align: center">Aka Gadang, {{ \Carbon\Carbon::now()->format('d-m-Y') }}</p>
                                         <br>
                                         <br>
-                                        <p style="text-align: center">Zulkifli</p>
+                                        @foreach ($ketua as $item)
+                                        <p style="text-align: center">{{ $item->nama }}</p>
                                         <p style="text-align: center">
                                             Ketua Kelompok Tani
                                         </p>
+                                        @endforeach
+                                       
                                 </tr>
                         </td>
                     </tr>

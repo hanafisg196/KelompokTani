@@ -23,6 +23,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ListOrderController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\BayarPelangganController;
+use App\Http\Controllers\KetuaController;
+use App\Http\Controllers\LaporanHariBulanController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -121,6 +123,13 @@ Route::middleware(AdminMiddleware::class)->group(function (){
     Route::resource('/produk', ProdukController::class);
     Route::resource('/ongkir', OngkirController::class);
     Route::resource('/profil', ProfilController::class);
+    Route::resource('/ketua', KetuaController::class);
+    Route::get('/laporanfilterbyday', [LaporanHariBulanController::class, 'day']);
+    Route::get('/laporanfilterbymon', [LaporanHariBulanController::class, 'mon']);
+    Route::post('/laporanharian', [LaporanHariBulanController::class, 'getDataByDay']);
+    Route::post('/laporanbulanan', [LaporanHariBulanController::class, 'getDataByDate']);
+    Route::get('/cetakbulanan', [LaporanHariBulanController::class, 'cetakBulanan']);
+    Route::get('/cetakharian', [LaporanHariBulanController::class, 'cetakHarian']);
 });
 
 
