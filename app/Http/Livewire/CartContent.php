@@ -4,9 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Models\Cart;
 <<<<<<< HEAD
+<<<<<<< HEAD
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Voucher;
+=======
+>>>>>>> parent of 337e907 (kontol)
 =======
 >>>>>>> parent of 337e907 (kontol)
 use Livewire\Component;
@@ -18,6 +21,7 @@ class CartContent extends Component
     public $subTotal;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public $totalQuantity;
 
     public $discount;
@@ -25,6 +29,8 @@ class CartContent extends Component
     public $vouchers;
 
 
+=======
+>>>>>>> parent of 337e907 (kontol)
 =======
 >>>>>>> parent of 337e907 (kontol)
     public function render()
@@ -39,6 +45,7 @@ class CartContent extends Component
                 $this->expiredVoucher();
                 $this->getPrice();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 $this->getTotalQty();
 
 
@@ -47,6 +54,12 @@ class CartContent extends Component
 
 
 
+=======
+               
+        return view('livewire.cart-content');
+    }
+    
+>>>>>>> parent of 337e907 (kontol)
 =======
                
         return view('livewire.cart-content');
@@ -126,6 +139,7 @@ class CartContent extends Component
         
         foreach ($this->cartItems as $item) {
         $this->subTotal += $item->products->harga * $item->quantity;
+<<<<<<< HEAD
 <<<<<<< HEAD
         $this->subTotal -= $this->discount;
        }
@@ -218,6 +232,14 @@ class CartContent extends Component
 
 
 
+=======
+    }
+    
+    }
+
+    
+    
+>>>>>>> parent of 337e907 (kontol)
 =======
     }
     

@@ -21,6 +21,7 @@
 <div class="untree_co-section">
     <div class="container">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <form action="/checkout/store" method="post">
             @csrf
             <div class="row">
@@ -37,6 +38,8 @@
                             </div>
                         </div>
 =======
+=======
+>>>>>>> parent of 337e907 (kontol)
 
         <div class="row">
             <div class="col-md-6 mb-5 mb-md-0">
@@ -100,6 +103,28 @@
 =======
                     </div>
 
+<<<<<<< HEAD
+=======
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="c_address" class="text-black">Metode Pembayaran<span class="text-danger">*</span></label>
+                            <select id="c_country" class="form-control">
+                                <option value="1">Select a bank</option>
+                                <option value="2">BRI</option>
+                                <option value="3">BCA</option>
+                                <option value="4">Mandiri</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <label for="c_address" class="text-black">Bukti Transfer<span class="text-danger">*</span></label>
+                            <input type="file" class="form-control" id="c_address" name="c_address" placeholder="Nama Kota">
+                        </div>
+                    </div>
+
+>>>>>>> parent of 337e907 (kontol)
                 </div>
             </div>
             <div class="col-md-6" style="margin-top: 100px">
@@ -193,6 +218,7 @@
     <!-- </form> -->
     </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     {{-- <script>
         // Menghitung total pembayaran ketika halaman dimuat
@@ -210,6 +236,8 @@
         });
     </script> --}}
 
+=======
+>>>>>>> parent of 337e907 (kontol)
 =======
 >>>>>>> parent of 337e907 (kontol)
 </div>

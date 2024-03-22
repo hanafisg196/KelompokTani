@@ -30,10 +30,13 @@ class Product extends Model
     public function carts()
     {
         return $this->hasMany(Cart::class, "id_product", "id");
+<<<<<<< HEAD
     }
 
     public function orderDetail()
     {
         return $this->hasMany(OrderDetail::class, "product_id", "id");
+=======
+>>>>>>> parent of 337e907 (kontol)
     }
 }

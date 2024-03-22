@@ -141,10 +141,13 @@
                   </div>
                 </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
 =======
+=======
+>>>>>>> parent of 337e907 (kontol)
   
 >>>>>>> parent of 337e907 (kontol)
                 <div class="row">

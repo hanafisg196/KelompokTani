@@ -11,6 +11,9 @@ use App\Http\Controllers\UserProduct;
 =======
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+<<<<<<< HEAD
+>>>>>>> parent of 337e907 (kontol)
+=======
 >>>>>>> parent of 337e907 (kontol)
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
